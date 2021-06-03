@@ -1,6 +1,6 @@
 function Home () {
     return (
-        <h4>Welkom op deze inspirerende blog</h4>
+        <h4>Zieke fiets app</h4>
     )
 }
 

@@ -1,55 +1,67 @@
-import React, {useState} from "react"
-import {Link, NavLink, useHistory} from "react-router-dom";
-import logoSmall from "../assets/logo_small.png"
-import StravaConnect from "../assets/strava-connect.png"
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
+import Logo from "../assets/logo.svg"
 
 
 function Navbar() {
+    const [click, setClick] = useState(false);
 
-    const [click, setClick] = useState(false)
-    const handleClick = () => setClick(!click)
-    const closeMobileMenu = () => setClick(false)
+    const handleClick = () => setClick(!click);
+    const closeTheMobileMenu = () => setClick(false);
 
     return (
         <>
-            <nav className="navbar">
-                <div className="navbar-container">
-                    <img src={logoSmall} alt="logo" className="nav-logo"/>
-                    <div
-                        className="hamburger-icon"
-                        onClick={handleClick}
-                    >
-                        <i className={click ? "fas fa-times" : "fas fa-bars"}/>
+            <nav className='navbar'>
+                <div className='navbar-container'>
+                    <img className='navbar-logo' onClick={closeTheMobileMenu} src={Logo} alt="logo"/>
+                    <div className='hamburger-icon' onClick={handleClick}>
+                        <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
                     </div>
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
-                        <li className="navbar-item">
+                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                        <li className='nav-item'>
+                            <Link to='/' className='nav-links' onClick={closeTheMobileMenu}>
+                                Home
+                            </Link>
+                        </li>
+
+                        <li className='nav-item'>
                             <Link
-                                exact to="/"
-                                activeClassName="nav-links"
-                                onClick={closeMobileMenu}
-                            >Home</Link>
+                                to='/your-scores'
+                                className='nav-links'
+                                onClick={closeTheMobileMenu}
+                            >
+                                Your scores
+                            </Link>
                         </li>
-                        {/*kan ook een button worden de strava*/}
-                        <li className="navbar-item">
-                            <img src={StravaConnect} alt="Strava-button"/>
+
+                        <li>
+                            <Link
+                                to='/leaderboards'
+                                className='nav-links'
+                                onClick={closeTheMobileMenu}
+                            >
+                                Leaderboards
+                            </Link>
                         </li>
-                        <li className="navbar-item">
-                            <NavLink to="contact" activeClassName="nav-links"><i class="fas fa-question-circle"/></NavLink>
+                        <li className='nav-item'>
+                            <Link
+                                to='/contact'
+                                className='nav-links'
+                                onClick={closeTheMobileMenu}
+                            ><i className="fas fa-question-circle"/>
+                            </Link>
                         </li>
-                        <li className="navbar-item">
-                            <Link to="your-scores" activeClassName="nav-links">Your scores</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <Link to="leaderboards" activeClassName="nav-links">Leaderboards</Link>
-                        </li>
-                        <li className="navbar-item">
-                            <button>Logout</button>
-                        </li>
+
+                    {/*button maken voor sign out / sing in*/}
+
+
                     </ul>
+
                 </div>
             </nav>
         </>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;

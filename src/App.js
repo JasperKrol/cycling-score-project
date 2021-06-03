@@ -17,10 +17,6 @@ function App() {
                         <Home/>
                     </Route>
 
-                    <Route path="/contact">
-                        <Contact/>
-                    </Route>
-
                     <Route path="/your-scores">
                         <YourScores/>
                     </Route>
@@ -31,6 +27,10 @@ function App() {
 
                     <Route path="/leaderboards">
                         <Profile/>
+                    </Route>
+
+                    <Route path="/contact">
+                        <Contact/>
                     </Route>
 
                 </Switch>
