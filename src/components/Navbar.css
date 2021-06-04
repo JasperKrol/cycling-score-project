@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     position: sticky;
     top: 0;
     z-index: 999;
@@ -50,13 +50,14 @@
 .nav-button {
     transition: all 0.1s ease-in;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 10px;
     height: 100%;
     width: 100%;
     border-radius: 4px;
     background: white;
     color: black;
-    margin-top: 10px;
+    text-transform: uppercase;
+
 }
 
 .nav-button:hover {
