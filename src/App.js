@@ -1,6 +1,7 @@
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import YourScores from "./pages/Yourscores";
@@ -17,6 +18,10 @@ function App() {
                         <Home/>
                     </Route>
 
+                    <Route exact path="/login">
+                        <Login/>
+                    </Route>
+
                     <Route path="/your-scores">
                         <YourScores/>
                     </Route>
@@ -25,7 +30,7 @@ function App() {
                         <Leaderboards/>
                     </Route>
 
-                    <Route path="/leaderboards">
+                    <Route path="/profile">
                         <Profile/>
                     </Route>
 

@@ -12,59 +12,23 @@ function Navbar() {
 
     return (
         <>
-            <nav className='navbar'>
-                <div className='navbar-container'>
+            <nav className="navbar">
+                <div className="logo">
+                    <img src={Logo} alt="logo"/>
+                </div>
+                <div className="hamburger-icon" onClick={handleClick}>
+                    <i className={click ? "fas fa-times" : "fas-fa-bars"}/>
+                </div>
 
-                    <div className="logo-wrapper">
-                        {/*<h2>LOGO</h2>*/}
-                        <img className='navbar-logo' onClick={closeTheMobileMenu} src={Logo} alt="logo"/>
-                    </div>
-
-
-                    <div className='hamburger-icon' onClick={handleClick}>
-                        <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
-                    </div>
-                    <ul className={click ? 'navbar-menu active' : 'navbar-menu'}>
-                        <li className='nav-item'>
-                            <Link to='/' className='nav-list' onClick={closeTheMobileMenu}>
-                                Home
-                            </Link>
-                        </li>
-
-                        <li className='nav-item'>
-                            <Link
-                                to='/your-scores'
-                                className='nav-list'
-                                onClick={closeTheMobileMenu}
-                            >
-                                Your scores
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link
-                                to='/leaderboards'
-                                className='nav-list'
-                                onClick={closeTheMobileMenu}
-                            >
-                                Leaderboards
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link
-                                to='/contact'
-                                className='nav-list'
-                                onClick={closeTheMobileMenu}
-                            >
-                                <i className="fas fa-question-circle"/>
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <button className="nav-button"
-
-                                // onClick={closeTheMobileMenu}
-                            >Sign OUt</button>
-                        </li>
+                <div className="navbar-links">
+                    <ul className={click ? 'navbar active' : 'navbar'}>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/login'>Login</Link></li>
+                        <li><Link to='/your-scores'>Your scores</Link></li>
+                        <li><Link to='/leaderboards'>leaderboards</Link></li>
+                        <li><Link to='/profile'>profile</Link></li>
+                        <li><Link to='/contact'> <i className="fas fa-question-circle"/></Link></li>
+                        <li><i className={click ? "fas fa-times" : "fas-fa-bars"}/></li>
                     </ul>
                 </div>
             </nav>
