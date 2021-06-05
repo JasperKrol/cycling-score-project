@@ -57,6 +57,7 @@ a:link {
 p {
     color: black;
     border-bottom: black solid 1px;
+    font-weight: bolder ;
 }
 
 
