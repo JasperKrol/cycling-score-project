@@ -1,14 +1,40 @@
+* {
+    font-family: Roboto, sans-serif;
+}
 
-/*.background {*/
-/*    background-image: url("../assets/fiets13.jpeg");*/
-/*    !* Full height *!*/
-/*    height: 87vh;*/
-/*    position: relative;*/
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../assets/fiets13.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
 
+}
 
-/*    !* Center and scale the image nicely *!*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: cover;*/
-/*}*/
+.tile {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+    border: rgba(255,255,255, 0.5);
+    text-align: center;
+    border-radius: 10px;
+    width: 60%;
+    min-height: 40vh;
+    background-color: rgba(255,255,255, 0.5);
+    flood-opacity: inherit;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+
+}
+
+p {
+    text-decoration-line: underline;
+}
 
