@@ -1,20 +1,26 @@
 import "../components/Login.css"
-import Connect from "../assets/strava-connect.png"
+import {Link, useHistory} from "react-router-dom"
 
 
 function Login() {
+    const history = useHistory();
+    function handleClick (){
+        history.push("/");
+    }
     return (
         <>
-           <div className="container">
-            <section className="tile">
-                <h3>Welcome!</h3>
-                <h4>View Your Scores<br /> &  <br />Compare with your friends</h4>
-                <button><img src={Connect} alt="connect with"/></button>
-                <p>Why connect with STRAVA?</p>
-                <p>Dont have STRAVA? Get it here!</p>
-            </section>
-           </div>
-</>
+            <div className="container">
+                <section className="tile">
+                    <h3>Welcome!</h3>
+                    <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
+
+                        <Link><button className="connect-with"><span>Connect with STRAVA</span></button></Link>
+
+                    <Link to="/" onClick={handleClick}><p>Why connect with STRAVA?</p></Link>
+                    <a href="https://www.strava.com/"><p>Dont have STRAVA? Get it here!</p></a>
+                </section>
+            </div>
+        </>
 
 
     )

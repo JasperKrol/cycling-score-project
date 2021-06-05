@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import './Navbar.css';
-import Logo from "../assets/logo.svg"
+// import Logo from "../assets/logo.svg"
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -16,7 +16,7 @@ function Navbar() {
                 <div className='navbar-container'>
                     <div className="logo">
                         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-                            Cycling Score
+                            CyclingScore
                             <i className="fas fa-biking"></i>
                         </Link>
                     </div>

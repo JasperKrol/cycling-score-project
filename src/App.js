@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import YourScores from "./pages/Yourscores";
 import Leaderboards from "./pages/Leaderboards";
 import Profile from "./pages/Profile";
+import './components/Navbar.css';
 
 function App() {
     return (
