@@ -12,8 +12,13 @@ body {
     position: relative;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
-    color: white;
+    background-color: none;
+    color: black;
+}
+
+.hamburger-icon {
+    display: none;
+    transition: all 0.2s ease-out
 }
 
 .logo {
@@ -39,7 +44,7 @@ body {
 .navbar-links li a {
     display: block;
     text-decoration: none;
-    color: white;
+    color: black;
     padding: 1rem;
 }
 
@@ -47,53 +52,67 @@ body {
     border-bottom: 3px solid white;
 }
 
-.toggle-button {
-    position: absolute;
-    top: .75rem;
-    right: 1rem;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-}
-
-.toggle-button .bar {
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-}
 
 @media (max-width: 800px) {
     .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.5s ease;
+
     }
 
-    .toggle-button {
-        display: flex;
+    .navbar.active {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #242222;
+        left: 0;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .hamburger-icon {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(-100%, 60%);
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: black;
     }
 
     .navbar-links {
-        display: none;
+        text-align: center;
         width: 100%;
+        display: none;
     }
+
+    .navbar .navbar-links.active {
+        text-align: center;
+        width: 100%;
+        display: table;
+    }
+
 
     .navbar-links ul {
         width: 100%;
         flex-direction: column;
     }
 
-    .navbar-links ul li {
-        text-align: center;
-    }
+    /*.navbar-links ul li {*/
+    /*    text-align: center;*/
+    /*}*/
 
-    .navbar-links ul li a {
-        padding: .5rem 1rem;
-    }
+    /*.navbar-links ul li a {*/
+    /*    padding: .5rem 1rem;*/
+    /*}*/
 
-    .navbar-links.active {
-        display: flex;
-    }
+    /*.fa-times {*/
+    /*    color: black;*/
+    /*    font-size: 2rem;*/
+    /*}*/
 }
