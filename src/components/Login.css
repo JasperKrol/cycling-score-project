@@ -55,9 +55,10 @@ a:link {
     text-decoration: none;
 }
 
-.login-tex{
+.login-text{
     color: black;
     font-weight: bolder ;
+    text-decoration: underline;
 }
 
 

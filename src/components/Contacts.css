@@ -1,0 +1,65 @@
+* {
+    font-family: Roboto, sans-serif;
+}
+
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url("../assets/fiets13.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*.content {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: flex-end;*/
+/*    align-content: start;*/
+/*    margin: 20px;*/
+
+/*}*/
+
+.tile1,
+.tile2 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    border: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    border-radius: 10px;
+    /*width: 60%;*/
+    width: 60vh;
+    min-height: 60vh;
+    background-color: rgba(255, 255, 255, 0.5);
+    flood-opacity: inherit;
+    padding-left: 20px;
+
+}
+
+.title1,
+.title2 {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 770px) {
+    .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background-image: url("../assets/fiets13.jpeg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+
+}
+

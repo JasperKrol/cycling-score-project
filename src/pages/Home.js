@@ -12,7 +12,6 @@ function Home () {
                   <div className="home-text">
                       <p>View the leaderboards to plan you next trip or training!</p>
                   </div>
-
               </section>
           </div>
       </>
