@@ -1,5 +1,5 @@
 import "../components/Login.css"
-import {Link, useHistory} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom";
 
 
 function Login() {
@@ -8,7 +8,6 @@ function Login() {
     function handleClick() {
         history.push("/");
     }
-
     return (
         <>
             <div className="container">
@@ -18,12 +17,11 @@ function Login() {
                     <Link>
                         <button className="connect-with"><span>Connect with STRAVA</span></button>
                     </Link>
-                    <Link to="/" onClick={handleClick}><p>Why connect with STRAVA?</p></Link>
-                    <a href="https://www.strava.com/"><p>Dont have STRAVA? Get it here!</p></a>
+                    <Link to="/" onClick={handleClick}><p className='login-text'>Why connect with STRAVA?</p></Link>
+                    <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p></a>
                 </section>
             </div>
         </>
-
 
     )
 }

@@ -2,6 +2,7 @@
     font-family: Roboto, sans-serif;
 }
 
+
 .container {
     min-height: 100vh;
     display: flex;
@@ -18,7 +19,7 @@
     align-items: center;
     flex-direction: column;
     align-content: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     border: rgba(255,255,255, 0.5);
     text-align: center;
     border-radius: 10px;
@@ -32,33 +33,24 @@
 .title {
     display: flex;
     flex-direction: column;
-
 }
 
-.connect-with {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #f4511e;
-    border: none;
-    color: white;
-    text-align: center;
-    font-size: 15px;
-    padding: 15px;
-    width: 125px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    font-weight: bold;
+.user-photo {
+    display: flex;
+    background: white;
+    position: relative;
+    width: 5rem;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
 }
 
-a:link {
-    text-decoration: none;
-}
-
-.login-tex{
-    color: black;
-    font-weight: bolder ;
+fa-user {
+    width: 2rem;
+    height: 2rem;
 }
 
 
+/*Login page CSS*/
 
