@@ -1,16 +1,19 @@
 import "../components/Contacts.css"
 import React from "react";
 import {useForm} from "react-hook-form"
+import { useHistory } from "react-router-dom";
 
 function Contact() {
     const { handleSubmit, formState: { errors }, register } = useForm({mode: "onBlur"});
 
-
+    let history = useHistory();
     //maak functie die de date van onsubmit in form opslaat (data) in de props
     function onSubmit(data) {
 
         //e.prevent default hoeft niet, zit al ingebouwd in de library
         console.log(data)
+        history.push("/");
+
     }
     return (
         <div className="container">
@@ -36,7 +39,7 @@ function Contact() {
                 <div className="contact-us">
                     <h3>Contact us:</h3>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="personal" >
+                        <div className="contact-details" >
                             <label  htmlFor="first-name">Naam:
                                 <input
                                     type="text"
@@ -65,6 +68,7 @@ function Contact() {
                                 </select>
                             </label>
                             <label htmlFor="comments">Please enter your text:
+                                <br/>
                                 <textarea name="comments" id="comments" cols="30" rows="10"
                                           {...register("comments",  {
                                               required: {value: true, message: "Dit veld is verplicht"}
@@ -73,8 +77,9 @@ function Contact() {
                             </textarea>
                                 {errors.comments && <p>{errors.comments.message}</p>}
                             </label>
+
                             <input
-                                type="submit"
+                                type="submit" value="Send it!"
                                 disabled={ errors.name || errors.email ||errors.comments }
                             />
                         </div>
