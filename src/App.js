@@ -1,4 +1,5 @@
 import './App.css';
+import firebase from "./firebase"
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
@@ -8,6 +9,8 @@ import YourScores from "./pages/Yourscores";
 import Leaderboards from "./pages/Leaderboards";
 import Profile from "./pages/Profile";
 import './components/Navbar.css';
+
+
 
 function App() {
     return (

@@ -41,13 +41,16 @@
 }
 
 .about-us {
-    padding-left: 20px;
+    margin-left: 30px;
+    width: 80%;
 }
 
 .company-details{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    /*padding: 20px;*/
+    width: 80%;
     padding: 20px;
 }
 
@@ -74,6 +77,16 @@
         background-image: url("../assets/fiets13.jpeg");
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    .tile1,
+    .tile2 {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+
     }
 
 }
