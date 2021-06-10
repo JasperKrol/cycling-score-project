@@ -12,7 +12,7 @@ function Contact() {
 
         //e.prevent default hoeft niet, zit al ingebouwd in de library
         console.log(data)
-        history.push("/");
+        history.push("/form-submitted");
 
     }
     return (
@@ -41,6 +41,7 @@ function Contact() {
                 </div>
                     <form className="form"
                         onSubmit={handleSubmit(onSubmit)}>
+                        <div className="details">
                             <label  htmlFor="name">Naam:
                                 <input
                                     type="text"
@@ -69,9 +70,8 @@ function Contact() {
                                 </select>
 
                             </label>
-                            <label htmlFor="comments">Please enter your text:
-
-
+                            <label htmlFor="comments">What would you like to write?
+                                <br/>
                                 <textarea name="comments" id="comments" cols="30" rows="10"
                                           {...register("comments",  {
                                               required: {value: true, message: "Dit veld is verplicht"}
@@ -80,6 +80,7 @@ function Contact() {
                             </textarea>
                                 {errors.comments && <p>{errors.comments.message}</p>}
                             </label>
+                        </div>
 
                             <input
                                 className="button"

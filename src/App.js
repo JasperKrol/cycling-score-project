@@ -9,6 +9,7 @@ import YourScores from "./pages/Yourscores";
 import Leaderboards from "./pages/Leaderboards";
 import Profile from "./pages/Profile";
 import './components/Navbar.css';
+import FormSubmitted from "./pages/FormSubmitted";
 
 
 
@@ -40,6 +41,10 @@ function App() {
 
                     <Route path="/contact">
                         <Contact/>
+                    </Route>
+
+                    <Route path="/form-submitted">
+                        <FormSubmitted/>
                     </Route>
 
                 </Switch>
