@@ -20,7 +20,7 @@ function Contact() {
             <section className="tile1">
 
                 <div className="about-us">
-                    <h3>About us:</h3>
+                    <h1>About us:</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cum enim eveniet fuga iusto
                         odio optio voluptas. At atque iste perferendis quaerat. Aliquid asperiores culpa, eius excepturi
                         explicabo iste voluptas.</p>
@@ -37,10 +37,11 @@ function Contact() {
             </section>
             <section className="tile2">
                 <div className="contact-us">
-                    <h3>Contact us:</h3>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="contact-details" >
-                            <label  htmlFor="first-name">Naam:
+                    <h1>Contact us:</h1>
+                </div>
+                    <form className="form"
+                        onSubmit={handleSubmit(onSubmit)}>
+                            <label  htmlFor="name">Naam:
                                 <input
                                     type="text"
                                     id="name"
@@ -54,21 +55,23 @@ function Contact() {
                                 <input
                                     type="email"
                                     id="email"
-                                    {...register("achternaam", {
+                                    {...register("email", {
                                         required: {value: true, message: "Dit veld is verplicht"}
                                     })}
                                 />
                                 {errors.achternaam && <p>{errors.achternaam.message}</p>}
                             </label>
-                            <label htmlFor="age">Subject:
-                                <select {...register("Subject", { required: true })}>
+                            <label htmlFor="Subject">Subject:
+                                <select {...register("subject", { required: true })}>
                                     <option value="Question">Question</option>
                                     <option value=" Remark"> Remark</option>
                                     <option value=" Tip"> Tip</option>
                                 </select>
+
                             </label>
                             <label htmlFor="comments">Please enter your text:
-                                <br/>
+
+
                                 <textarea name="comments" id="comments" cols="30" rows="10"
                                           {...register("comments",  {
                                               required: {value: true, message: "Dit veld is verplicht"}
@@ -79,12 +82,11 @@ function Contact() {
                             </label>
 
                             <input
+                                className="button"
                                 type="submit" value="Send it!"
                                 disabled={ errors.name || errors.email ||errors.comments }
                             />
-                        </div>
                     </form>
-                </div>
 
             </section>
         </div>
