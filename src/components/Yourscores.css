@@ -22,43 +22,43 @@
     border: rgba(255,255,255, 0.5);
     text-align: center;
     border-radius: 10px;
-    /*width: 60%;*/
-    width: 50vh;
+    width: 40vh;
     min-height: 40vh;
     background-color: rgba(255,255,255, 0.5);
     flood-opacity: inherit;
+    margin: 25px;
 }
-
-.title {
+.score-logo {
     display: flex;
-    flex-direction: column;
+    background: white;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.home-text {
 
 }
 
-.connect-with {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: #f4511e;
-    border: none;
-    color: white;
-    text-align: center;
-    font-size: 15px;
-    padding: 15px;
-    width: 125px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    font-weight: bold;
-}
 
-a:link {
-    text-decoration: none;
-}
-
-.login-text{
-    color: black;
-    font-weight: bolder ;
-    text-decoration: underline;
+@media screen and (max-width: 700px) {
+    .tile {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-content: center;
+        justify-content: space-evenly;
+        border: rgba(255,255,255, 0.5);
+        text-align: center;
+        border-radius: 10px;
+        width: 70%;
+        min-height: 65vh;
+        background-color: rgba(255,255,255, 0.5);
+        flood-opacity: inherit;
+    }
 }
 
 

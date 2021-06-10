@@ -5,14 +5,35 @@ function YourScores () {
         <>
             <div className="container">
                 <section className="tile">
-                    <h3>Welcome "User"!</h3>
-                    <div className="user-photo">
-                        <i className="far fa-user"/>
+                    <h2>You have climbed:</h2>
+                    <div className="score-logo">
+                        <i className="fas fa-mountain fa-2x"/>
                     </div>
                     <div className="home-text">
-                        <p>View the leaderboards to plan you next trip or training!</p>
+                        <h4>#PUT DATA HERE#</h4>
                     </div>
                 </section>
+
+                <section className="tile">
+                    <h2>Distance gained:</h2>
+                    <div className="score-logo">
+                        <i className="fas fa-route fa-2x"/>
+                    </div>
+                    <div className="home-text">
+                        <h4>#PUT DATA HERE#</h4>
+                    </div>
+                </section>
+
+                <section className="tile">
+                    <h2>Your average speed:</h2>
+                    <div className="score-logo">
+                        <i className="fas fa-tachometer-alt fa-2x"/>
+                    </div>
+                    <div className="home-text">
+                        <h4>#PUT DATA HERE#</h4>
+                    </div>
+                </section>
+
             </div>
         </>
     )
