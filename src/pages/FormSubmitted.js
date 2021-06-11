@@ -1,6 +1,6 @@
 import "../components/FormSubmitted.css"
 import Gif from "../assets/giphy.gif"
-import {Link, useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 
 export default function FormSubmitted() {
 

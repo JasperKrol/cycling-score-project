@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Navbar.css';
 // import Logo from "../assets/logo.svg"
@@ -17,7 +17,7 @@ function Navbar() {
                     <div className="logo">
                         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
                             CyclingScore
-                            <i className="fas fa-biking"></i>
+                            <i className="fas fa-biking"/>
                         </Link>
                     </div>
                     <div className='hamburger-icon' onClick={handleClick}>
@@ -74,7 +74,7 @@ function Navbar() {
                                 className='nav-links'
                                 onClick={closeMobileMenu}
                             >
-                                <i className="fas fa-question-circle"></i>
+                                <i className="fas fa-question-circle"/>
                             </Link>
                         </li>
 

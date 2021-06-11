@@ -1,4 +1,4 @@
-import "../components/Contacts.css"
+import "../components/Contact.css"
 import React from "react";
 import {useForm} from "react-hook-form"
 import {useHistory} from "react-router-dom";
@@ -19,8 +19,7 @@ function Contact() {
 
     return (
         <div className="container">
-            <section className="tile1">
-
+            <section className="tile">
                 <div className="about-us">
                     <h1>About us:</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cum enim eveniet fuga iusto
@@ -33,15 +32,14 @@ function Contact() {
                     <p><i className="fas fa-phone-alt"/> 06-12 45 78 96</p>
                     <p><i className="far fa-comment"/> Leave a comment or a question in the form</p>
                 </div>
-                <a href="https://www.strava.com/"><p className='go-to-strava'>Go to strava  <i
+                <a href="https://www.strava.com/"><p className='go-to-strava'>Go to strava <i
                     className="fas fa-arrow-circle-right"/></p></a>
-
             </section>
-            <section className="tile2">
+
+            <section className="tile">
                 <div className="contact-us">
                     <h1>Contact us:</h1>
                 </div>
-
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="details">
                         <label htmlFor="name">Naam:
@@ -97,6 +95,7 @@ function Contact() {
                         disabled={errors.name || errors.email || errors.comments}
                     />
                 </form>
+
 
             </section>
         </div>
