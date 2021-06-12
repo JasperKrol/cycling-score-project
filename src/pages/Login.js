@@ -19,6 +19,7 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
                     <h3>Welcome!</h3>
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
                     <Button
+                        redirect="home"
                         text="Connect with STRAVA"
                         toggleIsAuthenticated={toggleIsAuthenticated}
                         isAuthenticated={isAuthenticated}

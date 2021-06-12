@@ -91,6 +91,7 @@ function Contact() {
                     </div>
 
                         <Button
+                            redirect="message"
                             text="Send IT!"
                             className="button"
                             type="submit" value="Send it!"

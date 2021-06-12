@@ -14,9 +14,8 @@ export default function WhyStrava({toggleIsAuthenticated, isAuthenticated}) {
                         vitae voluptatum.</h4>
 
                     <Button
+                        redirect="message"
                         text="Connect with STRAVA"
-                        toggleIsAuthenticated={toggleIsAuthenticated}
-                        isAuthenticated={isAuthenticated}
                     />
 
                     <a href="https://www.strava.com/"><p className='go-to-strava'>Go to strava <i

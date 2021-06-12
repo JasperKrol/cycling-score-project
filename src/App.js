@@ -60,7 +60,7 @@ function App() {
                     </Route>
 
                     <Route path="/form-submitted">
-                        {isAuthenticated ? <FormSubmitted/> : <Redirect to="/login"/>}
+                        <FormSubmitted/>
                     </Route>
 
                     <Route path="/why-strava">
