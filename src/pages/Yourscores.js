@@ -33,7 +33,6 @@ function YourScores () {
                         <h4>#PUT DATA HERE#</h4>
                     </div>
                 </section>
-
             </div>
         </>
     )
