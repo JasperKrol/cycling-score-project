@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useTable, useSortBy } from 'react-table';
+import React from 'react';
+import {useTable, useSortBy} from 'react-table';
 
-function LeaderBoardTable() {
+function LeaderboardTableClimbing() {
 
     const data = React.useMemo(
         () => [
@@ -48,21 +48,17 @@ function LeaderBoardTable() {
         headerGroups,
         rows,
         prepareRow,
-    } = useTable({ columns, data }, useSortBy);
+    } = useTable({columns, data}, useSortBy);
 
     return (
         <div>
-            <table {...getTableProps()} style={{ border: 'solid 1px black' }}>
+            <table {...getTableProps()}>
                 <thead>
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
                             <th
                                 {...column.getHeaderProps(column.getSortByToggleProps())}
-                                style={{
-                                    borderBottom: 'solid 3px red',
-                                    color: 'black',
-                                }}
                             >
                                 {column.render('Header')}
                                 <span>
@@ -86,10 +82,6 @@ function LeaderBoardTable() {
                                 return (
                                     <td
                                         {...cell.getCellProps()}
-                                        style={{
-                                            padding: '10px',
-                                            border: 'solid 1px gray',
-                                        }}
                                     >
                                         {cell.render('Cell')}
                                     </td>
@@ -104,4 +96,4 @@ function LeaderBoardTable() {
     );
 }
 
-export default LeaderBoardTable;
+export default LeaderboardTableClimbing;

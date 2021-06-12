@@ -1,6 +1,6 @@
 import './App.css';
-import firebase from "./firebase"
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+// import firebase from "./firebase"
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -10,33 +10,46 @@ import Leaderboards from "./pages/Leaderboards";
 import Profile from "./pages/Profile";
 import './components/Navbar.css';
 import FormSubmitted from "./pages/FormSubmitted";
-
+import {useState} from "react";
 
 
 function App() {
+
+    const [isAuthenticated, toggleAuthenticated] = useState(false)
+
     return (
         <>
             <Router>
-                <Navbar/>
+                <Navbar
+                    isAuthenticated={isAuthenticated}
+                    toggleIsAuthenticated={toggleAuthenticated}/>
                 <Switch>
                     <Route exact path="/">
-                        <Home/>
+                        <Home isAuthenticated={isAuthenticated}
+                              toggleIsAuthenticated={toggleAuthenticated}/>
                     </Route>
 
                     <Route path="/login">
-                        <Login/>
+                        <Login
+                            isAuthenticated={isAuthenticated}
+                            toggleIsAuthenticated={toggleAuthenticated}/>
                     </Route>
 
                     <Route path="/your-scores">
-                        <YourScores/>
+                        {isAuthenticated ? <YourScores/> : <Redirect to="/login"/>}
                     </Route>
 
                     <Route path="/leaderboards">
-                        <Leaderboards/>
+                        {isAuthenticated ? <Leaderboards/> : <Redirect to="/login"/>}
                     </Route>
 
                     <Route path="/profile">
-                        <Profile/>
+                        {isAuthenticated ?
+                            <Profile
+                                isAuthenticated={isAuthenticated}
+                                toggleIsAuthenticated={toggleAuthenticated}/>
+                            :
+                            <Redirect to="/login"/>}
                     </Route>
 
                     <Route path="/contact">
@@ -44,7 +57,7 @@ function App() {
                     </Route>
 
                     <Route path="/form-submitted">
-                        <FormSubmitted/>
+                        {isAuthenticated ? <FormSubmitted/> : <Redirect to="/login"/>}
                     </Route>
 
                 </Switch>

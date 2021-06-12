@@ -2,10 +2,11 @@ import "../components/Login.css"
 import {Link, useHistory} from "react-router-dom";
 
 
-function Login() {
+function Login({isAuthenticated, toggleIsAuthenticated}) {
     const history = useHistory();
 
     function handleClick() {
+        toggleIsAuthenticated(false)
         history.push("/");
     }
     return (
