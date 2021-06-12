@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import './Navbar.css';
 // import Logo from "../assets/logo.svg"
 
-function Navbar({ isAuthenticated }) {
+function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+
+    const history = useHistory();
+
+    function logOutClick () {
+        toggleIsAuthenticated(!isAuthenticated)
+        history.push("/")
+    }
 
 
     return (
@@ -25,12 +32,6 @@ function Navbar({ isAuthenticated }) {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
-                        <li className='nav-item'>
-                            <Link exact to='/' className='nav-links' onClick={closeMobileMenu}>
-                                Home
-                            </Link>
-                        </li>
-
                         {!isAuthenticated && (
                             <li className='nav-item'>
                                 <Link
@@ -45,6 +46,12 @@ function Navbar({ isAuthenticated }) {
 
                         {isAuthenticated && (
                             <>
+                                <li className='nav-item'>
+                                    <Link exact to='/' className='nav-links' onClick={closeMobileMenu}>
+                                        Home
+                                    </Link>
+                                </li>
+
                                 <li className='nav-item'>
                                     <Link
                                         to='/your-scores'
@@ -72,6 +79,12 @@ function Navbar({ isAuthenticated }) {
                                         onClick={closeMobileMenu}
                                     >
                                         Profile
+                                    </Link>
+                                </li>
+
+                                <li className="nav-links">
+                                    <Link>
+                                        <button onClick={logOutClick} className="logout"><span>Sign out</span></button>
                                     </Link>
                                 </li>
                             </>
