@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './Navbar.css';
+import Button from "../Button/Button";
 // import Logo from "../assets/logo.svg"
 
 function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
@@ -9,12 +10,6 @@ function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
-    const history = useHistory();
-
-    function logOutClick () {
-        toggleIsAuthenticated(!isAuthenticated)
-        history.push("/")
-    }
 
 
     return (
@@ -83,9 +78,11 @@ function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
                                 </li>
 
                                 <li className="nav-links">
-                                    <Link>
-                                        <button onClick={logOutClick} className="logout"><span>Sign out</span></button>
-                                    </Link>
+                                    <Button
+                                        text="Sign out"
+                                        toggleIsAuthenticated={toggleIsAuthenticated}
+                                        isAuthenticated={isAuthenticated}
+                                    />
                                 </li>
                             </>
                         )}

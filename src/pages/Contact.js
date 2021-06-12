@@ -2,6 +2,7 @@ import "../components/Contact.css"
 import React from "react";
 import {useForm} from "react-hook-form"
 import {useHistory} from "react-router-dom";
+import Button from "../components/Button/Button";
 
 function Contact() {
     const {handleSubmit, formState: {errors}, register} = useForm({mode: "onBlur"});
@@ -18,7 +19,7 @@ function Contact() {
     }
 
     return (
-        <div className="container">
+        <div className="container ">
             <section className="tile">
                 <div className="about-us">
                     <h1>About us:</h1>
@@ -89,11 +90,13 @@ function Contact() {
 
                     </div>
 
-                    <input
-                        className="button"
-                        type="submit" value="Send it!"
-                        disabled={errors.name || errors.email || errors.comments}
-                    />
+                        <Button
+                            text="Send IT!"
+                            className="button"
+                            type="submit" value="Send it!"
+                            disabled={errors.name || errors.email || errors.comments}
+                            />
+
                 </form>
 
 

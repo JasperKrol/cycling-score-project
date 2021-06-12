@@ -38,7 +38,7 @@
 }
 
 .nav-links {
-    color: red;
+    color: #f4511e;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -48,7 +48,7 @@
 }
 
 .fa-bars {
-    color: red;
+    color: #f4511e;
 }
 
 .hamburger-icon {
@@ -56,7 +56,7 @@
 }
 
 .navbar-logo {
-    color: red;
+    color: #f4511e;
     justify-self: start;
     margin-left: 20px;
     cursor: pointer;
@@ -106,7 +106,7 @@
         transform: translate(-100%, 60%);
         font-size: 1.8rem;
         cursor: pointer;
-        color: red;
+        color: #f4511e;
     }
 
     .navbar-logo {
@@ -117,7 +117,7 @@
     }
 
     .fa-times {
-        color: red;
+        color: #f4511e;
         font-size: 2rem;
     }
 

@@ -1,23 +1,22 @@
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import "../components/Profile.css"
+import Button from "../components/Button/Button";
 
-function Profile ({toggleIsAuthenticated, isAuthenticated}) {
+function Profile({toggleIsAuthenticated, isAuthenticated}) {
 
 
-    const history = useHistory();
-
-    function logOutClick () {
-        toggleIsAuthenticated(!isAuthenticated)
-        history.push("/")
-    }
     return (
         <div className="container">
             <section className="contact-tile">
                 <h3>Hi #user#!</h3>
-                <h3>Click here to log out</h3>
-                <Link>
-                    <button onClick={logOutClick} className="logout"><span>Bye Bye!</span></button>
-                </Link>
+                <h3>Want to ride your bike? Log out on the button below</h3>
+
+                    <Button
+                        text="Bye Bye!"
+                        toggleIsAuthenticated={toggleIsAuthenticated}
+                        isAuthenticated={isAuthenticated}
+                    />
+
 
             </section>
         </div>
