@@ -1,6 +1,6 @@
 import './App.css';
 // import firebase from "./firebase"
-import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -16,7 +16,7 @@ import {useState} from "react";
 
 
 function App() {
-// voor develop purpose even op true moet !isAuthenticated zijn
+// voor develop purpose even op true moet !isAuthenticated true zijn
     const [isAuthenticated, toggleIsAuthenticated] = useState(true)
 
 
