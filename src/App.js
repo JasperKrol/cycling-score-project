@@ -15,24 +15,24 @@ import {useState} from "react";
 
 function App() {
 
-    const [isAuthenticated, toggleAuthenticated] = useState(false)
+    const [isAuthenticated, toggleIsAuthenticated] = useState(false)
 
     return (
         <>
             <Router>
                 <Navbar
                     isAuthenticated={isAuthenticated}
-                    toggleIsAuthenticated={toggleAuthenticated}/>
+                    toggleIsAuthenticated={toggleIsAuthenticated}/>
                 <Switch>
+
                     <Route exact path="/">
-                        <Home isAuthenticated={isAuthenticated}
-                              toggleIsAuthenticated={toggleAuthenticated}/>
+                        {isAuthenticated ? <Home/> : <Redirect to="/login"/>}
                     </Route>
 
                     <Route path="/login">
                         <Login
                             isAuthenticated={isAuthenticated}
-                            toggleIsAuthenticated={toggleAuthenticated}/>
+                            toggleIsAuthenticated={toggleIsAuthenticated}/>
                     </Route>
 
                     <Route path="/your-scores">
@@ -44,10 +44,10 @@ function App() {
                     </Route>
 
                     <Route path="/profile">
-                        {isAuthenticated ?
-                            <Profile
+                        {isAuthenticated ? <Profile
                                 isAuthenticated={isAuthenticated}
-                                toggleIsAuthenticated={toggleAuthenticated}/>
+                                toggleIsAuthenticated={toggleIsAuthenticated}
+                            />
                             :
                             <Redirect to="/login"/>}
                     </Route>
@@ -59,7 +59,6 @@ function App() {
                     <Route path="/form-submitted">
                         {isAuthenticated ? <FormSubmitted/> : <Redirect to="/login"/>}
                     </Route>
-
                 </Switch>
             </Router>
         </>

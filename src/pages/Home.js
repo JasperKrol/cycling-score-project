@@ -1,7 +1,7 @@
 import "../components/Home.css"
 
-function Home (props) {
-    console.log(props)
+function Home () {
+
     return (
       <>
           <div className="container">

@@ -6,9 +6,12 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
     const history = useHistory();
 
     function handleClick() {
-        toggleIsAuthenticated(false)
+        toggleIsAuthenticated(!isAuthenticated)
         history.push("/");
+        console.log("klikt dit??")
     }
+
+
     return (
         <>
             <div className="container">
@@ -16,7 +19,7 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
                     <h3>Welcome!</h3>
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
                     <Link>
-                        <button className="connect-with"><span>Connect with STRAVA</span></button>
+                        <button onClick={handleClick} className="connect-with"><span>Connect with STRAVA</span></button>
                     </Link>
                     <Link to="/" onClick={handleClick}><p className='login-text'>Why connect with STRAVA?</p></Link>
                     <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p></a>

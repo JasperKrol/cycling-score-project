@@ -7,7 +7,7 @@ function Profile ({toggleIsAuthenticated, isAuthenticated}) {
     const history = useHistory();
 
     function logOutClick () {
-        toggleIsAuthenticated(false)
+        toggleIsAuthenticated(!isAuthenticated)
         history.push("/")
     }
     return (
