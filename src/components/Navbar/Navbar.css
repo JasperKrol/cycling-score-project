@@ -1,22 +1,36 @@
 .navbar {
-    background: black;
+    background: #131313;
     height: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    font-size: 1.2rem;
     position: sticky;
-    font-size: 20px;
     top: 0;
     z-index: 999;
 }
 
 .navbar-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
     height: 80px;
-    max-width: 100vw;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
 
+.navbar-logo {
+    background-color: #f4511e;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
 }
 
 .fa-typo3 {
@@ -26,15 +40,13 @@
 
 .nav-menu {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     list-style: none;
-    text-align: center;
-    width: 60vw;
-    justify-content: flex-end;
 }
 
 .nav-item {
-    /*height: 80px;*/
+    height: 80px;
+    font-weight: bolder;
 }
 
 .nav-links {
@@ -45,6 +57,7 @@
     text-decoration: none;
     padding: 10px 10px;
     height: 100%;
+    transition: all 0.3s ease
 }
 
 .fa-bars {
@@ -54,19 +67,6 @@
 .hamburger-icon {
     display: none;
 }
-
-.navbar-logo {
-    color: #f4511e;
-    justify-self: start;
-    margin-left: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    font-size: 2rem;
-    display: flex;
-    align-items: center;
-}
-
-
 
 @media screen and (max-width: 800px) {
 

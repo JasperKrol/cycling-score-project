@@ -2,26 +2,26 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import './Navbar.css';
 import Button from "../Button/Button";
+
 // import Logo from "../assets/logo.svg"
 
-function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
+function Navbar({isAuthenticated, toggleIsAuthenticated}) {
     const [click, setClick] = useState(false);
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
 
-
     return (
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-                    <div className="logo">
-                        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-                            CyclingScore
-                            <i className="fas fa-biking"/>
-                        </Link>
-                    </div>
+
+                    <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+                        CyclingScore
+                        <i className="fas fa-biking"/>
+                    </Link>
+
                     <div className='hamburger-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
                     </div>
@@ -77,7 +77,7 @@ function Navbar({ isAuthenticated, toggleIsAuthenticated}) {
                                     </Link>
                                 </li>
 
-                                <li className="nav-links">
+                                <li className="nav-button">
                                     <Button
                                         redirect="home"
                                         text="Sign out"
