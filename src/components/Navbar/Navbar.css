@@ -47,6 +47,8 @@
 .nav-item {
     height: 80px;
     font-weight: bolder;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {
@@ -57,7 +59,6 @@
     text-decoration: none;
     padding: 10px 10px;
     height: 100%;
-    transition: all 0.3s ease
 }
 
 .fa-bars {
@@ -120,6 +121,7 @@
         color: #f4511e;
         font-size: 2rem;
     }
+
 
     ul {
         padding: 0;

@@ -77,8 +77,9 @@ function Navbar({isAuthenticated, toggleIsAuthenticated}) {
                                     </Link>
                                 </li>
 
-                                <li className="nav-button">
+                                <li className="nav-item">
                                     <Button
+                                        className="nav-button"
                                         redirect="home"
                                         text="Sign out"
                                         toggleIsAuthenticated={toggleIsAuthenticated}
