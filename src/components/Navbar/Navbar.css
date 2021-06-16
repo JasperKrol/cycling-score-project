@@ -94,9 +94,13 @@
     }
 
     .nav-links {
-        text-align: center;
-        width: 100%;
-        display: table;
+        color: #f4511e;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        text-decoration: none;
+        padding: 10px 10px;
+        height: 100%;
     }
 
     .hamburger-icon {
