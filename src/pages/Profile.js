@@ -1,8 +1,9 @@
-import {Link} from "react-router-dom";
 import "../components/Profile.css"
 import Button from "../components/Button/Button";
 
 function Profile({toggleIsAuthenticated, isAuthenticated}) {
+
+
 
 
     return (
@@ -13,6 +14,7 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
 
                     <Button
                         text="Bye Bye!"
+                        redirect="home"
                         toggleIsAuthenticated={toggleIsAuthenticated}
                         isAuthenticated={isAuthenticated}
                     />

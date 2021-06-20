@@ -1,6 +1,6 @@
 import './App.css';
 // import firebase from "./firebase"
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -12,17 +12,20 @@ import WhyStrava from "./pages/WhyStrava";
 import './components/Navbar/Navbar.css';
 import FormSubmitted from "./pages/FormSubmitted";
 import {useState} from "react";
+import AuthContextProvider from "./contexts/AuthContext";
+
 
 
 
 function App() {
 // voor develop purpose even op true moet !isAuthenticated true zijn
-    const [isAuthenticated, toggleIsAuthenticated] = useState(true)
+
+
 
 
     return (
         <>
-            <Router>
+            <AuthContextProvider>
                 <Navbar
                     isAuthenticated={isAuthenticated}
                     toggleIsAuthenticated={toggleIsAuthenticated}/>
@@ -35,7 +38,8 @@ function App() {
                     <Route path="/login">
                         <Login
                             isAuthenticated={isAuthenticated}
-                            toggleIsAuthenticated={toggleIsAuthenticated}/>
+                            toggleIsAuthenticated={toggleIsAuthenticated}
+                            exact={true}/>
                     </Route>
 
                     <Route path="/your-scores">
@@ -70,7 +74,7 @@ function App() {
                         />
                     </Route>
                 </Switch>
-            </Router>
+            </AuthContextProvider>
         </>
     );
 }
