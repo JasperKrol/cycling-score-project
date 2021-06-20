@@ -62,7 +62,9 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
                 <section className="tile">
                     <h3>Welcome!</h3>
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
-                    <Link onClick={handleLogin}>
+                    <Link
+                        onClick={handleLogin}
+                    >
                         <Button
                             text="Connect with STRAVA"
                             toggleIsAuthenticated={toggleIsAuthenticated}

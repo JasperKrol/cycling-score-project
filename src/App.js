@@ -19,7 +19,7 @@ import AuthContextProvider from "./contexts/AuthContext";
 
 function App() {
 // voor develop purpose even op true moet !isAuthenticated true zijn
-
+const [isAuthenticated, toggleIsAuthenticated] = useState(true)
 
 
 
