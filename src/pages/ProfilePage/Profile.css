@@ -1,0 +1,26 @@
+/*.container {*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background-image: url("../assets/fiets13.jpeg");*/
+/*    background-size: cover;*/
+/*    background-repeat: no-repeat;*/
+/*}*/
+
+/*.contact-tile {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*    align-content: center;*/
+/*    justify-content: space-evenly;*/
+/*    border: rgba(255,255,255, 0.5);*/
+/*    text-align: center;*/
+/*    border-radius: 10px;*/
+/*    width: 50vh;*/
+/*    min-height: 40vh;*/
+/*    background-color: rgba(255,255,255, 0.5);*/
+/*    flood-opacity: inherit;*/
+/*}*/
+

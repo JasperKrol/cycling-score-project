@@ -1,5 +1,6 @@
-import "../components/Profile.css"
-import Button from "../components/Button/Button";
+import "./Profile.css"
+import Button from "../../components/Button/Button";
+import Tile from "../../components/Tile/Tile";
 
 function Profile({toggleIsAuthenticated, isAuthenticated}) {
 
@@ -8,7 +9,7 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
 
     return (
         <div className="container">
-            <section className="contact-tile">
+            <Tile className="contact-tile">
                 <h3>Hi #user#!</h3>
                 <h3>Want to ride your bike? Log out on the button below</h3>
 
@@ -20,7 +21,7 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
                     />
 
 
-            </section>
+            </Tile>
         </div>
     )
 }

@@ -1,6 +1,7 @@
-import "../components/FormSubmitted.css"
-import Gif from "../assets/giphy.gif"
+import "./FormSubmitted.css"
+import Gif from "../../assets/giphy.gif"
 import { useHistory} from "react-router-dom";
+import Tile from "../../components/Tile/Tile";
 
 export default function FormSubmitted() {
 
@@ -13,7 +14,7 @@ export default function FormSubmitted() {
     return (
         <>
             <div className="container">
-                <section className="tile">
+                <Tile>
                     <div className="close-button">
                         <i
                             onClick={handleClick}
@@ -24,8 +25,7 @@ export default function FormSubmitted() {
                     <img
                         className="gif"
                         src={Gif} alt="Cycling man"/>
-
-                </section>
+                </Tile>
             </div>
         </>
     )

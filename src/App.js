@@ -1,16 +1,15 @@
-import './App.css';
 // import firebase from "./firebase"
 import { Switch, Route, Redirect} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import YourScores from "./pages/Yourscores";
-import Leaderboards from "./pages/Leaderboards";
-import Profile from "./pages/Profile";
-import WhyStrava from "./pages/WhyStrava";
+import Login from "./pages/LoginPage/Login";
+import Home from "./pages/HomePage/Home";
+import Contact from "./pages/ContactPage/Contact";
+import YourScores from "./pages/YourScoresPage/Yourscores";
+import Leaderboards from "./pages/LeaderboardsPage/Leaderboards";
+import Profile from "./pages/ProfilePage/Profile";
+import WhyStrava from "./pages/WhyStravaPage/WhyStrava";
 import './components/Navbar/Navbar.css';
-import FormSubmitted from "./pages/FormSubmitted";
+import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
 import {useState} from "react";
 import AuthContextProvider from "./contexts/AuthContext";
 

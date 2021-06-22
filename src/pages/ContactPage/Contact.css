@@ -1,0 +1,37 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../assets/fiets13.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.about-us {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-bottom: 0;
+}
+
+
+.go-to-strava {
+    color: black;
+    font-weight: bolder ;
+    text-decoration: underline;
+}
+
+.contact-us {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}

@@ -1,9 +1,10 @@
-import "../components/Login.css"
+import "./Login.css"
 import {Link, useHistory} from "react-router-dom";
-import Button from "../components/Button/Button";
+import Button from "../../components/Button/Button";
 import React from "react";
 import {useState} from 'react'
-import app from '../data/Firebase'
+import app from '../../data/Firebase'
+import Tile from "../../components/Tile/Tile";
 
 
 function Login({isAuthenticated, toggleIsAuthenticated}) {
@@ -48,18 +49,18 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
         history.push("/why-strava");
     }
 
-    const {REACT_APP_CLIENT_ID} = process.env;
+    const {STRAVA_CLIENT_ID} = process.env;
     const redirectUrl = "http://localhost:3000/redirect"
 
     function handleLogin() {
-        window.location = `https://www.strava.com/oauth/authorize?client_id=${REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
+        window.location = `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
     }
 
 
     return (
         <>
             <div className="container">
-                <section className="tile">
+                <Tile className="tile">
                     <h3>Welcome!</h3>
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
                     <Link
@@ -88,7 +89,7 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
 
                     <Link onClick={redirect}><p className='login-text'>Why connect with STRAVA?</p></Link>
                     <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p></a>
-                </section>
+                </Tile>
             </div>
         </>
 

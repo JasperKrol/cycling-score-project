@@ -1,5 +1,6 @@
-import "../components/Yourscores.css"
+import "./Yourscores.css"
 import React from "react";
+import getStravaData from "../../data/nonASYNC";
 
 
 function YourScores () {
@@ -27,7 +28,7 @@ function YourScores () {
             body: JSON.stringify({
 
                 client_id: '64170',
-                client_secret: '8bf89bb0f76dfd3cbc70620f402bd05414d72063',
+                client_secret: '3ff187481c800d50cab4c77eaf228aeffa0d7d10',
                 refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
                 grant_type: 'refresh_token'
             })
@@ -38,7 +39,7 @@ function YourScores () {
     reAuthorize()
 }
 
-
+    getStravaData()
 
 
     return (
