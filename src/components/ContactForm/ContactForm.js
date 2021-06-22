@@ -16,7 +16,6 @@ export default function ContactForm () {
         //e.prevent default hoeft niet, zit al ingebouwd in de library
         console.log(data)
         history.push("/form-submitted");
-
     }
     return (
         <>
@@ -73,10 +72,8 @@ export default function ContactForm () {
             </div>
 
             <Button
-                redirect="message"
                 text="Send IT!"
                 className="button"
-                type="submit" value="Send it!"
                 disabled={errors.name || errors.email || errors.comments}
             />
         </form>

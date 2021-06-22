@@ -1,5 +1,5 @@
 // import firebase from "./firebase"
-import { Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/LoginPage/Login";
 import Home from "./pages/HomePage/Home";
@@ -14,66 +14,61 @@ import {useState} from "react";
 import AuthContextProvider from "./contexts/AuthContext";
 
 
-
-
 function App() {
 // voor develop purpose even op true moet !isAuthenticated true zijn
-const [isAuthenticated, toggleIsAuthenticated] = useState(true)
-
+    const [isAuthenticated, toggleIsAuthenticated] = useState(true)
 
 
     return (
         <>
-            <AuthContextProvider>
-                <Navbar
-                    isAuthenticated={isAuthenticated}
-                    toggleIsAuthenticated={toggleIsAuthenticated}/>
-                <Switch>
+            <Navbar
+                isAuthenticated={isAuthenticated}
+                toggleIsAuthenticated={toggleIsAuthenticated}/>
+            <Switch>
 
-                    <Route exact path="/">
-                        {isAuthenticated ? <Home/> : <Redirect to="/login"/>}
-                    </Route>
+                <Route exact path="/">
+                    {isAuthenticated ? <Home/> : <Redirect to="/login"/>}
+                </Route>
 
-                    <Route path="/login">
-                        <Login
-                            isAuthenticated={isAuthenticated}
-                            toggleIsAuthenticated={toggleIsAuthenticated}
-                            exact={true}/>
-                    </Route>
+                <Route path="/login">
+                    <Login
+                        isAuthenticated={isAuthenticated}
+                        toggleIsAuthenticated={toggleIsAuthenticated}
+                        />
+                </Route>
 
-                    <Route path="/your-scores">
-                        {isAuthenticated ? <YourScores/> : <Redirect to="/login"/>}
-                    </Route>
+                <Route path="/your-scores">
+                    {isAuthenticated ? <YourScores/> : <Redirect to="/login"/>}
+                </Route>
 
-                    <Route path="/leaderboards">
-                        {isAuthenticated ? <Leaderboards/> : <Redirect to="/login"/>}
-                    </Route>
+                <Route path="/leaderboards">
+                    {isAuthenticated ? <Leaderboards/> : <Redirect to="/login"/>}
+                </Route>
 
-                    <Route path="/profile">
-                        {isAuthenticated ? <Profile
-                                isAuthenticated={isAuthenticated}
-                                toggleIsAuthenticated={toggleIsAuthenticated}
-                            />
-                            :
-                            <Redirect to="/login"/>}
-                    </Route>
-
-                    <Route path="/contact">
-                        <Contact/>
-                    </Route>
-
-                    <Route path="/form-submitted">
-                        <FormSubmitted/>
-                    </Route>
-
-                    <Route path="/why-strava">
-                        <WhyStrava
+                <Route path="/profile">
+                    {isAuthenticated ? <Profile
                             isAuthenticated={isAuthenticated}
                             toggleIsAuthenticated={toggleIsAuthenticated}
                         />
-                    </Route>
-                </Switch>
-            </AuthContextProvider>
+                        :
+                        <Redirect to="/login"/>}
+                </Route>
+
+                <Route path="/contact">
+                    <Contact/>
+                </Route>
+
+                <Route path="/form-submitted">
+                    <FormSubmitted/>
+                </Route>
+
+                <Route path="/why-strava">
+                    <WhyStrava
+                        isAuthenticated={isAuthenticated}
+                        toggleIsAuthenticated={toggleIsAuthenticated}
+                    />
+                </Route>
+            </Switch>
         </>
     );
 }

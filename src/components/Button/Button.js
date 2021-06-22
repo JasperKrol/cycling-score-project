@@ -1,5 +1,5 @@
 import "./Button.css"
-import {Link, useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 export default function Button({text, toggleIsAuthenticated, isAuthenticated, redirect}) {
     const history = useHistory();
 
@@ -14,10 +14,9 @@ export default function Button({text, toggleIsAuthenticated, isAuthenticated, re
     }
 
     return (
-        <Link>
         <button className="button" onClick={handleClick}>
             <span>{text}</span>
         </button>
-        </Link>
+
     )
 }
