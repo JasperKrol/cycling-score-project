@@ -42,10 +42,11 @@ a:link {
     margin-top: 20px;
 }
 
-.fa-times {
+.tile .fa-times {
     display: flex;
     justify-content: flex-end;
     cursor: pointer;
+    color: black;
 }
 
 .gif {

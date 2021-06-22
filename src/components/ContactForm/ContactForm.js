@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 
 
-export default function ContactForm () {
+export default function ContactForm() {
 
     const {handleSubmit, formState: {errors}, register} = useForm({mode: "onBlur"});
 
@@ -17,66 +17,67 @@ export default function ContactForm () {
         console.log(data)
         history.push("/form-submitted");
     }
+
     return (
         <>
-        <div className="contact-us">
-            <h1>Contact us:</h1>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="details">
-                <label htmlFor="name">Naam:
-                    <input
-                        type="text"
-                        id="name"
-                        {...register("name", {
-                            required: {value: true, message: "Dit veld is verplicht"}
-                        })}
-                    />
-                    <span className="error-text">
+            <div className="contact-us">
+                <h1>Contact us:</h1>
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="details">
+                    <label htmlFor="name">Naam:
+                        <input
+                            type="text"
+                            id="name"
+                            {...register("name", {
+                                required: {value: true, message: "Dit veld is verplicht"}
+                            })}
+                        />
+                        <span className="error-text">
                                 {errors.name && <p>{errors.name.message}</p>}
                                     </span>
-                </label>
-                <label htmlFor="email">Your Email:
-                    <input
-                        type="email"
-                        id="email"
-                        {...register("email", {
-                            required: {value: true, message: "Dit veld is verplicht"}
-                        })}
-                    />
-                    <span className="error-text">
+                    </label>
+                    <label htmlFor="email">Your Email:
+                        <input
+                            type="email"
+                            id="email"
+                            {...register("email", {
+                                required: {value: true, message: "Dit veld is verplicht"}
+                            })}
+                        />
+                        <span className="error-text">
                                 {errors.achternaam && <p>{errors.achternaam.message}</p>}
                                      </span>
-                </label>
-                <label htmlFor="Subject">Subject:
-                    <select {...register("subject", {required: true})}>
-                        <option value="Question">Question</option>
-                        <option value=" Remark"> Remark</option>
-                        <option value=" Tip"> Tip</option>
-                    </select>
+                    </label>
+                    <label htmlFor="Subject">Subject:
+                        <select {...register("subject", {required: true})}>
+                            <option value="Question">Question</option>
+                            <option value=" Remark"> Remark</option>
+                            <option value=" Tip"> Tip</option>
+                        </select>
 
-                </label>
-                <label htmlFor="comments">What would you like to write?
-                    <br/>
-                    <textarea name="comments" id="comments" cols="30" rows="10"
-                              {...register("comments", {
-                                  required: {value: true, minLength: 4, message: "Dit veld is verplicht"}
-                              })}
-                    >
-                            </textarea>
-                    <span className="error-text">
+                    </label>
+                    <label htmlFor="comments">What would you like to write?
+                        <br/>
+                        <textarea name="comments" id="comments" cols="30" rows="10"
+                                  {...register("comments", {
+                                      required: {value: true, minLength: 4, message: "Dit veld is verplicht"}
+                                  })}
+                        >
+                        </textarea>
+                        <span className="error-text">
                                 {errors.comments && <p>{errors.comments.message}</p>}
-                                      </span>
-                </label>
+                        </span>
+                    </label>
 
-            </div>
+                </div>
 
-            <Button
-                text="Send IT!"
-                className="button"
-                disabled={errors.name || errors.email || errors.comments}
-            />
-        </form>
+                <Button
+                    text="Send IT!"
+                    className="button"
+                    disabled={errors.name || errors.email || errors.comments}
+                />
+            </form>
         </>
     )
 }

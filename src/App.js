@@ -63,10 +63,7 @@ function App() {
                 </Route>
 
                 <Route path="/why-strava">
-                    <WhyStrava
-                        isAuthenticated={isAuthenticated}
-                        toggleIsAuthenticated={toggleIsAuthenticated}
-                    />
+                    <WhyStrava/>
                 </Route>
             </Switch>
         </>
