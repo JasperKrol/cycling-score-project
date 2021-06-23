@@ -1,14 +1,19 @@
-export default function getStravaData () {
+export default  function getStravaData () {
 
     const auth_link = "https://www.strava.com/oauth/token"
 
     function getActivities(res){
-        const token = "c5ef90cdeabeae0c9dd29541ff487f30544b425c"
+        const token = "f14a0c90ea582382961c80b6dfec45c5809c70e3"
         const activities_link = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
-        console.log(res)
+        console.log("dit is de token responds", res)
         fetch(activities_link)
-            .then((res) => console.log(res.json()))
+            .then((response) => response.json())
+            .then(function (data) {
+                return data
+            }
+            )
     }
+
 
     function reAuthorize(){
         fetch(auth_link,{

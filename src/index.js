@@ -4,15 +4,15 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
-import AuthContextProvider from "./contexts/AuthContext";
+import StravaRideContextProvider from "./contexts/StravaRideContext";
 
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
-            <AuthContextProvider>
-            <App/>
-            </AuthContextProvider>
+            <StravaRideContextProvider>
+                <App/>
+            </StravaRideContextProvider>
         </Router>
     </React.StrictMode>,
     document.getElementById('root')
