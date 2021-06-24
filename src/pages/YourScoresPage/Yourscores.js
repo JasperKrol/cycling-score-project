@@ -64,7 +64,7 @@ function YourScores() {
 
     //strava data 2021-06-19
     const date = new Date()
-    const currentMonth = date.getFullYear()+'-'+(date.getMonth()+1);
+    const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
     console.log("currentmonth",currentMonth)
 
 
