@@ -40,6 +40,9 @@
 }
 
 .picture {
+    height: 100%;
+    width: 100%;
+    border: 2px solid #fff;
     border-radius: 50%;
 }
 

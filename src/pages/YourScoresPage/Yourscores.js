@@ -62,6 +62,13 @@ function YourScores() {
     console.log("speed?", avgSpeed)
 
 
+    //strava data 2021-06-19
+    const date = new Date()
+    const currentMonth = date.getFullYear()+'-'+(date.getMonth()+1);
+    console.log("currentmonth",currentMonth)
+
+
+
     return (
         <>
             <div className="container">
