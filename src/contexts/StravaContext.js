@@ -1,4 +1,4 @@
-import React, {useState, createContext, useEffect, useContext} from "react";
+import React, {useState, createContext, useContext} from "react";
 
 export const stravaActivityContext = createContext({});
 
@@ -9,7 +9,7 @@ export function useStravaActivityContext() {
 // laat intital state nu staan als map() geen function krijg, zet hem op []
 
 
-function StravaActivityContextProvider ({children}) {
+function StravaActivityContextProvider({children}) {
 
     const clientID = '64170'
     const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
@@ -17,13 +17,19 @@ function StravaActivityContextProvider ({children}) {
     const token = "f14a0c90ea582382961c80b6dfec45c5809c70e3"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
 
-    const [strava, setStravaData] = useState({})
+    const [stravaData, setStravaData] = useState([])
+    const [loading, toggleLoading] = useState(false)
+    const [error, setError] = useState(false)
 
 
     return (
         <stravaActivityContext.Provider value={{
-            strava,
-            setStravaData
+            stravaData,
+            setStravaData,
+            loading: loading,
+            toggleLoading: toggleLoading,
+            error: error,
+            setError: setError
         }}
         >
             {children}

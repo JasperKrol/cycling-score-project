@@ -11,7 +11,6 @@ import WhyStrava from "./pages/WhyStravaPage/WhyStrava";
 import './components/Navbar/Navbar.css';
 import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
 import {useState} from "react";
-import AuthContextProvider from "./contexts/AuthContext";
 
 
 function App() {

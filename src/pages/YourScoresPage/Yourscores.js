@@ -1,44 +1,66 @@
 import "./Yourscores.css"
 import React, {useEffect, useState} from "react";
-import getStravaData from "../../data/nonASYNC";
 import Tile from "../../components/Tile/Tile";
-import Data from "../../data/response_1624349677573.json"
-import {get} from "react-hook-form";
+// import Data from "../../data/response_1624349677573.json"
 import axios from "axios";
-import {useStravaActivityContext} from "../../contexts/StravaRideContext";
+import {stravaActivityContext, useStravaActivityContext} from "../../contexts/StravaContext";
+import metersToKM from "../../helpers/metersToKM"
+import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 
 
+function YourScores() {
 
-function YourScores () {
-
-    const data = Data
+    // const data = Data
     // console.log(data)
 
     const clientID = '64170'
-    const clientSecret =  '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
+    const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "f14a0c90ea582382961c80b6dfec45c5809c70e3"
+    const token = "3b815f5e56e5205e8ad0cc52af4b289a87193e4a"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
-
     // laat intital state nu staan als map() geen function krijg, zet hem op []
-    const { strava, setStravaData } = useStravaActivityContext()
+    const {
+        stravaData, setStravaData, loading, toggleLoading, error,
+        setError
+    } = useStravaActivityContext(stravaActivityContext)
 
-// zet die codes en zo in ENV//
+// zet die codes en in ENV//
 
     useEffect(() => {
-        async function fetchData () {
+        async function fetchData() {
             try {
-                const stravaActivityResponse = await axios.get(`${activityLink}?acces_token=${token}`)
-                setStravaData(stravaActivityResponse.data)
-                console.log(stravaActivityResponse)
+                const result = await axios.get(`${activityLink}?acces_token=${token}`)
+                console.log("is dit result", result.data)
+                setStravaData(result.data)
+                toggleLoading(false)
 
             } catch (e) {
                 console.error(e)
+                setError(true);
+                toggleLoading(false);
             }
         }
-        fetchData();
+
+        fetchData()
 
     }, [])
+
+
+    const climbingMeters = Math.round(stravaData.reduce(function (accumulator, meter) {
+        return accumulator + meter.total_elevation_gain;
+    }, 0))
+    console.log("meters?", climbingMeters)
+
+    const distanceGained = Math.round(stravaData.reduce(function (accumulator, distance) {
+        return accumulator + distance.distance;
+    }, 0))
+    console.log("afstand?", distanceGained)
+
+    const avgSpeed = stravaData.reduce(function (accumulator, speed) {
+        return accumulator + (speed.average_speed / 100);
+    }, 0)
+    console.log("speed?", avgSpeed)
+
 
     return (
         <>
@@ -49,10 +71,10 @@ function YourScores () {
                         <i className="fas fa-mountain fa-2x"/>
                     </div>
                     <div className="home-text">
-                        <h4>#PUT DATA HERE#
-                        {/*{data.map*/}
-                        </h4>
+                        {loading ? (<span>Loading...</span>) : (<h4>{(climbingMeters)} meter</h4>)}
+
                     </div>
+                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
                 </Tile>
 
                 <Tile className="tile">
@@ -61,8 +83,9 @@ function YourScores () {
                         <i className="fas fa-route fa-2x"/>
                     </div>
                     <div className="home-text">
-
+                        <h4>{metersToKM(distanceGained)}</h4>
                     </div>
+                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
                 </Tile>
 
                 <Tile className="tile">
@@ -71,8 +94,9 @@ function YourScores () {
                         <i className="fas fa-tachometer-alt fa-2x"/>
                     </div>
                     <div className="home-text">
-                        <h4>#PUT DATA HERE#</h4>
+                        <h4>{secondsPerMeterToKMPH(avgSpeed.toFixed(1))}</h4>
                     </div>
+                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
                 </Tile>
 
             </div>

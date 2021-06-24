@@ -1,6 +1,3 @@
-export function secondsPerMeterToKMPH (secondsPerMeter) {
-    return `${(secondsPerMeter * 18) / 5}° C`
+export default function secondsPerMeterToKMPH (secondPerMeter) {
+    return `${(secondPerMeter * 3.6)} KM/ph`
 }
-
-
-// return `${Math.round(kelvin - 273.15)}° C`

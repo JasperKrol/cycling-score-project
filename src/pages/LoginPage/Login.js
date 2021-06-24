@@ -49,12 +49,12 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
         history.push("/why-strava");
     }
 
-    const {STRAVA_CLIENT_ID} = process.env;
-    const redirectUrl = "http://localhost:3000/redirect"
-
-    function handleLogin() {
-        window.location = `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
-    }
+    // const {STRAVA_CLIENT_ID} = process.env;
+    // const redirectUrl = "http://localhost:3000/redirect"
+    //
+    // function handleLogin() {
+    //     window.location = `https://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read`;
+    // }
 
 
     return (
@@ -64,7 +64,7 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
                     <h3>Welcome!</h3>
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
                     <Link
-                        onClick={handleLogin}
+                        // onClick={handleLogin}
                     >
                         <Button
                             text="Connect with STRAVA"
@@ -80,6 +80,8 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
                         <input onChange={e => setPassword(e.target.value)} placeholder='Your password' type='password'
                                name='password' value={password}/>
                         <input type='submit' value={action}/>
+
+
                     </form>
 
                     <div>
