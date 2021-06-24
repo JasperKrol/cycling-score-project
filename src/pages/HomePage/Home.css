@@ -29,9 +29,8 @@
     flood-opacity: inherit;
 }
 
-.user-photo {
+.photo-div {
     display: flex;
-    background: white;
     position: relative;
     width: 5rem;
     height: 5rem;
@@ -40,7 +39,7 @@
     border-radius: 50%;
 }
 
-fa-user {
-    width: 2rem;
-    height: 2rem;
+.picture {
+    border-radius: 50%;
 }
+

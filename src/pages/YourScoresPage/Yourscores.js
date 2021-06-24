@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Tile from "../../components/Tile/Tile";
 // import Data from "../../data/response_1624349677573.json"
 import axios from "axios";
-import {stravaActivityContext, useStravaActivityContext} from "../../contexts/StravaContext";
+import {useStravaActivityContext} from "../../contexts/StravaContext";
 import metersToKM from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 
@@ -18,11 +18,11 @@ function YourScores() {
     const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
     const token = "3b815f5e56e5205e8ad0cc52af4b289a87193e4a"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
-    // laat intital state nu staan als map() geen function krijg, zet hem op []
+    // laat initial state nu staan als map() geen function krijg, zet hem op []
     const {
         stravaData, setStravaData, loading, toggleLoading, error,
         setError
-    } = useStravaActivityContext(stravaActivityContext)
+    } = useStravaActivityContext()
 
 // zet die codes en in ENV//
 
@@ -71,10 +71,10 @@ function YourScores() {
                         <i className="fas fa-mountain fa-2x"/>
                     </div>
                     <div className="home-text">
-                        {loading ? (<span>Loading...</span>) : (<h4>{(climbingMeters)} meter</h4>)}
-
+                        {loading && (<p>Loading...</p>)}
+                        {!loading && (<h4>{(climbingMeters)} meter</h4>)}
                     </div>
-                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
+                    {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
 
                 <Tile className="tile">
@@ -83,9 +83,10 @@ function YourScores() {
                         <i className="fas fa-route fa-2x"/>
                     </div>
                     <div className="home-text">
-                        <h4>{metersToKM(distanceGained)}</h4>
+                        {loading && (<p>Loading...</p>)}
+                        {!loading && (<h4>{metersToKM(distanceGained)}</h4>)}
                     </div>
-                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
+                    {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
 
                 <Tile className="tile">
@@ -94,11 +95,11 @@ function YourScores() {
                         <i className="fas fa-tachometer-alt fa-2x"/>
                     </div>
                     <div className="home-text">
-                        <h4>{secondsPerMeterToKMPH(avgSpeed.toFixed(1))}</h4>
+                        {loading && (<p>Loading...</p>)}
+                        {!loading && (<h4>{secondsPerMeterToKMPH(avgSpeed.toFixed(1))}</h4>)}
                     </div>
-                    {error && <span>Er is iets misgegaan met het ophalen van de data.</span>}
+                    {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
-
             </div>
         </>
     )
