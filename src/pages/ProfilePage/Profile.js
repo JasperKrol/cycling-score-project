@@ -17,7 +17,6 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
                     <Button
                         text="Bye Bye!"
                         redirect="home"
-
                     />
             </Tile>
         </div>

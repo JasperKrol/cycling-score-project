@@ -97,7 +97,7 @@ function Navbar() {
                                 <Button
                                     className="nav-button"
                                     text="Sign out"
-                                    redirect="logout"
+                                    redirect="home"
                                 />
                             </li>
                         </>
