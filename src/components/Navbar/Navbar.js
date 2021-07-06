@@ -1,20 +1,15 @@
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import './Navbar.css';
 import Button from "../Button/Button";
 import {useAuthContext} from "../../contexts/AuthContext";
-import {auth} from "../../Firebase";
 
 
 function Navbar() {
     const [click, setClick] = useState(false);
-    const [error, setError] = useState("")
     const { user } = useAuthContext()
-
-
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-    const history = useHistory();
 
 
     return (

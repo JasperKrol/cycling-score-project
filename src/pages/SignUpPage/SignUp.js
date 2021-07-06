@@ -11,7 +11,7 @@ function SignUp() {
     const history = useHistory();
 
     // State management
-    const { user, setUser, password, setPassword, email, setEmail } = useAuthContext()
+    const { setUser, password, setPassword, email, setEmail } = useAuthContext()
     const [action, setAction] = useState('signup')
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
@@ -44,6 +44,7 @@ function SignUp() {
         <>
             <div className="container">
                 <Tile className="tile">
+                    {loading ? (<><h2>Loading, please wait</h2></>) : (<>
                     <h3>Sign up down below</h3>
                     {error && <h2>{error}</h2>}
 
@@ -66,6 +67,7 @@ function SignUp() {
 
                     <Link to="/login"><p className='login-text'>Already have an account? Click here to login</p>
                     </Link>
+                    </>)}
                 </Tile>
             </div>
         </>

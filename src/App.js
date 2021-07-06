@@ -32,15 +32,15 @@ function App() {
                     <SignUp/>
                 </Route>
 
-                <PrivateRoute path="/your-scores">
+                <PrivateRoute exact path="/your-scores">
                     <YourScores/>
                 </PrivateRoute>
 
-                <Route path="/leaderboards">
+                <PrivateRoute exact path="/leaderboards">
                    <Leaderboards/>
-                </Route>
+                </PrivateRoute>
 
-                <PrivateRoute path="/profile">
+                <PrivateRoute exact path="/profile">
                    <Profile/>
                 </PrivateRoute>
 

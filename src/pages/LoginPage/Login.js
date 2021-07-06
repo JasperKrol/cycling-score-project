@@ -12,7 +12,7 @@ function Login() {
     const history = useHistory();
 
     // State management
-    const {user, setUser, password, setPassword, email, setEmail, login} = useAuthContext()
+    const {setUser, password, setPassword, email, setEmail} = useAuthContext()
     const [action, setAction] = useState('login')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
@@ -45,27 +45,30 @@ function Login() {
         <>
             <div className="container">
                 <Tile className="tile">
-                    <h3>Welcome!</h3>
-                    {error && <h2>{error}</h2>}
-                    <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
+                    {loading ? (<><h2>Loading, please wait</h2></>) : (<>
+                        <h3>Welcome!</h3>
+                        {error && <h2>{error}</h2>}
+                        <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
 
-                    <form onSubmit={onSubmit}>
-                        <label htmlFor="email">Email:</label>
-                        <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
-                               name='email' value={email}/>
-                        <label htmlFor="password">Password:</label>
-                        <input onChange={e => setPassword(e.target.value)} placeholder='Your password' type='password'
-                               name='password' value={password}/>
-                        <Button
-                            text="Login"
-                        />
+                        <form onSubmit={onSubmit}>
+                            <label htmlFor="email">Email:</label>
+                            <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
+                                   name='email' value={email}/>
+                            <label htmlFor="password">Password:</label>
+                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
+                                   type='password'
+                                   name='password' value={password}/>
+                            <Button
+                                text="Login"
+                            />
+                        </form>
 
-                    </form>
-
-                    <Link to="/why-strava"><p className='login-text'>Why connect with STRAVA?</p></Link>
-                    <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p></a>
-                    <Link to="/sign-up"><p className='login-text'>Don't have an account? Click here to sign up</p>
-                    </Link>
+                        <Link to="/why-strava"><p className='login-text'>Why connect with STRAVA?</p></Link>
+                        <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p>
+                        </a>
+                        <Link to="/sign-up"><p className='login-text'>Don't have an account? Click here to sign up</p>
+                        </Link>
+                    </>)}
                 </Tile>
             </div>
         </>
