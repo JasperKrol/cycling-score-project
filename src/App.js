@@ -34,7 +34,7 @@ function App() {
                     <Login
                         isAuthenticated={isAuthenticated}
                         toggleIsAuthenticated={toggleIsAuthenticated}
-                        />
+                    />
                 </Route>
 
                 <Route path="/sign-up">

@@ -5,16 +5,18 @@ import React from "react";
 import {useState} from 'react'
 import app from '../../Firebase'
 import Tile from "../../components/Tile/Tile";
+import {useAuthContext} from "../../contexts/AuthContext";
 
 
-function Login({isAuthenticated, toggleIsAuthenticated}) {
+function Login() {
     const history = useHistory();
 
     // State management
+    const {user, setUser, password, setPassword, email, setEmail, login} = useAuthContext()
     const [action, setAction] = useState('login')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [user, setUser] = useState()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
+
 
     // Handle the submit
     async function onSubmit(e) {
@@ -25,31 +27,18 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
 
         // Do the actual registration
         try {
-
-            if (action === 'login') {
-                const userCredential = await app.auth().signInWithEmailAndPassword(email, password)
-                console.log('Logged in: ', userCredential)
-                setUser(userCredential.user)
-            }
-
-            if (action === 'register') {
-                const userCredential = await app.auth().createUserWithEmailAndPassword(email, password)
-                console.log('Registered', userCredential)
-                setUser(userCredential.user)
-            }
-
+            setError("")
+            setLoading(true)
+            const userCredential = await app.auth().signInWithEmailAndPassword(email, password)
+            console.log('Logged in: ', userCredential)
+            setUser(userCredential.user)
+            history.push("/")
         } catch (e) {
             console.error('Firebase fail: ', e)
+            setError("Failed to sign in")
         }
-
-
+        setLoading(false)
     }
-
-    function redirect() {
-        history.push("/why-strava");
-    }
-
-
 
 
     return (
@@ -57,35 +46,24 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
             <div className="container">
                 <Tile className="tile">
                     <h3>Welcome!</h3>
+                    {error && <h2>{error}</h2>}
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
-                    <Link
-                        // onClick={handleLogin}
-                    >
-                        <Button
-                            text="Connect with STRAVA"
-                            toggleIsAuthenticated={toggleIsAuthenticated}
-                            isAuthenticated={isAuthenticated}
-                        />
-                    </Link>
 
                     <form onSubmit={onSubmit}>
-                        {(user) ? <h1>Hello { user.email }</h1> : "" }
                         <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
                                name='email' value={email}/>
                         <input onChange={e => setPassword(e.target.value)} placeholder='Your password' type='password'
                                name='password' value={password}/>
-                        <input type='submit' value={action}/>
-
+                        <Button
+                            text="Login"
+                        />
 
                     </form>
 
-                    <div>
-                        <Link id='loginToggle' href='#'
-                           onClick={f => setAction(action === 'login' ? 'register' : 'login')}>{action === 'login' ? 'Register' : 'Login'} instead</Link>
-                    </div>
-
-                    <Link onClick={redirect}><p className='login-text'>Why connect with STRAVA?</p></Link>
+                    <Link to="/why-strava"><p className='login-text'>Why connect with STRAVA?</p></Link>
                     <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p></a>
+                    <Link to="/sign-up"><p className='login-text'>Don't have an account? Click here to sign up</p>
+                    </Link>
                 </Tile>
             </div>
         </>

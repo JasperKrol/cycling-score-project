@@ -3,21 +3,22 @@ import Tile from "../../components/Tile/Tile";
 import React from "react";
 import {useState, useEffect} from "react";
 import firebase from "../../Firebase"
-import {useStravaActivityContext} from "../../contexts/StravaContext";
+import { useStravaActivityContext } from "../../contexts/StravaContext";
 import axios from "axios";
+import {useAuthContext} from "../../contexts/AuthContext";
 
 
 const db = firebase.firestore()
 
 function Home() {
 
-    const [user, setUser] = useState()
     const [clientId, setClientID] = useState()
     const [clientSecret, setClientSecret] = useState()
     const {
         loading, toggleLoading, stravaUserProfile, setStravaUserProfile, error,
         setError
     } = useStravaActivityContext()
+    const {user, setUser} = useAuthContext()
 
     // Listen to the user state
     useEffect(f => {
@@ -40,11 +41,8 @@ function Home() {
         // User logged in? Get data
         return db.collection('StravaUserTokens').doc(user.email).onSnapshot(doc => {
 
-
             const data = doc.data()
-
             if (!data) return
-
             setClientID(data.clientId)
             setClientSecret(data.clientSecret)
         })

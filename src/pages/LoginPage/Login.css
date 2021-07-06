@@ -23,7 +23,7 @@ a:link {
     text-decoration: none;
 }
 
-.login-text{
+link .login-text{
     color: black;
     font-weight: bolder ;
     text-decoration: underline;

@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import './Navbar.css';
 import Button from "../Button/Button";
+import {useAuthContext} from "../../contexts/AuthContext";
+import {auth} from "../../Firebase";
 
 // import Logo from "../assets/logo.svg"
 
-function Navbar({isAuthenticated, toggleIsAuthenticated}) {
+function Navbar() {
     const [click, setClick] = useState(false);
+    const [error, setError] = useState("")
+
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
+    const history = useHistory();
 
 
     return (
@@ -27,79 +32,76 @@ function Navbar({isAuthenticated, toggleIsAuthenticated}) {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
-                        {!isAuthenticated && (
-                            <>
-                                <li className='nav-item'>
-                                    <Link
-                                        to='/login'
-                                        className='nav-links'
-                                        onClick={closeMobileMenu}
-                                    >
-                                        Login
-                                    </Link>
-                                </li>
 
-                                <li className='nav-item'>
-                                    <Link
-                                        to='/sign-up'
-                                        className='nav-links'
-                                        onClick={closeMobileMenu}
-                                    >
-                                        Sign up here
-                                    </Link>
-                                </li>
-                            </>
-                        )}
+                        <>
+                            <li className='nav-item'>
+                                <Link
+                                    to='/login'
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    Login
+                                </Link>
+                            </li>
 
-                        {isAuthenticated && (
-                            <>
-                                <li className='nav-item'>
-                                    <Link exact to='/' className='nav-links' onClick={closeMobileMenu}>
-                                        Home
-                                    </Link>
-                                </li>
+                            <li className='nav-item'>
+                                <Link
+                                    to='/sign-up'
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    Sign up here
+                                </Link>
+                            </li>
+                        </>
 
-                                <li className='nav-item'>
-                                    <Link
-                                        to='/your-scores'
-                                        className='nav-links'
-                                        onClick={closeMobileMenu}
-                                    >
-                                        Your Scores
-                                    </Link>
-                                </li>
 
-                                <li className='nav-item'>
-                                    <Link
-                                        to='/leaderboards'
-                                        className='nav-links'
-                                        onClick={closeMobileMenu}
-                                    >
-                                        Leaderboards
-                                    </Link>
-                                </li>
+                        <>
+                            <li className='nav-item'>
+                                <Link exact to='/' className='nav-links' onClick={closeMobileMenu}>
+                                    Home
+                                </Link>
+                            </li>
 
-                                <li className='nav-item'>
-                                    <Link
-                                        to='/profile'
-                                        className='nav-links'
-                                        onClick={closeMobileMenu}
-                                    >
-                                        Profile
-                                    </Link>
-                                </li>
+                            <li className='nav-item'>
+                                <Link
+                                    to='/your-scores'
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    Your Scores
+                                </Link>
+                            </li>
 
-                                <li className="nav-item">
-                                    <Button
-                                        className="nav-button"
-                                        redirect="home"
-                                        text="Sign out"
-                                        toggleIsAuthenticated={toggleIsAuthenticated}
-                                        isAuthenticated={isAuthenticated}
-                                    />
-                                </li>
-                            </>
-                        )}
+                            <li className='nav-item'>
+                                <Link
+                                    to='/leaderboards'
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    Leaderboards
+                                </Link>
+                            </li>
+
+                            <li className='nav-item'>
+                                <Link
+                                    to='/profile'
+                                    className='nav-links'
+                                    onClick={closeMobileMenu}
+                                >
+                                    Profile
+                                </Link>
+                            </li>
+
+                            <li className="nav-item">
+                                <Button
+                                    className="nav-button"
+                                    text="Sign out"
+                                    redirect="logout"
+                                />
+                            </li>
+                        </>
+
 
                         <li className='nav-item'>
                             <Link

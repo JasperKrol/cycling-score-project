@@ -1,24 +1,20 @@
 import "./SignUp.css"
 import {Link, useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
-import React, { useRef } from "react";
+import React from "react";
 import {useState} from 'react'
 import app from '../../Firebase'
 import Tile from "../../components/Tile/Tile";
-import {authContext, useAuthContext} from "../../contexts/AuthContext";
+import {useAuthContext} from "../../contexts/AuthContext";
 
-function SignUp(data) {
+function SignUp() {
     const history = useHistory();
 
     // State management
+    const { user, setUser, password, setPassword, email, setEmail } = useAuthContext()
     const [action, setAction] = useState('signup')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirm, setPasswordConfirm] = useState('')
-    const [ error, setError ] = useState("")
-    const [ loading, setLoading ] = useState(false)
-    const { currentUser, setUser, signUp } = useAuthContext()
-
+    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
 
     // Handle the submit
@@ -28,30 +24,19 @@ function SignUp(data) {
         e.preventDefault()
         console.log(`${action} requested with email ${email} and password ${password}`)
 
-        // if (password.current.value !== passwordConfirm.current.value) {
-        //     return setError("Passwords do not match")
-        // }
-
         // Do the actual registration
         try {
             setError("")
             setLoading(true)
-            // await signUp(email.current.value, password.current.value)
             const userCredential = await app.auth().createUserWithEmailAndPassword(email, password)
             console.log('Registered', userCredential)
             setUser(userCredential.user)
-
+            history.push("/")
         } catch (e) {
             console.error('Firebase fail: ', e)
-            setError("failed to create an account")
+            setError("Account already exists")
         }
         setLoading(false)
-
-
-    }
-
-    function redirect() {
-        history.push("/login");
     }
 
 
@@ -64,28 +49,22 @@ function SignUp(data) {
 
                     <div className="form-container">
                         <form onSubmit={onSubmit}>
-                            {(currentUser) ? <h1>Hello {currentUser.email}</h1> : ""}
                             <label htmlFor="email">Email:</label>
                             <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
                                    name='email' value={email}/>
                             <label htmlFor="password">Password:</label>
-                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password' type='password'
+                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
+                                   type='password'
                                    name='password' value={password}/>
-                            <label htmlFor="password-confirmation">Password Confirmation:</label>
-                            <input onChange={e => setPasswordConfirm(e.target.value)} placeholder='Your password' type='password'
-                                   name='password-confirmation' value={passwordConfirm}/>
                             <Button
                                 text="Register"
-                                value={action}
                                 disabled={loading}
                             />
-                            {/*<input type='submit' value={action}/>*/}
+
                         </form>
                     </div>
 
-
-
-                    <Link onClick={redirect}><p className='login-text'>Already have an account? Click here to login</p>
+                    <Link to="/"><p className='login-text'>Already have an account? Click here to login</p>
                     </Link>
                 </Tile>
             </div>
