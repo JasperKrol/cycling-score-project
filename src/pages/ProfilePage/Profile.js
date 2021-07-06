@@ -8,6 +8,7 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
 
     const {user} = useAuthContext()
 
+
     return (
         <div className="container">
             <Tile className="contact-tile">
@@ -16,8 +17,7 @@ function Profile({toggleIsAuthenticated, isAuthenticated}) {
                     <Button
                         text="Bye Bye!"
                         redirect="home"
-                        toggleIsAuthenticated={toggleIsAuthenticated}
-                        isAuthenticated={isAuthenticated}
+
                     />
             </Tile>
         </div>

@@ -1,12 +1,21 @@
 import "./Button.css"
 import { useHistory } from "react-router-dom";
-export default function Button({text, toggleIsAuthenticated, isAuthenticated, redirect}) {
+import app from '../../Firebase'
+import React, {useState} from "react";
+
+export default function Button({text, redirect}) {
     const history = useHistory();
+    const [error, setError] = useState("")
 
     function handleClick() {
         if(redirect === "home") {
-            toggleIsAuthenticated(!isAuthenticated)
-            history.push("/");
+            app.auth().signOut().then(() => {
+                history.push("/login");
+            }).catch((e) => {
+                console.error('Firebase fail: ', e)
+                setError("Failed to logout")
+            });
+
             console.log("klikt dit")
         } if (redirect === "message") {
             history.push("/form-submitted");
@@ -14,9 +23,13 @@ export default function Button({text, toggleIsAuthenticated, isAuthenticated, re
     }
 
     return (
-        <button className="button" onClick={handleClick}>
-            <span>{text}</span>
-        </button>
+        <>
+            {error && <h2>{error}</h2>}
+            <button className="button" onClick={handleClick}>
+                <span>{text}</span>
+            </button>
+        </>
+
 
     )
 }
