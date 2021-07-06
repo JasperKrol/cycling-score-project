@@ -5,11 +5,11 @@ import Button from "../Button/Button";
 import {useAuthContext} from "../../contexts/AuthContext";
 import {auth} from "../../Firebase";
 
-// import Logo from "../assets/logo.svg"
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [error, setError] = useState("")
+    const { user } = useAuthContext()
 
 
     const handleClick = () => setClick(!click);
@@ -21,7 +21,6 @@ function Navbar() {
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-
                     <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
                         CyclingScore
                         <i className="fas fa-biking"/>
@@ -32,7 +31,7 @@ function Navbar() {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
-
+                        {!user ? (<>
                         <>
                             <li className='nav-item'>
                                 <Link
@@ -55,6 +54,7 @@ function Navbar() {
                             </li>
                         </>
 
+                        </>) : (
 
                         <>
                             <li className='nav-item'>
@@ -101,7 +101,7 @@ function Navbar() {
                                 />
                             </li>
                         </>
-
+                        )}
 
                         <li className='nav-item'>
                             <Link

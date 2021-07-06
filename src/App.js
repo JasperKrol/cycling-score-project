@@ -1,5 +1,5 @@
 // import firebase from "./firebase"
-import {Switch, Route, Redirect} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/LoginPage/Login";
 import Home from "./pages/HomePage/Home";
@@ -10,56 +10,39 @@ import Profile from "./pages/ProfilePage/Profile";
 import WhyStrava from "./pages/WhyStravaPage/WhyStrava";
 import './components/Navbar/Navbar.css';
 import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
-import {useState} from "react";
 import SignUp from "./pages/SignUpPage/SignUp";
+import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
-// voor develop purpose even op true moet !isAuthenticated true zijn
-    const [isAuthenticated, toggleIsAuthenticated] = useState(true)
-
 
     return (
         <>
-            <Navbar
-                isAuthenticated={isAuthenticated}
-                toggleIsAuthenticated={toggleIsAuthenticated}/>
+            <Navbar/>
             <Switch>
-
-                <Route exact path="/">
-                    {isAuthenticated ? <Home/> : <Redirect to="/login"/>}
-                </Route>
+                <PrivateRoute exact path="/">
+                    <Home/>
+                </PrivateRoute>
 
                 <Route path="/login">
-                    <Login
-                        isAuthenticated={isAuthenticated}
-                        toggleIsAuthenticated={toggleIsAuthenticated}
-                    />
+                    <Login/>
                 </Route>
 
                 <Route path="/sign-up">
-                    <SignUp
-                        isAuthenticated={isAuthenticated}
-                        toggleIsAuthenticated={toggleIsAuthenticated}
-                    />
+                    <SignUp/>
                 </Route>
 
-                <Route path="/your-scores">
-                    {isAuthenticated ? <YourScores/> : <Redirect to="/login"/>}
-                </Route>
+                <PrivateRoute path="/your-scores">
+                    <YourScores/>
+                </PrivateRoute>
 
                 <Route path="/leaderboards">
-                    {isAuthenticated ? <Leaderboards/> : <Redirect to="/login"/>}
+                   <Leaderboards/>
                 </Route>
 
-                <Route path="/profile">
-                    {isAuthenticated ? <Profile
-                            isAuthenticated={isAuthenticated}
-                            toggleIsAuthenticated={toggleIsAuthenticated}
-                        />
-                        :
-                        <Redirect to="/login"/>}
-                </Route>
+                <PrivateRoute path="/profile">
+                   <Profile/>
+                </PrivateRoute>
 
                 <Route path="/contact">
                     <Contact/>
