@@ -2,7 +2,7 @@ import "./Home.css"
 import Tile from "../../components/Tile/Tile";
 import React from "react";
 import {useState, useEffect} from "react";
-import firebase from "../../data/Firebase"
+import firebase from "../../Firebase"
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import axios from "axios";
 

@@ -13,6 +13,22 @@
     background-repeat: no-repeat;
 }
 
+/*.form-container {*/
+/*    width: 150px;*/
+/*    display: flex;*/
+/*}*/
+
+form {
+  justify-content: flex-start;
+    text-align: start;
+}
+
+input {
+    display: block;
+    border-radius: 3px;
+}
+
+
 .title {
     display: flex;
     flex-direction: column;
