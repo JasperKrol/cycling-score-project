@@ -1,4 +1,4 @@
-import "./Login.css"
+import "./SignUp.css"
 import {Link, useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
 import React from "react";
@@ -6,8 +6,7 @@ import {useState} from 'react'
 import app from '../../data/Firebase'
 import Tile from "../../components/Tile/Tile";
 
-
-function Login({isAuthenticated, toggleIsAuthenticated}) {
+function SignUp({isAuthenticated, toggleIsAuthenticated}) {
     const history = useHistory();
 
     // State management
@@ -81,7 +80,7 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
 
                     <div>
                         <Link id='loginToggle' href='#'
-                           onClick={f => setAction(action === 'login' ? 'register' : 'login')}>{action === 'login' ? 'Register' : 'Login'} instead</Link>
+                              onClick={f => setAction(action === 'login' ? 'register' : 'login')}>{action === 'login' ? 'Register' : 'Login'} instead</Link>
                     </div>
 
                     <Link onClick={redirect}><p className='login-text'>Why connect with STRAVA?</p></Link>
@@ -93,4 +92,4 @@ function Login({isAuthenticated, toggleIsAuthenticated}) {
     )
 }
 
-export default Login
+export default SignUp

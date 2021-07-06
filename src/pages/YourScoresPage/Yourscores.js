@@ -16,7 +16,7 @@ function YourScores() {
     const clientID = '64170'
     const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "3b815f5e56e5205e8ad0cc52af4b289a87193e4a"
+    const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
     const {
@@ -46,6 +46,7 @@ function YourScores() {
     }, [])
 
 
+
     const climbingMeters = Math.round(stravaData.reduce(function (accumulator, meter) {
         return accumulator + meter.total_elevation_gain;
     }, 0))
@@ -64,8 +65,14 @@ function YourScores() {
 
     //strava data 2021-06-19
     const date = new Date()
+    const currentYear = date.getFullYear()
     const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
-    console.log("currentmonth",currentMonth)
+    console.log("currentmonth",currentMonth, "currentYear",currentYear)
+
+    const dataAllYear = stravaData.filter((stravaData) => {
+        return  stravaData.start_date === currentYear
+    })
+    console.log("Stravadataallyear", dataAllYear)
 
 
 

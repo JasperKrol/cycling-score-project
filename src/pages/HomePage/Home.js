@@ -71,7 +71,7 @@ function Home() {
     }
 
     const userID = "64170"
-    const token = "3b815f5e56e5205e8ad0cc52af4b289a87193e4a"
+    const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
 

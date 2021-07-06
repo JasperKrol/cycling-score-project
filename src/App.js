@@ -11,6 +11,7 @@ import WhyStrava from "./pages/WhyStravaPage/WhyStrava";
 import './components/Navbar/Navbar.css';
 import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
 import {useState} from "react";
+import SignUp from "./pages/SignUpPage/SignUp";
 
 
 function App() {
@@ -34,6 +35,13 @@ function App() {
                         isAuthenticated={isAuthenticated}
                         toggleIsAuthenticated={toggleIsAuthenticated}
                         />
+                </Route>
+
+                <Route path="/sign-up">
+                    <SignUp
+                        isAuthenticated={isAuthenticated}
+                        toggleIsAuthenticated={toggleIsAuthenticated}
+                    />
                 </Route>
 
                 <Route path="/your-scores">

@@ -28,15 +28,27 @@ function Navbar({isAuthenticated, toggleIsAuthenticated}) {
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
                         {!isAuthenticated && (
-                            <li className='nav-item'>
-                                <Link
-                                    to='/login'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Login
-                                </Link>
-                            </li>
+                            <>
+                                <li className='nav-item'>
+                                    <Link
+                                        to='/login'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+
+                                <li className='nav-item'>
+                                    <Link
+                                        to='/sign-up'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Sign up here
+                                    </Link>
+                                </li>
+                            </>
                         )}
 
                         {isAuthenticated && (
