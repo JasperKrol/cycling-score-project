@@ -50,8 +50,10 @@ function Login() {
                     <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
 
                     <form onSubmit={onSubmit}>
+                        <label htmlFor="email">Email:</label>
                         <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
                                name='email' value={email}/>
+                        <label htmlFor="password">Password:</label>
                         <input onChange={e => setPassword(e.target.value)} placeholder='Your password' type='password'
                                name='password' value={password}/>
                         <Button

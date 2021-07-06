@@ -16,11 +16,22 @@
 .title {
     display: flex;
     flex-direction: column;
-
 }
 
 a:link {
     text-decoration: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+
 }
 
 link .login-text{

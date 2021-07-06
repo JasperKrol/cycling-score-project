@@ -64,7 +64,7 @@ function SignUp() {
                         </form>
                     </div>
 
-                    <Link to="/"><p className='login-text'>Already have an account? Click here to login</p>
+                    <Link to="/login"><p className='login-text'>Already have an account? Click here to login</p>
                     </Link>
                 </Tile>
             </div>
