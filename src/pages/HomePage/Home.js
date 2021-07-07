@@ -9,7 +9,6 @@ import {useAuthContext} from "../../contexts/AuthContext";
 import {Link} from "react-router-dom";
 import Button from "../../components/Button/Button";
 
-
 const db = firebase.firestore()
 
 function Home() {
@@ -19,20 +18,8 @@ function Home() {
         loading, toggleLoading, stravaUserProfile, setStravaUserProfile, error,
         setError, clientSecret, setClientSecret, clientId, setClientID
     } = useStravaActivityContext()
-    const {user, setUser} = useAuthContext()
-    //
-    // // Listen to the user state
-    // useEffect(() => {
-    //
-    //     // Listen to user
-    //     console.log('Add user listener')
-    //     firebase.auth().onAuthStateChanged(user => {
-    //         console.log('User changed to ', user)
-    //         setUser(user)
-    //         toggleLoading(false)
-    //     })
-    //
-    // }, [])
+    const {user} = useAuthContext()
+
 
     useEffect(() => {
 
@@ -71,7 +58,7 @@ function Home() {
 
     //  code opschonen met private gegevens
     // const userID = "64170"
-    const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
+    const token = "f7f5605825ca80984ad22de0bce8cd4b444e4d38"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
 
@@ -92,10 +79,9 @@ function Home() {
 
         fetchUserProfile()
 
-    }, [])
+    }, [user])
 
     const stravaProfilePicture = stravaUserProfile.profile
-
 
     return (
         <>

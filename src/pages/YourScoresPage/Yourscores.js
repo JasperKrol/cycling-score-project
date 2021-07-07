@@ -16,8 +16,8 @@ function YourScores() {
     // const clientID = '64170'
     // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
-    const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
+    const token = "f7f5605825ca80984ad22de0bce8cd4b444e4d38"
+    const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
     const {
         stravaData, setStravaData, loading, toggleLoading, error,
@@ -30,7 +30,7 @@ function YourScores() {
         async function fetchData() {
             try {
                 const result = await axios.get(`${activityLink}?acces_token=${token}`)
-                console.log("is dit result", result.data)
+                console.log("Strava results", result.data)
                 setStravaData(result.data)
                 toggleLoading(false)
 
@@ -65,15 +65,24 @@ function YourScores() {
 
     //strava data format 2021-06-19
     const date = new Date()
-    const currentYear = date.getFullYear()
+    const currentYearNumber = date.getFullYear().toString()
+    // const currentYearString = currentYearNumber.toString("")
+
     const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
-    console.log("currentmonth",currentMonth, "currentYear",currentYear)
+    console.log("currentmonth",currentMonth, "currentYear",currentYearNumber)
 
-    const dataAllYear = stravaData.filter((stravaData) => {
-        return  stravaData.start_date === currentYear
+
+
+    const activityRides = stravaData.filter((ride)=>{
+        return ride.type === "Ride"
     })
-    console.log("Stravadataallyear", dataAllYear)
+    console.log("activityRides", activityRides)
 
+    const currentYearRides = stravaData.filter((currentYearRide) => {
+        const dateString = currentYearNumber
+        return currentYearRide.start_date.substring(0,4) === dateString
+    })
+    console.log(currentYearRides)
 
 
     return (
