@@ -23,7 +23,7 @@ function Home() {
 
     const {user} = useAuthContext()
 
-    const {handleSubmit, formState: {errors}, register} = useForm({mode: "onBlur"});
+    const {handleSubmit, formState: {errors}, register, reset} = useForm({mode: "onBlur"});
 
     // Getting the data from Strava
     useEffect(() => {
@@ -38,7 +38,6 @@ function Home() {
             if (!data) return
             setClientID(data.clientId)
             setClientSecret(data.clientSecret)
-
         })
 
     }, [user])
@@ -57,6 +56,7 @@ function Home() {
                 clientSecret: clientSecret,
                 clientId: clientId
             })
+            reset({})
 
         } catch (e) {
             console.error('Firebase fail: ', e)
@@ -110,10 +110,10 @@ function Home() {
 
                         <label htmlFor="clientSecret"><h4>Insert your client secret</h4></label>
                         <input onChange={e => setClientSecret(e.target.value)}
-                               id="clientSecret"
+                               id="client-secret"
                                placeholder='Insert client secret'
                                type='text'
-                               name='clientSecret' value={clientSecret}
+                               name='clientSecret'
                                {...register("clientSecret", {
                                    required: {value: true, message: "Field cannot be empty"}
                                })}/>
@@ -126,7 +126,6 @@ function Home() {
                                placeholder='Client id please'
                                type='text'
                                name='clientId'
-                               value={clientId}
                                {...register("email", {
                                    required: {value: true, message: "Field cannot be empty"}
                                })}/>
