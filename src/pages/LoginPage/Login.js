@@ -13,7 +13,6 @@ function Login() {
 
     // State management
     const {setUser, password, setPassword, email, setEmail} = useAuthContext()
-    const [action, setAction] = useState('login')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
@@ -23,7 +22,7 @@ function Login() {
 
         // Prevent page reload
         e.preventDefault()
-        console.log(`${action} requested with email ${email} and password ${password}`)
+        console.log(`$Login requested with email ${email} and password ${password}`)
 
         // Do the actual registration
         try {
@@ -63,10 +62,14 @@ function Login() {
                             />
                         </form>
 
-                        <Link to="/why-strava"><p className='login-text'>Why connect with STRAVA?</p></Link>
-                        <a href="https://www.strava.com/"><p className='login-text'>Dont have STRAVA? Get it here!</p>
+                        <Link to="/why-strava">
+                            <p className='login-text'>Why connect with STRAVA?</p>
+                        </Link>
+                        <a href="https://www.strava.com/">
+                            <p className='login-text'>Dont have STRAVA? Get it here!</p>
                         </a>
-                        <Link to="/sign-up"><p className='login-text'>Don't have an account? Click here to sign up</p>
+                        <Link to="/sign-up">
+                            <p className='login-text'>Don't have an account? Click here to sign up</p>
                         </Link>
                     </>)}
                 </Tile>

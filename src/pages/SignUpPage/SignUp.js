@@ -11,8 +11,7 @@ function SignUp() {
     const history = useHistory();
 
     // State management
-    const { setUser, password, setPassword, email, setEmail } = useAuthContext()
-    const [action, setAction] = useState('signup')
+    const {setUser, password, setPassword, email, setEmail} = useAuthContext()
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
 
@@ -22,7 +21,7 @@ function SignUp() {
 
         // Prevent page reload
         e.preventDefault()
-        console.log(`${action} requested with email ${email} and password ${password}`)
+        console.log(`$ signup requested with email ${email} and password ${password}`)
 
         // Do the actual registration
         try {
@@ -39,34 +38,35 @@ function SignUp() {
         setLoading(false)
     }
 
-
     return (
         <>
             <div className="container">
                 <Tile className="tile">
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
-                    <h3>Sign up down below</h3>
-                    {error && <h2>{error}</h2>}
+                        <h3>Sign up down below</h3>
+                        {error && <h2>{error}</h2>}
 
-                    <div className="form-container">
-                        <form onSubmit={onSubmit}>
-                            <label htmlFor="email">Email:</label>
-                            <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
-                                   name='email' value={email}/>
-                            <label htmlFor="password">Password:</label>
-                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
-                                   type='password'
-                                   name='password' value={password}/>
-                            <Button
-                                text="Register"
-                                disabled={loading}
-                            />
+                        <div className="form-container">
+                            <form onSubmit={onSubmit}>
+                                <label htmlFor="email">Email:</label>
+                                <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com'
+                                       type='email'
+                                       name='email' value={email}/>
+                                <label htmlFor="password">Password:</label>
+                                <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
+                                       type='password'
+                                       name='password' value={password}/>
+                                <Button
+                                    text="Register"
+                                    disabled={loading}
+                                />
 
-                        </form>
-                    </div>
+                            </form>
+                        </div>
 
-                    <Link to="/login"><p className='login-text'>Already have an account? Click here to login</p>
-                    </Link>
+                        <Link to="/login">
+                            <p className='login-text'>Already have an account? Click here to login</p>
+                        </Link>
                     </>)}
                 </Tile>
             </div>

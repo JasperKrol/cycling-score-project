@@ -27,18 +27,6 @@ function AuthContextProvider({children}) {
         return <>Loading</>
     }
 
-    // function signup(email, password) {
-    //     return auth.createUserWithEmailAndPassword(email, password)
-    // }
-    //
-    // function logout(){
-    //     return auth.signOut()
-    // }
-    //
-    // function login(email, password){
-    //     return auth.signInWithEmailAndPassword(email, password)
-    // }
-
     return (
         <authContext.Provider value={{
             email:email,
@@ -47,9 +35,6 @@ function AuthContextProvider({children}) {
             setPassword:setPassword,
             user:user,
             setUser:setUser,
-            // signup,
-            // login,
-            // logout
         }}>
             {!pageLoading && children}
         </authContext.Provider>
