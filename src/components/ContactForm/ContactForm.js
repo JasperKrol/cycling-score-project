@@ -42,7 +42,7 @@ export default function ContactForm() {
                             type="email"
                             id="email"
                             {...register("email", {
-                                required: {value: true, message: "Field cannot be empty and must contain an @"}
+                                required: {value: true, message: "Field cannot be empty"}
                             })}
                         />
                         <span className="error-text">

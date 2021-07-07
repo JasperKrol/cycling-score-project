@@ -10,9 +10,6 @@ import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 
 function YourScores() {
 
-    // const data = Data
-    // console.log(data)
-
     // const clientID = '64170'
     // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
@@ -46,44 +43,39 @@ function YourScores() {
     }, [])
 
 
+    //Get current year and month
+    const date = new Date()
+    const currentYearNumber = date.getFullYear().toString()
+    const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
+    console.log("currentmonth",currentMonth, "currentYear",currentYearNumber)
 
-    const climbingMeters = Math.round(stravaData.reduce(function (accumulator, meter) {
+    //Get all ride activities from strava
+    const activityRides = stravaData.filter((ride)=>{
+        return ride.type === "Ride"
+    })
+    // console.log("activityRides", activityRides)
+
+    // Filter ride activities to current year
+    const currentYearRides = activityRides.filter((currentYearRide) => {
+        return currentYearRide.start_date.substring(0,4) === currentYearNumber
+    })
+    console.log("currentYearRides", currentYearRides)
+
+    // calculate current year totals and put them on the page
+    const climbingMeters = Math.round(currentYearRides.reduce(function (accumulator, meter) {
         return accumulator + meter.total_elevation_gain;
     }, 0))
     console.log("meters?", climbingMeters)
 
-    const distanceGained = Math.round(stravaData.reduce(function (accumulator, distance) {
+    const distanceGained = Math.round(currentYearRides.reduce(function (accumulator, distance) {
         return accumulator + distance.distance;
     }, 0))
     console.log("afstand?", distanceGained)
 
-    const avgSpeed = stravaData.reduce(function (accumulator, speed) {
+    const avgSpeed = currentYearRides.reduce(function (accumulator, speed) {
         return accumulator + (speed.average_speed / 100);
     }, 0)
     console.log("speed?", avgSpeed)
-
-
-    //strava data format 2021-06-19
-    const date = new Date()
-    const currentYearNumber = date.getFullYear().toString()
-    // const currentYearString = currentYearNumber.toString("")
-
-    const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
-    console.log("currentmonth",currentMonth, "currentYear",currentYearNumber)
-
-
-
-    const activityRides = stravaData.filter((ride)=>{
-        return ride.type === "Ride"
-    })
-    console.log("activityRides", activityRides)
-
-    const currentYearRides = stravaData.filter((currentYearRide) => {
-        const dateString = currentYearNumber
-        return currentYearRide.start_date.substring(0,4) === dateString
-    })
-    console.log(currentYearRides)
-
 
     return (
         <>

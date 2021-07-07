@@ -1,26 +1,31 @@
 import "./Home.css"
 import Tile from "../../components/Tile/Tile";
 import React from "react";
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 import firebase from "../../contexts/Firebase"
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import axios from "axios";
 import {useAuthContext} from "../../contexts/AuthContext";
 import {Link} from "react-router-dom";
 import Button from "../../components/Button/Button";
+import {useForm} from "react-hook-form";
+
 
 const db = firebase.firestore()
 
 function Home() {
 
-
+    //state & contextmanagement
     const {
         loading, toggleLoading, stravaUserProfile, setStravaUserProfile, error,
         setError, clientSecret, setClientSecret, clientId, setClientID
     } = useStravaActivityContext()
+
     const {user} = useAuthContext()
 
+    const {handleSubmit, formState: {errors}, register} = useForm({mode: "onBlur"});
 
+    // Getting the data from Strava
     useEffect(() => {
 
         // No user? Exit
@@ -33,14 +38,17 @@ function Home() {
             if (!data) return
             setClientID(data.clientId)
             setClientSecret(data.clientSecret)
+
         })
 
     }, [user])
 
+    // handle submit
+
     async function onSubmit(e) {
 
         // Prevent page reload
-        e.preventDefault()
+        // e.preventDefault()
         console.log(`client id pushed: ${clientId} and client secret pushed:${clientSecret}`)
 
         // Do the actual registration
@@ -49,7 +57,6 @@ function Home() {
                 clientSecret: clientSecret,
                 clientId: clientId
             })
-
 
         } catch (e) {
             console.error('Firebase fail: ', e)
@@ -79,7 +86,7 @@ function Home() {
 
         fetchUserProfile()
 
-    }, [user])
+    }, [])
 
     const stravaProfilePicture = stravaUserProfile.profile
 
@@ -99,17 +106,36 @@ function Home() {
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
 
                     {/*client id evt op password zetten*/}
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={handleSubmit(onSubmit)}>
 
                         <label htmlFor="clientSecret"><h4>Insert your client secret</h4></label>
-                        <input onChange={e => setClientSecret(e.target.value)} placeholder='Insert client secret'
+                        <input onChange={e => setClientSecret(e.target.value)}
+                               id="clientSecret"
+                               placeholder='Insert client secret'
                                type='text'
-                               name='clientSecret' value={clientSecret}/>
+                               name='clientSecret' value={clientSecret}
+                               {...register("clientSecret", {
+                                   required: {value: true, message: "Field cannot be empty"}
+                               })}/>
+                        <span className="error-text">
+                                {errors.clientSecret && <p>{errors.clientSecret.message}</p>}
+                                    </span>
                         <label htmlFor="clientId"><h4>Insert your client ID</h4></label>
-                        <input onChange={e => setClientID(e.target.value)} placeholder='Client id please' type='text'
-                               name='clientId' value={clientId}/>
+                        <input onChange={e => setClientID(e.target.value)}
+                               id="clientId"
+                               placeholder='Client id please'
+                               type='text'
+                               name='clientId'
+                               value={clientId}
+                               {...register("email", {
+                                   required: {value: true, message: "Field cannot be empty"}
+                               })}/>
+                        <span className="error-text">
+                                {errors.clientId && <p>{errors.clientId.message}</p>}
+                                    </span>
                         <Button
                             text="Save"
+                            disabled={errors.clientSecret || errors.clientId}
                         />
                     </form>
                     <Link to="/why-strava">
