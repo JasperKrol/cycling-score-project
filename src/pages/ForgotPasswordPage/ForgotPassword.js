@@ -3,7 +3,7 @@ import "./ForgotPassword.css"
 import Tile from "../../components/Tile/Tile";
 import {Link} from "react-router-dom";
 import {useAuthContext} from "../../contexts/AuthContext";
-import app from "../../Firebase";
+import app from "../../contexts/Firebase";
 import Button from "../../components/Button/Button";
 
 function ForgotPassword() {

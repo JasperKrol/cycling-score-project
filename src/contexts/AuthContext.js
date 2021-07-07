@@ -1,5 +1,5 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
-import app from '../../src/Firebase'
+import app from './Firebase'
 import Tile from "../components/Tile/Tile";
 // import { auth } from "../Firebase"
 

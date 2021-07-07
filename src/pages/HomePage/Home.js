@@ -2,36 +2,37 @@ import "./Home.css"
 import Tile from "../../components/Tile/Tile";
 import React from "react";
 import {useState, useEffect} from "react";
-import firebase from "../../Firebase"
-import { useStravaActivityContext } from "../../contexts/StravaContext";
+import firebase from "../../contexts/Firebase"
+import {useStravaActivityContext} from "../../contexts/StravaContext";
 import axios from "axios";
 import {useAuthContext} from "../../contexts/AuthContext";
+import {Link} from "react-router-dom";
+import Button from "../../components/Button/Button";
 
 
 const db = firebase.firestore()
 
 function Home() {
 
-    const [clientId, setClientID] = useState()
-    const [clientSecret, setClientSecret] = useState()
+
     const {
         loading, toggleLoading, stravaUserProfile, setStravaUserProfile, error,
-        setError
+        setError, clientSecret, setClientSecret, clientId, setClientID
     } = useStravaActivityContext()
     const {user, setUser} = useAuthContext()
-
-    // Listen to the user state
-    useEffect(() => {
-
-        // Listen to user
-        console.log('Add user listener')
-        firebase.auth().onAuthStateChanged(user => {
-            console.log('User changed to ', user)
-            setUser(user)
-            toggleLoading(false)
-        })
-
-    }, [])
+    //
+    // // Listen to the user state
+    // useEffect(() => {
+    //
+    //     // Listen to user
+    //     console.log('Add user listener')
+    //     firebase.auth().onAuthStateChanged(user => {
+    //         console.log('User changed to ', user)
+    //         setUser(user)
+    //         toggleLoading(false)
+    //     })
+    //
+    // }, [])
 
     useEffect(() => {
 
@@ -53,7 +54,7 @@ function Home() {
 
         // Prevent page reload
         e.preventDefault()
-        console.log(`client id : ${clientId} requested and client secret :${clientSecret}`)
+        console.log(`client id pushed: ${clientId} and client secret pushed:${clientSecret}`)
 
         // Do the actual registration
         try {
@@ -67,6 +68,7 @@ function Home() {
             console.error('Firebase fail: ', e)
         }
     }
+
     //  code opschonen met private gegevens
     // const userID = "64170"
     const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
@@ -102,7 +104,7 @@ function Home() {
                     {(user) ? <h3>Hello {user.email}</h3> : ""}
                     <div className="photo-div">
                         {loading && (<span>Loading...</span>)}
-                        <img src={stravaProfilePicture}  className="picture" alt="profile-picture"/>
+                        <img src={stravaProfilePicture} className="picture" alt="profile-picture"/>
                     </div>
                     <div className="home-text">
                         <p>View the leaderboards to plan you next trip or training!</p>
@@ -113,13 +115,20 @@ function Home() {
                     {/*client id evt op password zetten*/}
                     <form onSubmit={onSubmit}>
 
+                        <label htmlFor="clientSecret"><h4>Insert your client secret</h4></label>
                         <input onChange={e => setClientSecret(e.target.value)} placeholder='Insert client secret'
                                type='text'
                                name='clientSecret' value={clientSecret}/>
+                        <label htmlFor="clientId"><h4>Insert your client ID</h4></label>
                         <input onChange={e => setClientID(e.target.value)} placeholder='Client id please' type='text'
                                name='clientId' value={clientId}/>
-                        <input type='submit' value="save"/>
+                        <Button
+                            text="Save"
+                        />
                     </form>
+                    <Link to="/why-strava">
+                        <p className='login-text'>*Why we need your STRAVA details*</p>
+                    </Link>
                 </Tile>
             </div>
         </>

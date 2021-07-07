@@ -15,6 +15,8 @@ function StravaActivityContextProvider({children}) {
     const [stravaUserProfile, setStravaUserProfile] = useState([])
     const [loading, toggleLoading] = useState(false)
     const [error, setError] = useState(false)
+    const [clientSecret, setClientSecret] = useState("")
+    const [clientId, setClientID] = useState()
 
 
     return (
@@ -26,7 +28,11 @@ function StravaActivityContextProvider({children}) {
             error: error,
             setError: setError,
             stravaUserProfile: stravaUserProfile,
-            setStravaUserProfile: setStravaUserProfile
+            setStravaUserProfile: setStravaUserProfile,
+            clientSecret:clientSecret,
+            setClientSecret:setClientSecret,
+            clientId:clientId,
+            setClientID:setClientID
         }}
         >
             {children}

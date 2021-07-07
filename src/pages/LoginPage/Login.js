@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
 import React from "react";
 import {useState} from 'react'
-import app from '../../Firebase'
+import app from '../../contexts/Firebase'
 import Tile from "../../components/Tile/Tile";
 import {useAuthContext} from "../../contexts/AuthContext";
 
@@ -67,9 +67,6 @@ function Login() {
                             />
                         </form>
 
-                        <Link to="/why-strava">
-                            <p className='login-text'>Why connect with STRAVA?</p>
-                        </Link>
                         <a href="https://www.strava.com/">
                             <p className='login-text'>Dont have STRAVA? Get it here!</p>
                         </a>
