@@ -1,18 +1,17 @@
 import React, {useState} from "react";
 import "./ForgotPassword.css"
 import Tile from "../../components/Tile/Tile";
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useAuthContext} from "../../contexts/AuthContext";
 import app from "../../Firebase";
 import Button from "../../components/Button/Button";
 
 function ForgotPassword() {
-    const history = useHistory();
-
     // State management
-    const {setUser, password, setPassword, email, setEmail} = useAuthContext()
+    const { email, setEmail} = useAuthContext()
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
+    const [message, setMessage] = useState("")
 
 
     // Handle the submit
@@ -20,19 +19,18 @@ function ForgotPassword() {
 
         // Prevent page reload
         e.preventDefault()
-        console.log(`$Login requested with email ${email} and password ${password}`)
+        console.log(`$Login requested with email ${email}`)
 
         // Do the actual registration
         try {
+            setMessage("")
             setError("")
             setLoading(true)
-            const userCredential = await app.auth().signInWithEmailAndPassword(email, password)
-            console.log('Logged in: ', userCredential)
-            setUser(userCredential.user)
-            history.push("/")
+            await app.auth().sendPasswordResetEmail(email)
+            setMessage("You've got an request in your inbox")
         } catch (e) {
             console.error('Firebase fail: ', e)
-            setError("Failed to sign in")
+            setError("Failed to reset password")
         }
         setLoading(false)
     }
@@ -45,6 +43,7 @@ function ForgotPassword() {
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <h3>Reset your password below!</h3>
                         {error && <h2>{error}</h2>}
+                        {message && <h2>{message}</h2>}
 
                         <form onSubmit={onSubmit}>
                             <label htmlFor="email"><h4>Your email:</h4></label>
