@@ -21,7 +21,7 @@ function Home() {
     const {user, setUser} = useAuthContext()
 
     // Listen to the user state
-    useEffect(f => {
+    useEffect(() => {
 
         // Listen to user
         console.log('Add user listener')
@@ -67,8 +67,8 @@ function Home() {
             console.error('Firebase fail: ', e)
         }
     }
-
-    const userID = "64170"
+    //  code opschonen met private gegevens
+    // const userID = "64170"
     const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
@@ -102,7 +102,7 @@ function Home() {
                     {(user) ? <h3>Hello {user.email}</h3> : ""}
                     <div className="photo-div">
                         {loading && (<span>Loading...</span>)}
-                        <img src={stravaProfilePicture} alt="photo" className="picture"/>
+                        <img src={stravaProfilePicture}  className="picture" alt="profile-picture"/>
                     </div>
                     <div className="home-text">
                         <p>View the leaderboards to plan you next trip or training!</p>

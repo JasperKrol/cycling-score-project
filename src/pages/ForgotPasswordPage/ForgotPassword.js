@@ -1,14 +1,12 @@
-import "./Login.css"
-import {Link, useHistory} from "react-router-dom";
-import Button from "../../components/Button/Button";
-import React from "react";
-import {useState} from 'react'
-import app from '../../Firebase'
+import React, {useState} from "react";
+import "./ForgotPassword.css"
 import Tile from "../../components/Tile/Tile";
+import {Link, useHistory} from "react-router-dom";
 import {useAuthContext} from "../../contexts/AuthContext";
+import app from "../../Firebase";
+import Button from "../../components/Button/Button";
 
-
-function Login() {
+function ForgotPassword() {
     const history = useHistory();
 
     // State management
@@ -45,36 +43,25 @@ function Login() {
             <div className="container">
                 <Tile className="tile">
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <h3>Welcome!</h3>
+                        <h3>Reset your password below!</h3>
                         {error && <h2>{error}</h2>}
-                        <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
 
                         <form onSubmit={onSubmit}>
-                            <label htmlFor="email">Email:</label>
+                            <label htmlFor="email"><h4>Your email:</h4></label>
                             <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
                                    name='email' value={email}/>
-                            <label htmlFor="password">Password:</label>
-                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
-                                   type='password'
-                                   name='password' value={password}/>
-                            <Link to="/forgot-password">
-                                <p className='login-text'>Forgot your password? Click here!</p>
-                            </Link>
+
                             <Button
-                                text="Login"
+                                text="Reset password"
                             />
+
+                            <Link to="/login">
+                                <p className='login-text'>Go back to the login page.</p>
+                            </Link>
+                            <Link to="/sign-up">
+                                <p className='login-text'>Click here to create an account.</p>
+                            </Link>
                         </form>
-
-                        <Link to="/why-strava">
-                            <p className='login-text'>Why connect with STRAVA?</p>
-                        </Link>
-                        <a href="https://www.strava.com/">
-                            <p className='login-text'>Dont have STRAVA? Get it here!</p>
-                        </a>
-                        <Link to="/sign-up">
-                            <p className='login-text'>Don't have an account? Click here to sign up.</p>
-                        </Link>
-
                     </>)}
                 </Tile>
             </div>
@@ -83,4 +70,4 @@ function Login() {
     )
 }
 
-export default Login
+export default ForgotPassword

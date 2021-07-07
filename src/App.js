@@ -11,7 +11,8 @@ import WhyStrava from "./pages/WhyStravaPage/WhyStrava";
 import './components/Navbar/Navbar.css';
 import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
 import SignUp from "./pages/SignUpPage/SignUp";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import ForgotPassword from "./pages/ForgotPasswordPage/ForgotPassword";
 
 
 function App() {
@@ -58,6 +59,10 @@ function App() {
 
                 <Route path="/why-strava">
                     <WhyStrava/>
+                </Route>
+
+                <Route path="/forgot-password">
+                    <ForgotPassword/>
                 </Route>
             </Switch>
         </>

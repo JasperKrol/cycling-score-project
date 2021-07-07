@@ -1,5 +1,5 @@
 import "./Yourscores.css"
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import Tile from "../../components/Tile/Tile";
 // import Data from "../../data/response_1624349677573.json"
 import axios from "axios";
@@ -13,9 +13,9 @@ function YourScores() {
     // const data = Data
     // console.log(data)
 
-    const clientID = '64170'
-    const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
-    const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
+    // const clientID = '64170'
+    // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
+    // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
     const token = "a87aa9cc5d0aae5de16c1f0b2a5d99fb99911998"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=100`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
@@ -63,7 +63,7 @@ function YourScores() {
     console.log("speed?", avgSpeed)
 
 
-    //strava data 2021-06-19
+    //strava data format 2021-06-19
     const date = new Date()
     const currentYear = date.getFullYear()
     const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");

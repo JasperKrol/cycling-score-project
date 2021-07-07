@@ -1,5 +1,6 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
 import app from '../../src/Firebase'
+import Tile from "../components/Tile/Tile";
 // import { auth } from "../Firebase"
 
 export const authContext = createContext({});
@@ -23,18 +24,20 @@ function AuthContextProvider({children}) {
         return unsubscribe;
     }, []);
 
-    if(pageLoading){
-        return <>Loading</>
+    if (pageLoading) {
+        return <>
+            <div className="container"><Tile><h2>Loading</h2></Tile></div>
+        </>
     }
 
     return (
         <authContext.Provider value={{
-            email:email,
-            setEmail:setEmail,
-            password:password,
-            setPassword:setPassword,
-            user:user,
-            setUser:setUser,
+            email: email,
+            setEmail: setEmail,
+            password: password,
+            setPassword: setPassword,
+            user: user,
+            setUser: setUser,
         }}>
             {!pageLoading && children}
         </authContext.Provider>
