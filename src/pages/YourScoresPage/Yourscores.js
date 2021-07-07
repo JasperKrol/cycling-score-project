@@ -30,7 +30,6 @@ function YourScores() {
                 console.log("Strava results", result.data)
                 setStravaData(result.data)
                 toggleLoading(false)
-
             } catch (e) {
                 console.error(e)
                 setError(true);
@@ -59,6 +58,7 @@ function YourScores() {
     const currentYearRides = activityRides.filter((currentYearRide) => {
         return currentYearRide.start_date.substring(0,4) === currentYearNumber
     })
+
     console.log("currentYearRides", currentYearRides)
 
     // calculate current year totals and put them on the page
@@ -75,6 +75,7 @@ function YourScores() {
     const avgSpeed = currentYearRides.reduce(function (accumulator, speed) {
         return accumulator + (speed.average_speed / 100);
     }, 0)
+
     console.log("speed?", avgSpeed)
 
     return (

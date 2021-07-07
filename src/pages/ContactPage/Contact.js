@@ -2,9 +2,11 @@ import "./Contact.css"
 import React from "react";
 import Tile from "../../components/Tile/Tile";
 import ContactForm from "../../components/ContactForm/ContactForm";
+import getStravaData from "../../data/nonASYNC";
 
 
 function Contact() {
+    getStravaData()
 
     return (
         <div className="container ">
