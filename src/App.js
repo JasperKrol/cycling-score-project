@@ -20,8 +20,9 @@ function App() {
         <>
             <Navbar/>
             <Switch>
-                <PrivateRoute exact path="/">
-                    <Home/>
+                <PrivateRoute
+                    exact path="/"
+                    component={<Home/>}>
                 </PrivateRoute>
 
                 <Route path="/login">
@@ -32,16 +33,19 @@ function App() {
                     <SignUp/>
                 </Route>
 
-                <PrivateRoute exact path="/your-scores">
-                    <YourScores/>
+                <PrivateRoute
+                    exact path="/your-scores"
+                    component={<YourScores/>}>
                 </PrivateRoute>
 
-                <PrivateRoute exact path="/leaderboards">
-                   <Leaderboards/>
+                <PrivateRoute
+                    exact path="/leaderboards"
+                    component={<Leaderboards/>}>
                 </PrivateRoute>
 
-                <PrivateRoute exact path="/profile">
-                   <Profile/>
+                <PrivateRoute
+                    exact path="/profile"
+                    component={<Profile/>}>
                 </PrivateRoute>
 
                 <Route path="/contact">
