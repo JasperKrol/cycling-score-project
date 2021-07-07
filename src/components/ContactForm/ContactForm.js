@@ -30,7 +30,7 @@ export default function ContactForm() {
                             type="text"
                             id="name"
                             {...register("name", {
-                                required: {value: true, message: "Dit veld is verplicht"}
+                                required: {value: true, message: "Field cannot be empty"}
                             })}
                         />
                         <span className="error-text">
@@ -42,11 +42,11 @@ export default function ContactForm() {
                             type="email"
                             id="email"
                             {...register("email", {
-                                required: {value: true, message: "Dit veld is verplicht"}
+                                required: {value: true, message: "Field cannot be empty and must contain an @"}
                             })}
                         />
                         <span className="error-text">
-                                {errors.achternaam && <p>{errors.achternaam.message}</p>}
+                                {errors.email && <p>{errors.email.message}</p>}
                                      </span>
                     </label>
                     <label htmlFor="Subject">Subject:
@@ -61,7 +61,7 @@ export default function ContactForm() {
                         <br/>
                         <textarea name="comments" id="comments" cols="30" rows="10"
                                   {...register("comments", {
-                                      required: {value: true, minLength: 4, message: "Dit veld is verplicht"}
+                                      required: {value: true, minLength: 4, message: "Field cannot be empty"}
                                   })}
                         >
                         </textarea>

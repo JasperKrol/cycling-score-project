@@ -35,7 +35,6 @@ function ForgotPassword() {
         setLoading(false)
     }
 
-
     return (
         <>
             <div className="container">

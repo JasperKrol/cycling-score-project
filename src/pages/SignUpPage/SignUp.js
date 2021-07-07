@@ -33,7 +33,7 @@ function SignUp() {
             history.push("/")
         } catch (e) {
             console.error('Firebase fail: ', e)
-            setError("Account already exists")
+            setError("Failed to sign up")
         }
         setLoading(false)
     }
