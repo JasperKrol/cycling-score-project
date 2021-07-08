@@ -8,8 +8,6 @@ import axios from "axios";
 import {useAuthContext} from "../../contexts/AuthContext";
 import {Link} from "react-router-dom";
 import Button from "../../components/Button/Button";
-import {useForm} from "react-hook-form";
-
 
 const db = firebase.firestore()
 
@@ -64,7 +62,7 @@ function Home() {
 
     //  code opschonen met private gegevens
     // const userID = "64170"
-    const token = "56a173e311ee50a6295a3811f970f0dab9736143"
+    const token = "1ca7e824526c0a610e5307e82ae0b7795840f26a"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
 
@@ -86,6 +84,7 @@ function Home() {
         fetchUserProfile()
 
     }, [])
+
 
     const stravaProfilePicture = stravaUserProfile.profile
 

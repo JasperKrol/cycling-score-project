@@ -15,10 +15,10 @@ function YourScores() {
     // const clientID = '64170'
     // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "56a173e311ee50a6295a3811f970f0dab9736143"
+    const token = "a3fbf9b73ad2498c9b36be0cab50da5f0e85a944"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
-    const {stravaData, setStravaData, error, setError} = useStravaActivityContext()
+    const {stravaData, setStravaData, stravaUserProfile, error, setError} = useStravaActivityContext()
     const [loading, setLoading] = useState(true)
     const {user} = useAuthContext()
     const db = firebase.firestore()
@@ -52,10 +52,11 @@ function YourScores() {
         if(!user) return
         //if user send new data to database
 
-        async function sendData() {
+        function sendData() {
             try {
                 return db.collection('StravaData').doc(user.email).set({
-                    stravaData:stravaData
+                    stravaData:stravaData,
+                    stravaUserProfile:stravaUserProfile
                 })
 
             } catch (e){
@@ -64,7 +65,7 @@ function YourScores() {
         }
         sendData()
 
-    },[])
+    },[stravaData])
 
     console.log("what is the data now", stravaData)
 
@@ -99,9 +100,9 @@ function YourScores() {
     }, 0))
     console.log("afstand?", distanceGained)
 
-    const avgSpeed = currentYearRides.reduce(function (accumulator, speed) {
-        return accumulator + (speed.average_speed / 100);
-    }, 0)
+    const avgSpeed = Math.round(currentYearRides.reduce(function (accumulator, speed) {
+        return accumulator + (speed.average_speed / currentYearRides.length);
+    }, 0))
 
     console.log("speed?", avgSpeed)
 
