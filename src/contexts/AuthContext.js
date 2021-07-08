@@ -15,6 +15,7 @@ function AuthContextProvider({children}) {
     const [password, setPassword] = useState('')
     const [user, setUser] = useState(null)
     const [pageLoading, setPageLoading] = useState(true)
+    const [users, setUsers] = useState()
 
     useEffect(() => {
         const unsubscribe = app.auth().onAuthStateChanged(user => {

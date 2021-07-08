@@ -7,6 +7,8 @@ import Tile from "../../components/Tile/Tile";
 
 function Leaderboards () {
 
+
+
     return (
         <>
                 <div className="container climbing ">

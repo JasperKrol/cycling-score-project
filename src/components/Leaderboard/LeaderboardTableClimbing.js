@@ -1,19 +1,58 @@
 import React from 'react';
 import {useTable, useSortBy} from 'react-table';
+import dataWilleke from "../../data/DataWilleke.json"
+import dataJasper from "../../data/DataJasper.json"
 
 function LeaderboardTableClimbing() {
+
+    // const {stravaData,stravaUserProfile} = useStravaActivityContext()
+    // console.log(stravaUserProfile)
+    // console.log(dataWilleke[0].firstname)
+    let date = new Date()
+
+    // voor scores en meer ritten zet ik de maand op 06 dit doe ik door de +1 te verwijderen
+    //originele functie hieronder
+    // let currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
+    let currentMonth = date.getFullYear() + '-' + (date.getMonth()).toString().padStart(2, "0");
+    // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
+
+    //Get all ride activities from "strava"
+    const ridesOnlyWilleke = dataWilleke.filter((ride) => {
+        return ride.type === "Ride"
+    })
+    const ridesOnlyJasper = dataJasper.filter((ride) => {
+        return ride.type === "Ride"
+    })
+    // Filter ride activities to current month
+    const willekeMonthScore = ridesOnlyWilleke.filter((currentMonthRide) => {
+        return currentMonthRide.start_date.substring(0, 7) === currentMonth
+    })
+    const jasperMonthScore = ridesOnlyJasper.filter((currentMonthRide) => {
+        return currentMonthRide.start_date.substring(0, 7) === currentMonth
+    })
+    // console.log("willekesMonthScore", willekesMonthScore)
+
+    // calculate current monthly climbing scores and put them on the page
+    const willekeClimbingScore = Math.round(willekeMonthScore.reduce(function (accumulator, meter) {
+        return accumulator + meter.total_elevation_gain;
+    }, 0))
+    const jasperClimbingScore = Math.round(jasperMonthScore.reduce(function (accumulator, meter) {
+        return accumulator + meter.total_elevation_gain;
+    }, 0))
+    // console.log("meters?", willekeClimbingScore)
+
 
     const data = React.useMemo(
         () => [
             {
                 col1: '1',
-                col2: 'Jasper',
-                col3: '2000m',
+                col2: `${dataWilleke[0].firstname}`,
+                col3: `${willekeClimbingScore} meters`,
             },
             {
                 col1: '2',
-                col2: 'Pieter',
-                col3: '200m',
+                col2: `${dataJasper[0].firstname}`,
+                col3: `${jasperClimbingScore} meters`,
             },
             {
                 col1: '3',

@@ -7,7 +7,6 @@ import app from '../../contexts/Firebase'
 import Tile from "../../components/Tile/Tile";
 import {useAuthContext} from "../../contexts/AuthContext";
 
-
 function Login() {
     const history = useHistory();
 

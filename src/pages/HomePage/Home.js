@@ -65,7 +65,7 @@ function Home() {
 
     //  code opschonen met private gegevens
     // const userID = "64170"
-    const token = "f7f5605825ca80984ad22de0bce8cd4b444e4d38"
+    const token = "56a173e311ee50a6295a3811f970f0dab9736143"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
 

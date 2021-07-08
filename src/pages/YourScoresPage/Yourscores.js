@@ -6,6 +6,8 @@ import axios from "axios";
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import metersToKM from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
+import firebase from "../../contexts/Firebase";
+import {useAuthContext} from "../../contexts/AuthContext";
 
 
 function YourScores() {
@@ -13,13 +15,15 @@ function YourScores() {
     // const clientID = '64170'
     // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
     // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "f7f5605825ca80984ad22de0bce8cd4b444e4d38"
+    const token = "56a173e311ee50a6295a3811f970f0dab9736143"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
     const {
         stravaData, setStravaData, loading, toggleLoading, error,
         setError
     } = useStravaActivityContext()
+    const {user} = useAuthContext()
+    const db = firebase.firestore()
 
 // zet die codes en in ENV//
 
@@ -30,6 +34,9 @@ function YourScores() {
                 console.log("Strava results", result.data)
                 setStravaData(result.data)
                 toggleLoading(false)
+                await db.collection('StravaData').doc(user.email).set({
+                    stravaData: stravaData
+                })
             } catch (e) {
                 console.error(e)
                 setError(true);
