@@ -2,6 +2,7 @@ import React from 'react';
 import {useTable, useSortBy} from 'react-table';
 import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
+import dataPeter from "../../data/DataPeter.json"
 
 function LeaderboardTableClimbing() {
 
@@ -23,11 +24,18 @@ function LeaderboardTableClimbing() {
     const ridesOnlyJasper = dataJasper.filter((ride) => {
         return ride.type === "Ride"
     })
+    const ridesOnlyPeter = dataPeter.filter((ride) => {
+        return ride.type === "Ride"
+    })
+
     // Filter ride activities to current month
     const willekeMonthScore = ridesOnlyWilleke.filter((currentMonthRide) => {
         return currentMonthRide.start_date.substring(0, 7) === currentMonth
     })
     const jasperMonthScore = ridesOnlyJasper.filter((currentMonthRide) => {
+        return currentMonthRide.start_date.substring(0, 7) === currentMonth
+    })
+    const peterMonthScore = ridesOnlyPeter.filter((currentMonthRide) => {
         return currentMonthRide.start_date.substring(0, 7) === currentMonth
     })
     // console.log("willekesMonthScore", willekesMonthScore)
@@ -39,7 +47,10 @@ function LeaderboardTableClimbing() {
     const jasperClimbingScore = Math.round(jasperMonthScore.reduce(function (accumulator, meter) {
         return accumulator + meter.total_elevation_gain;
     }, 0))
-    // console.log("meters?", willekeClimbingScore)
+    const peterClimbingScore = Math.round(peterMonthScore.reduce(function (accumulator, meter) {
+        return accumulator + meter.total_elevation_gain;
+    }, 0))
+    // console.log("metersw?", willekeClimbingScore, "metersP?",peterClimbingScore, "metersj?", jasperClimbingScore)
 
 
     const data = React.useMemo(
@@ -51,13 +62,13 @@ function LeaderboardTableClimbing() {
             },
             {
                 col1: '2',
-                col2: `${dataJasper[0].firstname}`,
-                col3: `${jasperClimbingScore} meters`,
+                col2: `${dataPeter[0].firstname}`,
+                col3: `${peterClimbingScore} meters`,
             },
             {
                 col1: '3',
-                col2: 'Henk',
-                col3: '20m',
+                col2: `${dataJasper[0].firstname}`,
+                col3: `${jasperClimbingScore} meters`,
             },
         ],
         []
