@@ -1,5 +1,5 @@
 import "./Yourscores.css"
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Tile from "../../components/Tile/Tile";
 // import Data from "../../data/response_1624349677573.json"
 import axios from "axios";
@@ -18,10 +18,8 @@ function YourScores() {
     const token = "56a173e311ee50a6295a3811f970f0dab9736143"
     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
     // laat initial state nu staan als map() geen function krijg, zet hem op []
-    const {
-        stravaData, setStravaData, loading, toggleLoading, error,
-        setError
-    } = useStravaActivityContext()
+    const {stravaData, setStravaData, error, setError} = useStravaActivityContext()
+    const [loading, setLoading] = useState(true)
     const {user} = useAuthContext()
     const db = firebase.firestore()
 
@@ -33,14 +31,13 @@ function YourScores() {
                 const result = await axios.get(`${activityLink}?acces_token=${token}`)
                 console.log("Strava results", result.data)
                 setStravaData(result.data)
-                toggleLoading(false)
-                await db.collection('StravaData').doc(user.email).set({
-                    stravaData: stravaData
-                })
+                setLoading(false)
+
+
             } catch (e) {
                 console.error(e)
                 setError(true);
-                toggleLoading(false);
+                setLoading(true);
             }
         }
 
@@ -48,22 +45,45 @@ function YourScores() {
 
     }, [])
 
+    console.log('this is the data', stravaData)
+
+    useEffect(() => {
+
+        if(!user) return
+        //if user send new data to database
+
+        async function sendData() {
+            try {
+                return db.collection('StravaData').doc(user.email).set({
+                    stravaData:stravaData
+                })
+
+            } catch (e){
+                console.error('Firebase fail: ', e)
+            }
+        }
+        sendData()
+
+    },[])
+
+    console.log("what is the data now", stravaData)
+
 
     //Get current year and month
     const date = new Date()
     const currentYearNumber = date.getFullYear().toString()
-    const currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
-    console.log("currentmonth",currentMonth, "currentYear",currentYearNumber)
+    const currentMonth = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, "0");
+    console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from strava
-    const activityRides = stravaData.filter((ride)=>{
+    const activityRides = stravaData.filter((ride) => {
         return ride.type === "Ride"
     })
     // console.log("activityRides", activityRides)
 
     // Filter ride activities to current year
     const currentYearRides = activityRides.filter((currentYearRide) => {
-        return currentYearRide.start_date.substring(0,4) === currentYearNumber
+        return currentYearRide.start_date.substring(0, 4) === currentYearNumber
     })
 
     console.log("currentYearRides", currentYearRides)

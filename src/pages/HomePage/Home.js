@@ -23,7 +23,7 @@ function Home() {
 
     const {user} = useAuthContext()
 
-    const {handleSubmit, formState: {errors}, register, reset} = useForm({mode: "onBlur"});
+    // const {formState: {errors}, register} = useForm({mode: "onBlur"});
 
     // Getting the data from Strava
     useEffect(() => {
@@ -47,7 +47,7 @@ function Home() {
     async function onSubmit(e) {
 
         // Prevent page reload
-        // e.preventDefault()
+        e.preventDefault()
         console.log(`client id pushed: ${clientId} and client secret pushed:${clientSecret}`)
 
         // Do the actual registration
@@ -56,7 +56,6 @@ function Home() {
                 clientSecret: clientSecret,
                 clientId: clientId
             })
-            reset({})
 
         } catch (e) {
             console.error('Firebase fail: ', e)
@@ -106,35 +105,25 @@ function Home() {
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
 
                     {/*client id evt op password zetten*/}
-                    <form onSubmit={handleSubmit(onSubmit)}>
-
-                        <label htmlFor="clientSecret"><h4>Insert your client secret</h4></label>
-                        <input onChange={e => setClientSecret(e.target.value)}
-                               id="client-secret"
-                               placeholder='Insert client secret'
-                               type='text'
-                               name='clientSecret'
-                               {...register("clientSecret", {
-                                   required: {value: true, message: "Field cannot be empty"}
-                               })}/>
-                        <span className="error-text">
-                                {errors.clientSecret && <p>{errors.clientSecret.message}</p>}
-                                    </span>
-                        <label htmlFor="clientId"><h4>Insert your client ID</h4></label>
-                        <input onChange={e => setClientID(e.target.value)}
-                               id="clientId"
-                               placeholder='Client id please'
+                    <form onSubmit={onSubmit}>
+                        <label htmlFor="clientId">client ID:</label>
+                        <input onChange={e => setClientID(e.target.value)} placeholder='Client ID'
                                type='text'
                                name='clientId'
-                               {...register("email", {
-                                   required: {value: true, message: "Field cannot be empty"}
-                               })}/>
-                        <span className="error-text">
-                                {errors.clientId && <p>{errors.clientId.message}</p>}
-                                    </span>
+                               value={clientId}
+                        />
+                        <label htmlFor="clientSecret">clientSecret:</label>
+                        <input onChange={e => setClientSecret(e.target.value)} placeholder='client secret'
+                               type='text'
+                               name='clientSecret'
+                               value={clientSecret}/>
+                        <Link to="/forgot-password">
+                            <p className='login-text'>Forgot your password? Click here!</p>
+                        </Link>
+
                         <Button
                             text="Save"
-                            disabled={errors.clientSecret || errors.clientId}
+                            // disabled={errors.clientSecret || errors.clientId}
                         />
                     </form>
                     <Link to="/why-strava">
