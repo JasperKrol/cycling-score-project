@@ -61,6 +61,8 @@ function StravaActivityContextProvider({children}) {
 
                 console.log('RESPONSE', resultActivities)
 
+                // push de userInfo naar stravaUserProfile -> peet willeke en ik
+
                 // const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
                 //             console.log("is dit result", resultProfile.data)
                 //             setStravaUserProfile(resultProfile.data)
