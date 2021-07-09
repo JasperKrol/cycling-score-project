@@ -3,6 +3,7 @@ import React, {useState, createContext, useContext, useEffect} from "react";
 import Tile from "../components/Tile/Tile";
 // import axios from "axios";
 import firebase from "./Firebase";
+import {useAuthContext} from "./AuthContext";
 
 export const firebaseContext = createContext({});
 
@@ -11,6 +12,8 @@ export function useFirebaseContext() {
 }
 
 function FirebaseContextProvider({children}) {
+
+    const {pageLoading} = useAuthContext()
 
     // // const [firebaseUser, setFirebaseUser] = useState('')
     // // const [userD, setPassword] = useState('')
