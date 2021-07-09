@@ -15,7 +15,6 @@ export default  function getStravaData () {
             )
     }
 
-
     function reAuthorize(){
         fetch(auth_link,{
             method: 'post',
@@ -38,6 +37,5 @@ export default  function getStravaData () {
     reAuthorize()
 }
 
-getStravaData()
 
 

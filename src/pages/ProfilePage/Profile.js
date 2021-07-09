@@ -4,9 +4,11 @@ import Tile from "../../components/Tile/Tile";
 import React from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 
-function Profile({toggleIsAuthenticated, isAuthenticated}) {
+function Profile() {
 
     const {user} = useAuthContext()
+
+    // zet hier de username uit strava neer
 
 
     return (

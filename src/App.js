@@ -22,7 +22,8 @@ function App() {
             <Navbar/>
             <Switch>
                 <PrivateRoute
-                    exact path="/"
+                    exact
+                    path="/"
                     component={<Home/>}>
                 </PrivateRoute>
 
@@ -35,17 +36,20 @@ function App() {
                 </Route>
 
                 <PrivateRoute
-                    exact path="/your-scores"
+                    exact
+                    path="/your-scores"
                     component={<YourScores/>}>
                 </PrivateRoute>
 
                 <PrivateRoute
-                    exact path="/leaderboards"
+                    exact
+                    path="/leaderboards"
                     component={<Leaderboards/>}>
                 </PrivateRoute>
 
                 <PrivateRoute
-                    exact path="/profile"
+                    exact
+                    path="/profile"
                     component={<Profile/>}>
                 </PrivateRoute>
 

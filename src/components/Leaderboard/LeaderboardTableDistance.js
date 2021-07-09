@@ -1,7 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTable, useSortBy} from 'react-table';
+// import {useFirebaseContext} from "../../contexts/FirebaseContext";
+import firebase from "../../contexts/Firebase";
 
 function LeaderboardTableClimbing() {
+
+    // const [firebaseUser, setFirebaseUser] = useState('')
+    // const [userD, setPassword] = useState('')
+    const [users, setUserS] = useState([])
+
+    const db = firebase.firestore()
+
+    useEffect(() => {
+        db.collection("stravaUserProfile").doc().onSnapshot((snapshot => {
+            console.log(snapshot)
+        } ))
+
+        }, []);
+
 
     const data = React.useMemo(
         () => [

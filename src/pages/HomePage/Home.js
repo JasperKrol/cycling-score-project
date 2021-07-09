@@ -62,30 +62,31 @@ function Home() {
 
     //  code opschonen met private gegevens
     // const userID = "64170"
-    const token = "1ca7e824526c0a610e5307e82ae0b7795840f26a"
+
+    // const token = "1ca7e824526c0a610e5307e82ae0b7795840f26a"
     // const activityLink = `https://www.strava.com/api/v3/athlete`
 
 
-    useEffect(() => {
-        async function fetchUserProfile() {
-            try {
-                const result = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
-                console.log("is dit result", result.data)
-                setStravaUserProfile(result.data)
-                toggleLoading(false)
+    // useEffect(() => {
+    //     async function fetchUserProfile() {
+    //         try {
+    //             const result = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
+    //             console.log("is dit result", result.data)
+    //             setStravaUserProfile(result.data)
+    //             toggleLoading(false)
+    //
+    //         } catch (e) {
+    //             console.error(e)
+    //             setError(true);
+    //             toggleLoading(false);
+    //         }
+    //     }
+    //
+    //     fetchUserProfile()
+    //
+    // }, [])
 
-            } catch (e) {
-                console.error(e)
-                setError(true);
-                toggleLoading(false);
-            }
-        }
-
-        fetchUserProfile()
-
-    }, [])
-
-
+    // hier de informatie uit de context halen via use effect
     const stravaProfilePicture = stravaUserProfile.profile
 
     return (
