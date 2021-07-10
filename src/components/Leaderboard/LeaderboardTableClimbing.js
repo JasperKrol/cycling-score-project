@@ -4,32 +4,35 @@ import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
 import dataPeter from "../../data/DataPeter.json"
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
+import firebase from "../../contexts/Firebase";
 
 function LeaderboardTableClimbing() {
 
-    const {firebaseStravaData, firebaseUsers, userOneProfileData } = useFirebaseContext()
-    // const [userOneProfileData, setUserOneProfileData] = useState([])
-    // const [username, setusername] = useState()
+    const {fbData } = useFirebaseContext()
+    const [userOne, setUserOne ] = useState([])
+    const [userName, setUserName] = useState([])
 
-    // // const [userTwoData, setUserTwoData] = useState([])
-    // // const [userThreeData, setUserThreeData] = useState([])
-    // //
-    // //
-    // //
-    useEffect(()=> {
-        // return const userNameOne = userOneProfileData
+    // console.log("leaderboard data", fbData)
+
+    useEffect(() => {
+        const userdata = fbData.map((profiles) => {
+            return profiles.stravaUserProfile
+        })
+        console.log("Every users profile userdata", userdata)
+        setUserOne(userdata)
 
 
     },[])
-    //
-    // // console.log("userOne",firebaseStravaData[0], "wat is dit")
-    // // console.log("userOneProfileData", userOneProfileData)
-    // // console.log("userTwoData",userTwoData)
-    // // console.log("userThreeData",userThreeData)
-    // console.log("what is this", userOneProfileData[0])
-    // console.log("firebaseStravaData", firebaseStravaData)
-    // console.log(firebaseStravaData[0].stravaUserProfile.firstname)
-    console.log("userNameOne", userOneProfileData)
+
+
+    // const userOne = userdata[0].firstname
+    // const userTwo = userdata[1].firstname
+    // const userThree = userdata[3].firstname
+    console.log("userOne ", userOne)
+
+    // console.log("userTwo ", userTwo)
+    // console.log("userThree ", userThree)
+
 
     let date = new Date()
 
@@ -75,7 +78,12 @@ function LeaderboardTableClimbing() {
     // console.log("metersw?", willekeClimbingScore, "metersP?",peterClimbingScore, "metersj?", jasperClimbingScore)
 
 
+
+
+//@todo dit werkt
+
     const data = React.useMemo(
+
         () => [
             {
                 col1: '1',
@@ -89,7 +97,7 @@ function LeaderboardTableClimbing() {
             },
             {
                 col1: '3',
-                col2: `${dataJasper[0].firstname}`,
+                col2: `$naam`,
                 col3: `${jasperClimbingScore} meters`,
             },
         ],
