@@ -35,6 +35,8 @@ function FirebaseContextProvider({children}) {
     console.log("data>", fbData)
 
 
+
+
     useEffect(() => {
         getSchools();
         // eslint-disable-next-line

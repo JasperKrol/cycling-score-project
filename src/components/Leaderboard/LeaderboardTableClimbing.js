@@ -10,28 +10,27 @@ function LeaderboardTableClimbing() {
 
     const {fbData } = useFirebaseContext()
     const [userOne, setUserOne ] = useState([])
-    const [userName, setUserName] = useState([])
-
-    // console.log("leaderboard data", fbData)
-
+    const [userTwo, setUserTwO ] = useState([])
+    const [userThree, setUserThree ] = useState([])
+    //
+    // // console.log("leaderboard data", fbData)
+    //
     useEffect(() => {
         const userdata = fbData.map((profiles) => {
             return profiles.stravaUserProfile
         })
         console.log("Every users profile userdata", userdata)
-        setUserOne(userdata)
-
+        setUserOne(userdata[0])
+        setUserTwO(userdata[1])
+        setUserThree(userdata[3])
+        // console.log("setUserOne", userOne)
+        // console.log("userTwo", userTwo)
+        // console.log("userThree", userThree)
 
     },[])
-
-
-    // const userOne = userdata[0].firstname
-    // const userTwo = userdata[1].firstname
-    // const userThree = userdata[3].firstname
-    console.log("userOne ", userOne)
-
-    // console.log("userTwo ", userTwo)
-    // console.log("userThree ", userThree)
+    console.log("setUserOne", userOne)
+    console.log("userTwo", userTwo)
+    console.log("userThree", userThree)
 
 
     let date = new Date()
