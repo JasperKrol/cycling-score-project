@@ -8,6 +8,7 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 function LeaderboardTableClimbing() {
 
     const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
+
     let date = new Date()
 
     // voor scores en meer ritten zet ik de maand op 06 dit doe ik door de +1 te verwijderen
@@ -20,16 +21,16 @@ function LeaderboardTableClimbing() {
 
     useEffect(()=> {
         if (!firebaseUsers) return
-        console.log("firebaseUsers:", firebaseUsers)
+        // console.log("firebaseUsers:", firebaseUsers)
         console.log("firebaseStravaData:", firebaseStravaData)
 
         // concat arrays
         const allData = firebaseUsers.concat(firebaseStravaData)
-        console.log("gaat dit goed?", allData)
+        // console.log("gaat dit goed?", allData)
 
         // get user names
         const profielWilleke = firebaseUsers[2]
-        console.log("firebasewilleke?",profielWilleke)
+        // console.log("firebasewilleke?",profielWilleke)
 
     },[])
 

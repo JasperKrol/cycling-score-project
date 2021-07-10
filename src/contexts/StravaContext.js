@@ -22,9 +22,9 @@ function StravaActivityContextProvider({children}) {
     const [accessToken, setAccessToken] = useState('');
     const {user} = useAuthContext()
 
-    // @todo opruimen niet gebruikte setters/getters
-    const db = firebase.firestore();
-
+    // // @todo opruimen niet gebruikte setters/getters
+    // const db = firebase.firestore();
+    //
     // useEffect(() => {
     //     // @todo: eerst even checken of we wel gebruikersdata hebben en of we nog geen token hebben
     //     // als wel data maar geen token, dan deze functie aanroepen:
@@ -55,14 +55,14 @@ function StravaActivityContextProvider({children}) {
     //     async function fetchStravaData() {
     //         toggleLoading(true);
     //         try {
-    //             const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=f3d5544e770bd410ad4edb0b298eab930f8df4d8&per_page=200`)
+    //             const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`)
     //             console.log("Strava results", resultActivities.data)
     //             setStravaData(resultActivities.data);
     //
     //
     //             // push de userInfo naar stravaUserProfile -> peet willeke en ik
     //
-    //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
+    //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244`)
     //             console.log("is dit result", resultProfile.data)
     //             setStravaUserProfile(resultProfile.data)
     //

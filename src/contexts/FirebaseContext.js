@@ -36,9 +36,9 @@ function FirebaseContextProvider({children}) {
         fetchFBData()
     }, []);
 
-
-    // console.log("firebaseUsers", firebaseUsers)
-    // console.log("firebaseStravaData", firebaseStravaData)
+// // als ik deze uit zet komen ze niet door, waarom?
+//     console.log("firebaseUsers", firebaseUsers)
+//     console.log("firebaseStravaData", firebaseStravaData)
 
     if (pageLoading) {
         return <>
