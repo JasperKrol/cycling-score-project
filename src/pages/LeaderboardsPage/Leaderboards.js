@@ -7,7 +7,7 @@ import Tile from "../../components/Tile/Tile";
 
 function Leaderboards () {
 
-
+// useEffect met Loading/error maken
 
     return (
         <>

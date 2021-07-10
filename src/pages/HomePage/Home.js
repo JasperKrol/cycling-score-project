@@ -106,17 +106,19 @@ function Home() {
 
                     {/*client id evt op password zetten*/}
                     <form onSubmit={onSubmit}>
-                        <label htmlFor="clientId">client ID:</label>
+                        <label htmlFor="clientId">client ID:
                         <input onChange={e => setClientID(e.target.value)} placeholder='Client ID'
                                type='text'
                                name='clientId'
                                value={clientId}
                         />
-                        <label htmlFor="clientSecret">clientSecret:</label>
+                        </label>
+                        <label htmlFor="clientSecret">clientSecret:
                         <input onChange={e => setClientSecret(e.target.value)} placeholder='client secret'
                                type='text'
                                name='clientSecret'
                                value={clientSecret}/>
+                        </label>
                         <Link to="/forgot-password">
                             <p className='login-text'>Forgot your password? Click here!</p>
                         </Link>

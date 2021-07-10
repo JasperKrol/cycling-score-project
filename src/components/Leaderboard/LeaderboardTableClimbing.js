@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTable, useSortBy} from 'react-table';
 import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
@@ -7,7 +7,29 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
-    const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
+    const {firebaseStravaData, firebaseUsers, userOneProfileData } = useFirebaseContext()
+    // const [userOneProfileData, setUserOneProfileData] = useState([])
+    // const [username, setusername] = useState()
+
+    // // const [userTwoData, setUserTwoData] = useState([])
+    // // const [userThreeData, setUserThreeData] = useState([])
+    // //
+    // //
+    // //
+    useEffect(()=> {
+        // return const userNameOne = userOneProfileData
+
+
+    },[])
+    //
+    // // console.log("userOne",firebaseStravaData[0], "wat is dit")
+    // // console.log("userOneProfileData", userOneProfileData)
+    // // console.log("userTwoData",userTwoData)
+    // // console.log("userThreeData",userThreeData)
+    // console.log("what is this", userOneProfileData[0])
+    // console.log("firebaseStravaData", firebaseStravaData)
+    // console.log(firebaseStravaData[0].stravaUserProfile.firstname)
+    console.log("userNameOne", userOneProfileData)
 
     let date = new Date()
 
@@ -18,23 +40,6 @@ function LeaderboardTableClimbing() {
     // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from "strava"
-
-    useEffect(()=> {
-        if (!firebaseUsers) return
-        // console.log("firebaseUsers:", firebaseUsers)
-        console.log("firebaseStravaData:", firebaseStravaData)
-
-        // concat arrays
-        const allData = firebaseUsers.concat(firebaseStravaData)
-        // console.log("gaat dit goed?", allData)
-
-        // get user names
-        const profielWilleke = firebaseUsers[2]
-        // console.log("firebasewilleke?",profielWilleke)
-
-    },[])
-
-
     const ridesOnlyWilleke = dataWilleke.filter((ride) => {
         return ride.type === "Ride"
     })
