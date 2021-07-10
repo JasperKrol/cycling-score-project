@@ -36,19 +36,16 @@ function App() {
                 </Route>
 
                 <PrivateRoute
-                    exact
                     path="/your-scores"
                     component={<YourScores/>}>
                 </PrivateRoute>
 
                 <PrivateRoute
-                    exact
                     path="/leaderboards"
                     component={<Leaderboards/>}>
                 </PrivateRoute>
 
                 <PrivateRoute
-                    exact
                     path="/profile"
                     component={<Profile/>}>
                 </PrivateRoute>

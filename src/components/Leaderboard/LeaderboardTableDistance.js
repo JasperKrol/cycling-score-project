@@ -1,39 +1,36 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {useTable, useSortBy} from 'react-table';
-// import {useFirebaseContext} from "../../contexts/FirebaseContext";
 import firebase from "../../contexts/Firebase";
+import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
-    // const [firebaseUser, setFirebaseUser] = useState('')
-    // const [userD, setPassword] = useState('')
-    const [users, setUserS] = useState([])
+  const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
 
-    const db = firebase.firestore()
 
-    const docRef = db.collection("StravaData").doc("jasper.paul.krol@gmail.com");
 
-    docRef.get().then((doc) => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-
-    db.collection("StravaData").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-    });
+    // useEffect(()=> {
+    //     if (!firebaseUsers) return
+    //     console.log("firebaseUsers", firebaseUsers)
+    //     console.log("firebaseStravaData", firebaseStravaData)
+    //
+    //     // concat arrays
+    //     const allData = firebaseUsers.concat(firebaseStravaData)
+    //     console.log("gaat dit goed?", allData)
+    //
+    //     // get user names
+    //     const profielWilleke = firebaseUsers[2]
+    //     console.log("firebasewilleke?",profielWilleke)
+    //
+    //
+    //
+    //
+    // },[])
 
 
     const data = React.useMemo(
         () => [
+
             {
                 col1: '1',
                 col2: 'Jasper',
@@ -53,7 +50,7 @@ function LeaderboardTableClimbing() {
         []
     )
 
-    const columns = React.useMemo(
+    const columns = useMemo(
         () => [
             {
                 Header: 'Position',

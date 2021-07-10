@@ -3,9 +3,14 @@ import {useTable, useSortBy} from 'react-table';
 import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
 import dataPeter from "../../data/DataPeter.json"
+import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
+    const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
+
+    console.log("firebaseUsers", firebaseUsers)
+    console.log("firebaseStravaData", firebaseStravaData)
     // const {stravaData,stravaUserProfile} = useStravaActivityContext()
     // console.log(stravaUserProfile)
     // console.log(dataWilleke[0].firstname)
@@ -18,6 +23,8 @@ function LeaderboardTableClimbing() {
     // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from "strava"
+
+
     const ridesOnlyWilleke = dataWilleke.filter((ride) => {
         return ride.type === "Ride"
     })

@@ -1,7 +1,8 @@
 import "./Yourscores.css"
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Tile from "../../components/Tile/Tile";
-
+// import Data from "../../data/response_1624349677573.json"
+import axios from "axios";
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import metersToKM from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
@@ -12,61 +13,73 @@ import getStravaData from "../../data/nonASYNC";
 
 function YourScores() {
     const [loading, setLoading] = useState(true)
-    const {stravaData,  stravaUserProfile, error, accessToken} = useStravaActivityContext()
-    // const {user} = useAuthContext()
-    // const db = firebase.firestore()
-    // const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken}&per_page=200`
+    const {stravaData, setStravaUserProfile, setStravaData, stravaUserProfile, error, setError, accessToken} = useStravaActivityContext()
+    const {user} = useAuthContext()
+    const db = firebase.firestore()
+    const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=7fa316a20fd21acf0a07f01eaf33f13be5ef64eb&per_page=200`
 
-    // const clientID = '64170'
-    // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
-    // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    // const token = "a3fbf9b73ad2498c9b36be0cab50da5f0e85a944"
+    const clientID = '64170'
+    const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
+    const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
+    const token = "7fa316a20fd21acf0a07f01eaf33f13be5ef64eb"
 
-    // laat initial state nu staan als map() geen function krijg, zet hem op []
-
+//     laat initial state nu staan als map() geen function krijg, zet hem op []
+//
 // zet die codes en in ENV//
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         try {
-    //             const result = await axios.get(`${activityLink}?acces_token=${accessToken}`)
-    //             console.log("Strava results", result.data)
-    //             setStravaData(result.data)
-    //             setLoading(false)
-    //
-    //
-    //         } catch (e) {
-    //             console.error(e)
-    //             setError(true);
-    //             setLoading(true);
-    //         }
-    //     }
-    //
-    //     fetchData()
-    //
-    // }, [])
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await axios.get(`${activityLink}`)
+                console.log("Strava results", result.data)
+                setStravaData(result.data)
 
-    // useEffect(() => {
-    //
-    //     if(!user) return
-    //     //if user send new data to database
-    //
-    //     function sendData() {
-    //         try {
-    //             return db.collection('StravaData').doc(user.email).set({
-    //                 stravaData:stravaData,
-    //                 stravaUserProfile:stravaUserProfile
-    //             })
-    //
-    //         } catch (e){
-    //             console.error('Firebase fail: ', e)
-    //         }
-    //     }
-    //     sendData()
-    //
-    // },[stravaData])
+                const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
+                console.log("is dit result", resultProfile.data)
+                setStravaUserProfile(resultProfile.data)
 
-    console.log("what is the data now", stravaData)
+                setLoading(false)
+
+
+
+            } catch (e) {
+                console.error(e)
+                setError(true);
+                setLoading(true);
+            }
+        }
+
+        fetchData()
+
+    }, [])
+
+
+    useEffect(() => {
+
+        if(!user) return
+        //if user send new data to database
+
+        function sendData() {
+            try {
+                return db.collection('StravaData').doc(user.email).set({
+                    stravaData:stravaData,
+                    stravaUserProfile:stravaUserProfile
+                })
+
+
+            } catch (e){
+                console.error('Firebase fail: ', e)
+            }
+
+            console.log("what is the data now", stravaData,)
+            console.log("what is the profile now", stravaUserProfile,)
+        }
+        sendData()
+
+    },[])
+
+
+
 
 
     //Get current year and month

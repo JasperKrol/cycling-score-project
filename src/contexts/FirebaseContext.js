@@ -15,22 +15,55 @@ function FirebaseContextProvider({children}) {
 
     const {pageLoading} = useAuthContext()
 
-    // // const [firebaseUser, setFirebaseUser] = useState('')
-    // // const [userD, setPassword] = useState('')
-    // const [users, setUserS] = useState(null)
-    // const [pageLoading, setPageLoading] = useState(true)
+    // const [userD, setPassword] = useState('')
+    const [firebaseUsers, setFirebaseUsers] = useState([])
+    const [firebaseStravaData, setFirebaseStravaData] = useState([])
+
+
+    // get all data from collections function firebase
+    // db.collection("StravaData").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // });
+    // db.collection("StravaProfile").get().then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //         // doc.data() is never undefined for query doc snapshots
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // });
     //
-    //
+    // const [spells, setSpells] = React.useState([]);
+
     // useEffect(() => {
     //     const fetchData = async () => {
     //         const db = firebase.firestore();
     //         const data = await db.collection("StravaProfile").get();
-    //         console.log("data", data)
-    //         setUserS(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //         console.log(users)
+    //         setFirebaseUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     //     };
     //     fetchData();
     // }, []);
+
+    useEffect(() => {
+
+        async function fetchFBData(){
+            try {
+                const db = firebase.firestore();
+                const fbUserProfileData = await db.collection("StravaProfile").get();
+                setFirebaseUsers(fbUserProfileData.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+                const fbUserData = await db.collection("StravaData").get();
+                setFirebaseStravaData(fbUserData.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+            } catch (e) {
+                console.error(e)
+            }
+        }
+        fetchFBData()
+    }, []);
+
+
+    // console.log("firebaseUsers", firebaseUsers)
+    // console.log("firebaseStravaData", firebaseStravaData)
 
     if (pageLoading) {
         return <>
@@ -39,7 +72,10 @@ function FirebaseContextProvider({children}) {
     }
 
     return (
-        <firebaseContext.Provider value={{}}>
+        <firebaseContext.Provider value={{
+            firebaseUsers: firebaseUsers,
+            firebaseStravaData: firebaseStravaData
+        }}>
             {!pageLoading && children}
         </firebaseContext.Provider>
     )
