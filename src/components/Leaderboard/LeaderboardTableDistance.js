@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useMemo} from 'react';
 import {useTable, useSortBy} from 'react-table';
-import firebase from "../../contexts/Firebase";
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
@@ -8,11 +7,10 @@ function LeaderboardTableClimbing() {
   const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
 
 
-
     // useEffect(()=> {
     //     if (!firebaseUsers) return
-    //     console.log("firebaseUsers", firebaseUsers)
-    //     console.log("firebaseStravaData", firebaseStravaData)
+    //     console.log("firebaseUsers:", firebaseUsers)
+    //     console.log("firebaseStravaData:", firebaseStravaData)
     //
     //     // concat arrays
     //     const allData = firebaseUsers.concat(firebaseStravaData)
@@ -21,9 +19,6 @@ function LeaderboardTableClimbing() {
     //     // get user names
     //     const profielWilleke = firebaseUsers[2]
     //     console.log("firebasewilleke?",profielWilleke)
-    //
-    //
-    //
     //
     // },[])
 

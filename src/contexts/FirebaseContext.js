@@ -20,31 +20,6 @@ function FirebaseContextProvider({children}) {
     const [firebaseStravaData, setFirebaseStravaData] = useState([])
 
 
-    // get all data from collections function firebase
-    // db.collection("StravaData").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    // });
-    // db.collection("StravaProfile").get().then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    // });
-    //
-    // const [spells, setSpells] = React.useState([]);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const db = firebase.firestore();
-    //         const data = await db.collection("StravaProfile").get();
-    //         setFirebaseUsers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //     };
-    //     fetchData();
-    // }, []);
-
     useEffect(() => {
 
         async function fetchFBData(){
@@ -55,7 +30,7 @@ function FirebaseContextProvider({children}) {
                 const fbUserData = await db.collection("StravaData").get();
                 setFirebaseStravaData(fbUserData.docs.map(doc => ({ ...doc.data(), id: doc.id })));
             } catch (e) {
-                console.error(e)
+                console.error('Firebase fail: ', e)
             }
         }
         fetchFBData()

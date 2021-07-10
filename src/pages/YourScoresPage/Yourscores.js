@@ -16,42 +16,42 @@ function YourScores() {
     const {stravaData, setStravaUserProfile, setStravaData, stravaUserProfile, error, setError, accessToken} = useStravaActivityContext()
     const {user} = useAuthContext()
     const db = firebase.firestore()
-    const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=7fa316a20fd21acf0a07f01eaf33f13be5ef64eb&per_page=200`
-
-    const clientID = '64170'
-    const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
-    const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    const token = "7fa316a20fd21acf0a07f01eaf33f13be5ef64eb"
-
-//     laat initial state nu staan als map() geen function krijg, zet hem op []
+//     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`
 //
-// zet die codes en in ENV//
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const result = await axios.get(`${activityLink}`)
-                console.log("Strava results", result.data)
-                setStravaData(result.data)
-
-                const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
-                console.log("is dit result", resultProfile.data)
-                setStravaUserProfile(resultProfile.data)
-
-                setLoading(false)
-
-
-
-            } catch (e) {
-                console.error(e)
-                setError(true);
-                setLoading(true);
-            }
-        }
-
-        fetchData()
-
-    }, [])
+//     const clientID = '64170'
+//     const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
+//     const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
+//     const token = "bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244"
+//
+// //     laat initial state nu staan als map() geen function krijg, zet hem op []
+// //
+// // zet die codes en in ENV//
+//
+//     useEffect(() => {
+//         async function fetchData() {
+//             try {
+//                 const result = await axios.get(`${activityLink}`)
+//                 console.log("Strava results", result.data)
+//                 setStravaData(result.data)
+//
+//                 const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
+//                 console.log("is dit result", resultProfile.data)
+//                 setStravaUserProfile(resultProfile.data)
+//
+//                 setLoading(false)
+//
+//
+//
+//             } catch (e) {
+//                 console.error(e)
+//                 setError(true);
+//                 setLoading(true);
+//             }
+//         }
+//
+//         fetchData()
+//
+//     }, [])
 
 
     useEffect(() => {
@@ -76,10 +76,7 @@ function YourScores() {
         }
         sendData()
 
-    },[])
-
-
-
+    },[stravaData,stravaUserProfile])
 
 
     //Get current year and month

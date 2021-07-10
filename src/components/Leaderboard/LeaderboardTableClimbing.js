@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTable, useSortBy} from 'react-table';
 import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
@@ -8,12 +8,6 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 function LeaderboardTableClimbing() {
 
     const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
-
-    console.log("firebaseUsers", firebaseUsers)
-    console.log("firebaseStravaData", firebaseStravaData)
-    // const {stravaData,stravaUserProfile} = useStravaActivityContext()
-    // console.log(stravaUserProfile)
-    // console.log(dataWilleke[0].firstname)
     let date = new Date()
 
     // voor scores en meer ritten zet ik de maand op 06 dit doe ik door de +1 te verwijderen
@@ -23,6 +17,21 @@ function LeaderboardTableClimbing() {
     // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from "strava"
+
+    useEffect(()=> {
+        if (!firebaseUsers) return
+        console.log("firebaseUsers:", firebaseUsers)
+        console.log("firebaseStravaData:", firebaseStravaData)
+
+        // concat arrays
+        const allData = firebaseUsers.concat(firebaseStravaData)
+        console.log("gaat dit goed?", allData)
+
+        // get user names
+        const profielWilleke = firebaseUsers[2]
+        console.log("firebasewilleke?",profielWilleke)
+
+    },[])
 
 
     const ridesOnlyWilleke = dataWilleke.filter((ride) => {
