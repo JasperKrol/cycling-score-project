@@ -38,23 +38,17 @@ function FirebaseContextProvider({children}) {
     }, []);
 
 
-
     useEffect(() => {
         const userdata = fbData.map((profiles) => {
             return profiles.stravaUserProfile
         })
-        console.log("Every users profile userdata", userdata)
+        // console.log("Every users profile userdata", userdata)
         setUserOne(userdata[0])
         setUserTwO(userdata[1])
         setUserThree(userdata[3])
-        // console.log("setUserOne", userOne)
-        // console.log("userTwo", userTwo)
-        // console.log("userThree", userThree)
+
 
     },[fbData])
-    // console.log("setUserOne", userOne)
-    // console.log("userTwo", userTwo)
-    // console.log("userThree", userThree)
 
 
     if (pageLoading) {
@@ -66,7 +60,9 @@ function FirebaseContextProvider({children}) {
     return (
         <firebaseContext.Provider value={{
             fbData:fbData,
-            userOne:userOne
+            userOne:userOne,
+            userTwo:userTwo,
+            userThree:userThree
         }}>
             {!pageLoading && children}
         </firebaseContext.Provider>

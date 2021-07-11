@@ -4,34 +4,22 @@ import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
 import dataPeter from "../../data/DataPeter.json"
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
-import firebase from "../../contexts/Firebase";
 
 function LeaderboardTableClimbing() {
 
-    const {fbData, userOne} = useFirebaseContext()
-    // const [userOne, setUserOne ] = useState([])
-    // const [userTwo, setUserTwO ] = useState([])
-    // const [userThree, setUserThree ] = useState([])
-    //
-    // // console.log("leaderboard data", fbData)
-    //
-    // useEffect(() => {
-    //     const userdata = fbData.map((profiles) => {
-    //         return profiles.stravaUserProfile
-    //     })
-    //     console.log("Every users profile userdata", userdata)
-    //     setUserOne(userdata[0])
-    //     setUserTwO(userdata[1])
-    //     setUserThree(userdata[3])
-    //     // console.log("setUserOne", userOne)
-    //     // console.log("userTwo", userTwo)
-    //     // console.log("userThree", userThree)
-    //
-    // },[])
+    const {fbData, userOne, userTwo, userThree, userOneName} = useFirebaseContext()
+
+    // console.log("leaderboard data", fbData)
+
+    useEffect(() => {
+
+    },[fbData])
 
     console.log("fbData", fbData)
     console.log("setUserOne", userOne)
-    // console.log("userThree", userThree)
+    console.log("userTwo", userTwo)
+    console.log("userThree", userThree)
+    console.log("userOneName", userOneName)
 
 
     let date = new Date()
@@ -87,7 +75,7 @@ function LeaderboardTableClimbing() {
         () => [
             {
                 col1: '1',
-                col2: `${dataWilleke[0].firstname}`,
+                col2: `$bla`,
                 col3: `${willekeClimbingScore} meters`,
             },
             {
