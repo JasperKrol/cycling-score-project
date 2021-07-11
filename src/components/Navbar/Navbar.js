@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Navbar.css';
 import Button from "../Button/Button";
 import {useAuthContext} from "../../contexts/AuthContext";
@@ -7,7 +7,7 @@ import {useAuthContext} from "../../contexts/AuthContext";
 
 function Navbar() {
     const [click, setClick] = useState(false);
-    const { user } = useAuthContext()
+    const {user} = useAuthContext()
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
 
@@ -16,10 +16,12 @@ function Navbar() {
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-                    <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+                    <NavLink exact
+                             to='/'
+                             className='navbar-logo' onClick={closeMobileMenu}>
                         CyclingScore
                         <i className="fas fa-biking"/>
-                    </Link>
+                    </NavLink>
 
                     <div className='hamburger-icon' onClick={handleClick}>
                         <i className={click ? 'fas fa-times' : 'fas fa-bars'}/>
@@ -27,85 +29,86 @@ function Navbar() {
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
 
                         {!user ? (<>
-                        <>
-                            <li className='nav-item'>
-                                <Link
-                                    to='/login'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Login
-                                </Link>
-                            </li>
+                            <>
+                                <li className='nav-item'>
+                                    <NavLink
+                                        to='/login'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Login
+                                    </NavLink>
+                                </li>
 
-                            <li className='nav-item'>
-                                <Link
-                                    to='/sign-up'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Sign up here
-                                </Link>
-                            </li>
-                        </>
+                                <li className='nav-item'>
+                                    <NavLink
+                                        to='/sign-up'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Sign up here
+                                    </NavLink>
+                                </li>
+                            </>
 
                         </>) : (
 
-                        <>
-                            <li className='nav-item'>
-                                <Link exact to='/' className='nav-links' onClick={closeMobileMenu}>
-                                    Home
-                                </Link>
-                            </li>
+                            <>
+                                <li className='nav-item'>
+                                    <NavLink exact
+                                             to='/' className='nav-links' onClick={closeMobileMenu}>
+                                        Home
+                                    </NavLink>
+                                </li>
 
-                            <li className='nav-item'>
-                                <Link
-                                    to='/your-scores'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Your Scores
-                                </Link>
-                            </li>
+                                <li className='nav-item'>
+                                    <NavLink
+                                        to='/your-scores'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Your Scores
+                                    </NavLink>
+                                </li>
 
-                            <li className='nav-item'>
-                                <Link
-                                    to='/leaderboards'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Leaderboards
-                                </Link>
-                            </li>
+                                <li className='nav-item'>
+                                    <NavLink
+                                        to='/leaderboards'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Leaderboards
+                                    </NavLink>
+                                </li>
 
-                            <li className='nav-item'>
-                                <Link
-                                    to='/profile'
-                                    className='nav-links'
-                                    onClick={closeMobileMenu}
-                                >
-                                    Profile
-                                </Link>
-                            </li>
+                                <li className='nav-item'>
+                                    <NavLink
+                                        to='/profile'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}
+                                    >
+                                        Profile
+                                    </NavLink>
+                                </li>
 
-                            <li className="nav-item">
-                                <Button
-                                    className="nav-button"
-                                    text="Sign out"
-                                    redirect="home"
-                                />
-                            </li>
-                        </>
+                                <li className="nav-item">
+                                    <Button
+                                        className="nav-button"
+                                        text="Sign out"
+                                        redirect="home"
+                                    />
+                                </li>
+                            </>
                         )}
 
                         <li className='nav-item'>
-                            <Link
+                            <NavLink
                                 to='/contact'
                                 className='nav-links'
                                 onClick={closeMobileMenu}
                             >
                                 <i className="fas fa-question-circle"/>
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                 </div>

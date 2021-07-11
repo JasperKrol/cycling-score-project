@@ -8,29 +8,30 @@ import firebase from "../../contexts/Firebase";
 
 function LeaderboardTableClimbing() {
 
-    const {fbData } = useFirebaseContext()
-    const [userOne, setUserOne ] = useState([])
-    const [userTwo, setUserTwO ] = useState([])
-    const [userThree, setUserThree ] = useState([])
+    const {fbData, userOne} = useFirebaseContext()
+    // const [userOne, setUserOne ] = useState([])
+    // const [userTwo, setUserTwO ] = useState([])
+    // const [userThree, setUserThree ] = useState([])
     //
     // // console.log("leaderboard data", fbData)
     //
-    useEffect(() => {
-        const userdata = fbData.map((profiles) => {
-            return profiles.stravaUserProfile
-        })
-        console.log("Every users profile userdata", userdata)
-        setUserOne(userdata[0])
-        setUserTwO(userdata[1])
-        setUserThree(userdata[3])
-        // console.log("setUserOne", userOne)
-        // console.log("userTwo", userTwo)
-        // console.log("userThree", userThree)
+    // useEffect(() => {
+    //     const userdata = fbData.map((profiles) => {
+    //         return profiles.stravaUserProfile
+    //     })
+    //     console.log("Every users profile userdata", userdata)
+    //     setUserOne(userdata[0])
+    //     setUserTwO(userdata[1])
+    //     setUserThree(userdata[3])
+    //     // console.log("setUserOne", userOne)
+    //     // console.log("userTwo", userTwo)
+    //     // console.log("userThree", userThree)
+    //
+    // },[])
 
-    },[])
+    console.log("fbData", fbData)
     console.log("setUserOne", userOne)
-    console.log("userTwo", userTwo)
-    console.log("userThree", userThree)
+    // console.log("userThree", userThree)
 
 
     let date = new Date()

@@ -15,32 +15,47 @@ function FirebaseContextProvider({children}) {
 
     const {pageLoading} = useAuthContext()
     const [ fbData, setfbData ] = useState([])
+    const [userOne, setUserOne ] = useState([])
+    const [userTwo, setUserTwO ] = useState([])
+    const [userThree, setUserThree ] = useState([])
     const ref = firebase.firestore().collection("StravaData");
 
-    function getSchools() {
+    function getFirebaseData() {
         ref.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
+
             });
             setfbData(items);
         });
     }
 
+
     useEffect(() => {
-        getSchools();
+        getFirebaseData();
         // eslint-disable-next-line
     }, []);
-
-    console.log("data>", fbData)
-
 
 
 
     useEffect(() => {
-        getSchools();
-        // eslint-disable-next-line
-    }, []);
+        const userdata = fbData.map((profiles) => {
+            return profiles.stravaUserProfile
+        })
+        console.log("Every users profile userdata", userdata)
+        setUserOne(userdata[0])
+        setUserTwO(userdata[1])
+        setUserThree(userdata[3])
+        // console.log("setUserOne", userOne)
+        // console.log("userTwo", userTwo)
+        // console.log("userThree", userThree)
+
+    },[fbData])
+    // console.log("setUserOne", userOne)
+    // console.log("userTwo", userTwo)
+    // console.log("userThree", userThree)
+
 
     if (pageLoading) {
         return <>
@@ -50,7 +65,8 @@ function FirebaseContextProvider({children}) {
 
     return (
         <firebaseContext.Provider value={{
-            fbData:fbData
+            fbData:fbData,
+            userOne:userOne
         }}>
             {!pageLoading && children}
         </firebaseContext.Provider>
