@@ -43,7 +43,7 @@ function SignUp() {
             <div className="container">
                 <Tile className="tile">
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <h3>Sign up down below</h3>
+                        <h3>Good to see you! Please sign up down below</h3>
                         {error && <h2>{error}</h2>}
 
                         <div className="form-container">

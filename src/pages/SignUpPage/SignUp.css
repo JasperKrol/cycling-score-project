@@ -13,26 +13,19 @@
     background-repeat: no-repeat;
 }
 
-/*.form-container {*/
-/*    width: 150px;*/
-/*    display: flex;*/
-/*}*/
-
 form {
   justify-content: flex-start;
     text-align: start;
 }
 
-input {
-    display: block;
-    border-radius: 3px;
+form input {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 6px 0;
 }
 
-
-.title {
-    display: flex;
-    flex-direction: column;
-
+form label {
+    font-weight: bold;
 }
 
 a:link {

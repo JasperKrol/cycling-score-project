@@ -44,10 +44,12 @@ function Login() {
             <div className="container">
                 <Tile className="tile">
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <h3>Welcome!</h3>
-                        {error && <h2>{error}</h2>}
-                        <h4>View Your Scores<br/> & <br/>Compare with your friends</h4>
+                        <div className="welcome-text">
+                            <h3>Welcome!</h3>
+                            <h4>Login to settle some scores!</h4>
+                        </div>
 
+                        {error && <h2>{error}</h2>}
                         <form onSubmit={onSubmit}>
                             <label htmlFor="email">Email:
                             <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'

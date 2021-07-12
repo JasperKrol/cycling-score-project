@@ -28,10 +28,16 @@ form {
     align-items: center;
 }
 
-label {
+form input {
+    width: 100%;
+    padding: 4px 8px;
+    margin: 6px 0;
+}
+
+form label {
     display: flex;
     flex-direction: column;
-
+    font-weight: bold;
 }
 
 link .login-text{
