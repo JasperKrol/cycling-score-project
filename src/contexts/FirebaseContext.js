@@ -13,29 +13,24 @@ export function useFirebaseContext() {
 
 function FirebaseContextProvider({children}) {
 
-    const {pageLoading} = useAuthContext()
-    const [ fbData, setfbData ] = useState([])
+    const {pageLoading, user} = useAuthContext()
+    const [ fbData, setFbData ] = useState([])
     const [userOne, setUserOne ] = useState([])
     const [userTwo, setUserTwO ] = useState([])
     const [userThree, setUserThree ] = useState([])
     const ref = firebase.firestore().collection("StravaData");
 
-    function getFirebaseData() {
+
+    useEffect(() => {
         ref.onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());
 
             });
-            setfbData(items);
+            setFbData(items);
         });
-    }
-
-
-    useEffect(() => {
-        getFirebaseData();
-        // eslint-disable-next-line
-    }, []);
+    }, [user]);
 
 
     useEffect(() => {
@@ -46,8 +41,6 @@ function FirebaseContextProvider({children}) {
         setUserOne(userdata[0])
         setUserTwO(userdata[1])
         setUserThree(userdata[3])
-
-
     },[fbData])
 
 
