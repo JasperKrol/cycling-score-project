@@ -7,20 +7,39 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
-    const {fbData, userOne, userTwo, userThree, userOneName} = useFirebaseContext()
+    const {
+        fbData,
+        userOne,
+        userTwo,
+        userThree,
+        userOneStravaActivities,
+        userTwoStravaActivities,
+        userThreeStravaActivities,
+        userOneName,
+        userTwoName,
+        userThreeName
+    } = useFirebaseContext()
 
-    // console.log("leaderboard data", fbData)
 
-    useEffect(() => {
+    console.log("leaderboard data", fbData)
 
-    },[fbData])
-
-    console.log("fbData", fbData)
-    console.log("setUserOne", userOne)
-    console.log("userTwo", userTwo)
-    console.log("userThree", userThree)
-    console.log("userOneName", userOneName)
-
+    // useEffect(() => {
+    //
+    //     if (!fbData) return
+    //
+    //     setUserOneName(stravaUserNames[0])
+    //     setUserTwoName(stravaUserNames[1])
+    //     setUserThreeName(stravaUserNames[3])
+    //     // console.log("firstname??:", userOne.firstName)
+    //
+    //
+    // }, [])
+    // console.log("userOne", userOne, userOneStravaActivities)
+    // console.log("userTwo", userTwo, userTwoStravaActivities)
+    // console.log("userThree", userThree, userThreeStravaActivities)
+    console.log("userOneName?:", userOneName)
+    console.log("userOneName?:", userTwoName)
+    console.log("userOneName?:", userThreeName)
 
     let date = new Date()
 
@@ -66,27 +85,24 @@ function LeaderboardTableClimbing() {
     // console.log("metersw?", willekeClimbingScore, "metersP?",peterClimbingScore, "metersj?", jasperClimbingScore)
 
 
-
-
 //@todo dit werkt
 
     const data = React.useMemo(
-
         () => [
             {
                 col1: '1',
-                col2: `$bla`,
+                col2: `${userOneName}`,
                 col3: `${willekeClimbingScore} meters`,
             },
             {
                 col1: '2',
-                col2: `${dataPeter[0].firstname}`,
+                col2: `${userTwoName}`,
                 col3: `${peterClimbingScore} meters`,
             },
             {
-                col1: '3',
-                col2: `$naam`,
-                col3: `${jasperClimbingScore} meters`,
+                col1: '2',
+                col2: `${userThreeName}`,
+                col3: `${peterClimbingScore} meters`,
             },
         ],
         []
