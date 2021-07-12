@@ -98,7 +98,7 @@ function LeaderboardTableClimbing() {
             {
                 col1: '1',
                 col2: `${userOneName}`,
-                col3: `${willekeClimbingScore} meters`,
+                col3: `${jasperClimbingScore} meters`,
             },
             {
                 col1: '2',
@@ -106,9 +106,9 @@ function LeaderboardTableClimbing() {
                 col3: `${peterClimbingScore} meters`,
             },
             {
-                col1: '2',
+                col1: '3',
                 col2: `${userThreeName}`,
-                col3: `${peterClimbingScore} meters`,
+                col3: `${willekeClimbingScore} meters`,
             },
         ],
         []

@@ -16,10 +16,14 @@ function LeaderboardTableClimbing() {
         userTwoName,
         userThreeName
     } = useFirebaseContext()
+    // const [loading, setLoading] = useState(true)
+    // const [error, setError] = useState(false)
+    // const [userOneName, setUserOneName] = useState([])
+    // const [userTwoName, setUserTwoName] = useState([])
+    // const [userThreeName, setUserThreeName] = useState([])
 
     const data = React.useMemo(
         () => [
-
             {
                 col1: '1',
                 col2: `${userOneName}`,
@@ -31,14 +35,13 @@ function LeaderboardTableClimbing() {
                 col3: `$ meters`,
             },
             {
-                col1: '2',
+                col1: '3',
                 col2: `${userThreeName}`,
                 col3: `$ meters`,
             },
         ],
         []
     )
-
     const columns = React.useMemo(
         () => [
             {

@@ -35,7 +35,7 @@ function LeaderboardTableClimbing() {
                 col3: `$ meters`,
             },
             {
-                col1: '2',
+                col1: '3',
                 col2: `${userThreeName}`,
                 col3: `$ meters`,
             },
