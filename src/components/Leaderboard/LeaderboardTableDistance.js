@@ -4,23 +4,21 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
-  const {firebaseUsers , firebaseStravaData } = useFirebaseContext()
-
-
-    // useEffect(()=> {
-    //     if (!firebaseUsers) return
-    //     console.log("firebaseUsers:", firebaseUsers)
-    //     console.log("firebaseStravaData:", firebaseStravaData)
-    //
-    //     // concat arrays
-    //     const allData = firebaseUsers.concat(firebaseStravaData)
-    //     console.log("gaat dit goed?", allData)
-    //
-    //     // get user names
-    //     const profielWilleke = firebaseUsers[2]
-    //     console.log("firebasewilleke?",profielWilleke)
-    //
-    // },[])
+    const {
+        fbData,
+        userOne,
+        userTwo,
+        userThree,
+        userOneStravaActivities,
+        userTwoStravaActivities,
+        userThreeStravaActivities,
+        userOneName,
+        userTwoName,
+        userThreeName
+    } = useFirebaseContext()
+    console.log("userOneName?:", userOneName)
+    console.log("userOneName?:", userTwoName)
+    console.log("userOneName?:", userThreeName)
 
 
     const data = React.useMemo(
@@ -28,18 +26,18 @@ function LeaderboardTableClimbing() {
 
             {
                 col1: '1',
-                col2: 'Jasper',
-                col3: '2000m',
+                col2: `${userOneName}`,
+                col3: `$ meters`,
             },
             {
                 col1: '2',
-                col2: 'Pieter',
-                col3: '200m',
+                col2: `${userTwoName}`,
+                col3: `$ meters`,
             },
             {
-                col1: '3',
-                col2: 'Henk',
-                col3: '20m',
+                col1: '2',
+                col2: `${userThreeName}`,
+                col3: `$ meters`,
             },
         ],
         []

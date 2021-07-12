@@ -19,27 +19,33 @@ function LeaderboardTableClimbing() {
         userTwoName,
         userThreeName
     } = useFirebaseContext()
+    // const [loading, setLoading] = useState(true)
+    // const [error, setError] = useState(false)
+    // const [userOneName, setUserOneName] = useState([])
+    // const [userTwoName, setUserTwoName] = useState([])
+    // const [userThreeName, setUserThreeName] = useState([])
+
 
     console.log("leaderboard data", fbData)
 
-
     // useEffect(() => {
     //
-    //     if (!fbData) return
+    //     const collectStravaNames = fbData.map((name) => {
+    //         return name.stravaUserProfile.username})
     //
-    //     setUserOneName(stravaUserNames[0])
-    //     setUserTwoName(stravaUserNames[1])
-    //     setUserThreeName(stravaUserNames[3])
-    //     // console.log("firstname??:", userOne.firstName)
+    //     setUserOneName(collectStravaNames[0])
+    //     setUserTwoName(collectStravaNames[1])
+    //     setUserThreeName(collectStravaNames[3])
     //
     //
-    // }, [])
+    // }, [fbData])
+
     // console.log("userOne", userOne, userOneStravaActivities)
     // console.log("userTwo", userTwo, userTwoStravaActivities)
     // console.log("userThree", userThree, userThreeStravaActivities)
-    console.log("userOneName?:", userOneName)
-    console.log("userOneName?:", userTwoName)
-    console.log("userOneName?:", userThreeName)
+    // console.log("userOneName?:", userOneName)
+    // console.log("userOneName?:", userTwoName)
+    // console.log("userOneName?:", userThreeName)
 
     let date = new Date()
 

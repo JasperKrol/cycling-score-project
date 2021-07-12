@@ -10,8 +10,8 @@ import {useAuthContext} from "../../contexts/AuthContext";
 
 
 function YourScores() {
-    const [loading, setLoading] = useState(true)
     const {stravaData, setStravaUserProfile, setStravaData, stravaUserProfile, error, setError, accessToken} = useStravaActivityContext()
+    const [loading, setLoading] = useState(true)
     const {user} = useAuthContext()
     // const db = firebase.firestore()
     // const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`

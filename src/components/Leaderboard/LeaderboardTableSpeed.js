@@ -1,24 +1,39 @@
 import React from 'react';
 import {useTable, useSortBy} from 'react-table';
+import {useFirebaseContext} from "../../contexts/FirebaseContext";
 
 function LeaderboardTableClimbing() {
 
+    const {
+        fbData,
+        userOne,
+        userTwo,
+        userThree,
+        userOneStravaActivities,
+        userTwoStravaActivities,
+        userThreeStravaActivities,
+        userOneName,
+        userTwoName,
+        userThreeName
+    } = useFirebaseContext()
+
     const data = React.useMemo(
         () => [
+
             {
                 col1: '1',
-                col2: 'Jasper',
-                col3: '40kmph',
+                col2: `${userOneName}`,
+                col3: `$ meters`,
             },
             {
                 col1: '2',
-                col2: 'Klaas',
-                col3: '26kmph',
+                col2: `${userTwoName}`,
+                col3: `$ meters`,
             },
             {
-                col1: '3',
-                col2: 'Henk',
-                col3: '38kmph',
+                col1: '2',
+                col2: `${userThreeName}`,
+                col3: `$ meters`,
             },
         ],
         []

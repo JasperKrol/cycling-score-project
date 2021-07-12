@@ -15,10 +15,10 @@ export function useFirebaseContext() {
 function FirebaseContextProvider({children}) {
 
     const {pageLoading, user} = useAuthContext()
-    const [ fbData, setFbData ] = useState([])
-    const [userOne, setUserOne ] = useState([])
-    const [userTwo, setUserTwO ] = useState([])
-    const [userThree, setUserThree ] = useState([])
+    const [fbData, setFbData] = useState([])
+    const [userOne, setUserOne] = useState([])
+    const [userTwo, setUserTwO] = useState([])
+    const [userThree, setUserThree] = useState([])
     const [userOneStravaActivities, setUserOneStravaActivities] = useState([])
     const [userTwoStravaActivities, setUserTwoStravaActivities] = useState([])
     const [userThreeStravaActivities, setUserThreeStravaActivities] = useState([])
@@ -26,21 +26,31 @@ function FirebaseContextProvider({children}) {
     const [userOneName, setUserOneName] = useState([])
     const [userTwoName, setUserTwoName] = useState([])
     const [userThreeName, setUserThreeName] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
+
 
     const ref = firebase.firestore().collection("StravaData");
 
     useEffect(() => {
-        if (!fbData) return
+        function sendData() {
+            try {
+                return ref.onSnapshot((querySnapshot) => {
+                    const items = [];
+                    querySnapshot.forEach((doc) => {
+                        items.push(doc.data());
+                    })
+                    setFbData(items);
+                })
+                } catch(e) {
+                    console.error('Firebase fail: ', e)
+                    setError(true);
+                    setLoading(true);
+                }
+            }
+            sendData()
+        }, [])
 
-        return ref.onSnapshot((querySnapshot) => {
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                items.push(doc.data());
-
-            });
-            setFbData(items);
-        });
-    }, [user]);
 
 
     useEffect(() => {
@@ -67,8 +77,7 @@ function FirebaseContextProvider({children}) {
         setUserOneName(collectStravaNames[0])
         setUserTwoName(collectStravaNames[1])
         setUserThreeName(collectStravaNames[3])
-    },[fbData])
-
+    }, [fbData])
 
 
     if (pageLoading) {
@@ -79,18 +88,19 @@ function FirebaseContextProvider({children}) {
 
     return (
         <firebaseContext.Provider value={{
-            pageLoading:pageLoading,
-            fbData:fbData,
-            userOne:userOne,
-            userTwo:userTwo,
-            userThree:userThree,
-            userOneStravaActivities:userOneStravaActivities,
-            userTwoStravaActivities:userTwoStravaActivities,
-            userThreeStravaActivities:userThreeStravaActivities,
-            // stravaUserNames:stravaUserNames
-            userOneName:userOneName,
-            userTwoName:userTwoName,
-            userThreeName:userThreeName
+            loading: loading,
+            setLoading:setLoading,
+            fbData: fbData,
+            userOne: userOne,
+            userTwo: userTwo,
+            userThree: userThree,
+            userOneStravaActivities: userOneStravaActivities,
+            userTwoStravaActivities: userTwoStravaActivities,
+            userThreeStravaActivities: userThreeStravaActivities,
+            stravaUserNames:stravaUserNames,
+            userOneName: userOneName,
+            userTwoName: userTwoName,
+            userThreeName: userThreeName
 
         }}>
             {!pageLoading && children}
