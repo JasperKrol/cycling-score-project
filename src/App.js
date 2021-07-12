@@ -65,6 +65,8 @@ function App() {
                 <Route path="/forgot-password">
                     <ForgotPassword/>
                 </Route>
+
+                <Route path="*" component={() => "404 not found"}/>
             </Switch>
         </>
     );
