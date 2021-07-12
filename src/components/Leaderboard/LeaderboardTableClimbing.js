@@ -4,17 +4,18 @@ import dataWilleke from "../../data/DataWilleke.json"
 import dataJasper from "../../data/DataJasper.json"
 import dataPeter from "../../data/DataPeter.json"
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
+import {createCurrentMonthString, createCurrentYearString, createMonthString} from "../../helpers/createDateStrings";
 
 function LeaderboardTableClimbing() {
 
     const {
         fbData,
-        userOne,
-        userTwo,
-        userThree,
-        userOneStravaActivities,
-        userTwoStravaActivities,
-        userThreeStravaActivities,
+        // userOne,
+        // userTwo,
+        // userThree,
+        // userOneStravaActivities,
+        // userTwoStravaActivities,
+        // userThreeStravaActivities,
         userOneName,
         userTwoName,
         userThreeName
@@ -47,13 +48,17 @@ function LeaderboardTableClimbing() {
     // console.log("userOneName?:", userTwoName)
     // console.log("userOneName?:", userThreeName)
 
-    let date = new Date()
 
-    // voor scores en meer ritten zet ik de maand op 06 dit doe ik door de +1 te verwijderen
-    //originele functie hieronder
-    // let currentMonth = date.getFullYear()+'-'+(date.getMonth() + 1).toString().padStart(2, "0");
-    let currentMonth = date.getFullYear() + '-' + (date.getMonth()).toString().padStart(2, "0");
-    // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
+
+    // console.log("helperfunctie:",createCurrentMonthString())
+    // console.log("helperfunctie:",createCurrentYearString())
+
+
+
+    // let currentMonth = date.getFullYear() + '-' + (date.getMonth()).toString().padStart(2, "0");
+    // // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
+
+    const currentMonth = createCurrentMonthString()
 
     //Get all ride activities from "strava"
     const ridesOnlyWilleke = dataWilleke.filter((ride) => {

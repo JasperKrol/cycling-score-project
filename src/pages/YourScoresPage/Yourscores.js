@@ -7,6 +7,7 @@ import metersToKM from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 import firebase from "../../contexts/Firebase";
 import {useAuthContext} from "../../contexts/AuthContext";
+import {createCurrentMonthString, createCurrentYearString} from "../../helpers/createDateStrings";
 
 
 function YourScores() {
@@ -78,10 +79,8 @@ function YourScores() {
 
 
     //Get current year and month
-    // @todo: helperfunctie!
-    const date = new Date()
-    const currentYearNumber = date.getFullYear().toString()
-    const currentMonth = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, "0");
+    const currentYearNumber = createCurrentYearString()
+    const currentMonth = createCurrentMonthString()
     console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from strava

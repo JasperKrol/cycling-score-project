@@ -5,13 +5,13 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 function LeaderboardTableClimbing() {
 
     const {
-        fbData,
-        userOne,
-        userTwo,
-        userThree,
-        userOneStravaActivities,
-        userTwoStravaActivities,
-        userThreeStravaActivities,
+        // fbData,
+        // userOne,
+        // userTwo,
+        // userThree,
+        // userOneStravaActivities,
+        // userTwoStravaActivities,
+        // userThreeStravaActivities,
         userOneName,
         userTwoName,
         userThreeName

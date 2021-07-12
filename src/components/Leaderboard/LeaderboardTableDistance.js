@@ -5,20 +5,20 @@ import {useFirebaseContext} from "../../contexts/FirebaseContext";
 function LeaderboardTableClimbing() {
 
     const {
-        fbData,
-        userOne,
-        userTwo,
-        userThree,
-        userOneStravaActivities,
-        userTwoStravaActivities,
-        userThreeStravaActivities,
+        // fbData,
+        // userOne,
+        // userTwo,
+        // userThree,
+        // userOneStravaActivities,
+        // userTwoStravaActivities,
+        // userThreeStravaActivities,
         userOneName,
         userTwoName,
         userThreeName
     } = useFirebaseContext()
-    console.log("userOneName?:", userOneName)
-    console.log("userOneName?:", userTwoName)
-    console.log("userOneName?:", userThreeName)
+    // console.log("userOneName?:", userOneName)
+    // console.log("userOneName?:", userTwoName)
+    // console.log("userOneName?:", userThreeName)
 
 
     const data = React.useMemo(
