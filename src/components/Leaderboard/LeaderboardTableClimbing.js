@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useTable, useSortBy} from 'react-table';
-import dataWilleke from "../../data/DataWilleke.json"
+
+// @todo verwijder data imports
+
 import dataJasper from "../../data/DataJasper.json"
 import dataPeter from "../../data/DataPeter.json"
+
+
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
 import {createCurrentMonthString} from "../../helpers/createDateStrings";
 
@@ -20,59 +24,45 @@ function LeaderboardTableClimbing() {
         userTwoName,
         userThreeName
     } = useFirebaseContext()
-    // const [loading, setLoading] = useState(true)
-    // const [error, setError] = useState(false)
     // const [userOneName, setUserOneName] = useState([])
     // const [userTwoName, setUserTwoName] = useState([])
-    // const [userThreeName, setUserThreeName] = useState([])
+    const [userThreeScores, setUserThreeScores] = useState([])
     const currentMonth = createCurrentMonthString()
-    // console.log("leaderboard data", fbData)
+    console.log("leaderboard data", fbData)
 
     useEffect(() => {
-        //Get all ride activities from "strava"
-        const ridesOnlyWilleke = userThreeStravaActivities.filter((ride) => {
-            return ride.type === "Ride"
-        })
-        // Filter ride activities to current month
-        const willekeMonthScore = ridesOnlyWilleke.filter((currentMonthRide) => {
-            return currentMonthRide.start_date.substring(0, 7) === currentMonth
-        })
+        async function calculateDataRides() {
+            console.log("FETCH DATA IN PROFILE");
+            if (!fbData) return
+            try {
+                //Get all ride activities from "strava"
+                const ridesOnlyWilleke = await userThreeStravaActivities.filter((ride) => {
+                    return ride.type === "Ride"
+                })
 
-        // calculate current monthly climbing scores and put them on the page
-        const willekeClimbingScore = Math.round(willekeMonthScore.reduce(function (accumulator, meter) {
-            return accumulator + meter.total_elevation_gain;
-        }, 0))
+                // Filter ride activities to current month
+                const willekeMonthScore = await ridesOnlyWilleke.filter((currentMonthRide) => {
+                    return currentMonthRide.start_date.substring(0, 7) === currentMonth
+                })
 
-
-
-        console.log("rideswille", userThreeStravaActivities)
-        console.log("ridesOnlyWilleke:", ridesOnlyWilleke)
-        console.log("WillieMonth:", willekeMonthScore)
-        console.log('rideswille', willekeClimbingScore)
+                // calculate current monthly climbing scores and put them on the page
+                setUserThreeScores(Math.round(willekeMonthScore.reduce(function (accumulator, meter) {
+                    return accumulator + meter.total_elevation_gain;
+                }, 0)))
 
 
+                // console.log("rideswille", userThreeStravaActivities)
+                // console.log("ridesOnlyWilleke:", ridesOnlyWilleke)
+                // console.log("WillieMonth:", willekeMonthScore)
+                // console.log('rideswille', willekeClimbingScore, "=>", userThreeScores)
+            } catch (error) {
+                console.error("OH NO, something went wrong");
+            }
+        }
+        calculateDataRides();
+    }, [fbData]);
 
-
-
-    }, [fbData])
-
-    // console.log("userOne", userOne, userOneStravaActivities)
-    // console.log("userTwo", userTwo, userTwoStravaActivities)
-    // console.log("userThreeStravaActivities", userThreeStravaActivities)
-    // console.log("userOneName?:", userOneName)
-    // console.log("userOneName?:", userTwoName)
-    // console.log("userOneName?:", userThreeName)
-
-
-
-    // console.log("helperfunctie:",createCurrentMonthString())
-    // console.log("helperfunctie:",createCurrentYearString())
-
-
-
-    // let currentMonth = date.getFullYear() + '-' + (date.getMonth()).toString().padStart(2, "0");
-    // // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
-
+    console.log('rideswille', "=>", userThreeScores)
 
 
     // //Get all ride activities from "strava"
@@ -82,10 +72,10 @@ function LeaderboardTableClimbing() {
     const ridesOnlyJasper = dataJasper.filter((ride) => {
         return ride.type === "Ride"
     })
+
     const ridesOnlyPeter = dataPeter.filter((ride) => {
         return ride.type === "Ride"
     })
-
 
     const jasperMonthScore = ridesOnlyJasper.filter((currentMonthRide) => {
         return currentMonthRide.start_date.substring(0, 7) === currentMonth
@@ -125,7 +115,7 @@ function LeaderboardTableClimbing() {
             {
                 col1: '3',
                 col2: `${userThreeName}`,
-                col3: ` meters`,
+                col3: `${userThreeScores} meters`,
             },
         ],
         []

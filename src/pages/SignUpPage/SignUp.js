@@ -30,7 +30,7 @@ function SignUp() {
             const userCredential = await app.auth().createUserWithEmailAndPassword(email, password)
             console.log('Registered', userCredential)
             setUser(userCredential.user)
-            history.push("/")
+            setTimeout(() => history.push("/"), 2000);
         } catch (e) {
             console.error('Firebase fail: ', e)
             setError("Failed to sign up")

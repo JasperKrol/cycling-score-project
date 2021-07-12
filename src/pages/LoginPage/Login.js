@@ -28,9 +28,9 @@ function Login() {
             setError("")
             setLoading(true)
             const userCredential = await app.auth().signInWithEmailAndPassword(email, password)
-            console.log('Logged in: ', userCredential)
+            // console.log('Logged in: ', userCredential)
             setUser(userCredential.user)
-            history.push("/")
+            setTimeout(() => history.push("/"), 100);
         } catch (e) {
             console.error('Firebase fail: ', e)
             setError("Failed to sign in")
