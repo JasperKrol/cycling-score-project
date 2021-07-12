@@ -20,8 +20,8 @@ function LeaderboardTableClimbing() {
         userThreeName
     } = useFirebaseContext()
 
-
     console.log("leaderboard data", fbData)
+
 
     // useEffect(() => {
     //

@@ -79,6 +79,7 @@ function FirebaseContextProvider({children}) {
 
     return (
         <firebaseContext.Provider value={{
+            pageLoading:pageLoading,
             fbData:fbData,
             userOne:userOne,
             userTwo:userTwo,
