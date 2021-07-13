@@ -28,7 +28,7 @@ function LeaderboardTableClimbing() {
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
         async function calculateDataRides() {
-            console.log("FETCH DATA IN Leaderboards");
+            // console.log("FETCH DATA IN Leaderboards");
             if (!fbData) return
             try {
                 //Get all ride activities from "FBDATABASE"

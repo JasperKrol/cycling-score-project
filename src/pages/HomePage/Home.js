@@ -5,6 +5,8 @@ import {useEffect} from "react";
 import firebase from "../../contexts/Firebase"
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import axios from "axios";
+import {useForm} from "react-hook-form";
+
 import {useAuthContext} from "../../contexts/AuthContext";
 import {Link} from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -20,6 +22,7 @@ function Home() {
     } = useStravaActivityContext()
 
     const {user} = useAuthContext()
+    const {handleSubmit, register} = useForm();
 
     // const {formState: {errors}, register} = useForm({mode: "onBlur"});
 
@@ -43,7 +46,6 @@ function Home() {
     // handle submit
 
     async function onSubmit(e) {
-
         // Prevent page reload
         e.preventDefault()
         console.log(`client id pushed: ${clientId} and client secret pushed:${clientSecret}`)
@@ -86,8 +88,8 @@ function Home() {
     //
     // }, [])
 
-    // hier de informatie uit de context halen via use effect
-    const stravaProfilePicture = stravaUserProfile.profile
+    // @todo hier de informatie uit de context halen via use effect
+    // const stravaProfilePicture = stravaUserProfile.profile
 
     return (
         <>
@@ -96,7 +98,10 @@ function Home() {
                     {(user) ? <h3>Hello {user.email}</h3> : ""}
                     <div className="photo-div">
                         {loading && (<span>Loading...</span>)}
-                        <img src={stravaProfilePicture} className="picture" alt="profile-picture"/>
+
+                        {/*@todo maak profielfoto waar*/}
+                        {/*<img src={stravaProfilePicture} className="picture" alt="profile-picture"/>*/}
+
                     </div>
                     <div className="home-text">
                         <p>View the leaderboards to plan you next trip or training!</p>
@@ -104,20 +109,26 @@ function Home() {
 
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
 
-                    {/*client id evt op password zetten*/}
+                    {/*@todo client id evt op password zetten*/}
                     <form onSubmit={onSubmit}>
                         <label htmlFor="clientId">client ID:
-                        <input onChange={e => setClientID(e.target.value)} placeholder='Client ID'
-                               type='text'
-                               name='clientId'
-                               value={clientId}
-                        />
+                            <input
+                                placeholder='Client ID'
+                                type='text'
+                                name='clientId'
+                                value={clientId}
+                                onChange={e => setClientID(e.target.value)}
+                            />
                         </label>
                         <label htmlFor="clientSecret">clientSecret:
-                        <input onChange={e => setClientSecret(e.target.value)} placeholder='client secret'
-                               type='text'
-                               name='clientSecret'
-                               value={clientSecret}/>
+                            <input
+                                placeholder='client secret'
+                                type='text'
+                                name='clientSecret'
+                                value={clientSecret}
+                                onChange={e => setClientSecret(e.target.value)}
+                            />
+
                         </label>
                         <Link to="/forgot-password">
                             <p className='login-text'>Forgot your password? Click here!</p>

@@ -1,5 +1,5 @@
-import  "./Button.css"
-import { useHistory } from "react-router-dom";
+import styles from "./Button.module.css"
+import {useHistory} from "react-router-dom";
 import app from '../../contexts/Firebase'
 import React, {useState} from "react";
 
@@ -8,7 +8,7 @@ export default function Button({text, redirect}) {
     const [error, setError] = useState("")
 
     function handleClick() {
-        if(redirect === "home") {
+        if (redirect === "home") {
             app.auth().signOut().then(() => {
                 history.push("/login");
             }).catch((e) => {
@@ -17,7 +17,8 @@ export default function Button({text, redirect}) {
             });
 
             console.log("klikt dit")
-        } if (redirect === "message") {
+        }
+        if (redirect === "message") {
             history.push("/form-submitted");
         }
     }
@@ -25,7 +26,11 @@ export default function Button({text, redirect}) {
     return (
         <>
             {error && <h2>{error}</h2>}
-            <button className="button" onClick={handleClick}>
+            <button
+                className={styles['default-button']}
+                onClick={handleClick}
+                type="submit"
+            >
                 <span>{text}</span>
             </button>
         </>

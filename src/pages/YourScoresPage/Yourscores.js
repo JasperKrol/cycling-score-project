@@ -11,9 +11,19 @@ import {createCurrentMonthString, createCurrentYearString} from "../../helpers/c
 
 
 function YourScores() {
-    const {stravaData, setStravaUserProfile, setStravaData, stravaUserProfile, error, setError, accessToken} = useStravaActivityContext()
-    const [loading, setLoading] = useState(true)
     const {user} = useAuthContext()
+    const {
+        stravaData,
+        setStravaUserProfile,
+        setStravaData,
+        stravaUserProfile,
+        error,
+        setError,
+        accessToken
+    } = useStravaActivityContext()
+    const [loading, setLoading] = useState(true)
+
+    const currentYearNumber = createCurrentYearString()
     // const db = firebase.firestore()
     // const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`
 
@@ -70,67 +80,56 @@ function YourScores() {
     //
     // },[stravaData,stravaUserProfile])
 
-
-    // useEffect(() => {
-    //
-    //     if(!user) return
-    //     //if user send new data to database
-    //
-    //     function sendData() {
-    //         try {
-    //             return db.collection('StravaData').doc(user.email).set({
-    //                 stravaData:stravaData,
-    //                 stravaUserProfile:stravaUserProfile
-    //             })
-    //
-    //
-    //         } catch (e){
-    //             console.error('Firebase fail: ', e)
-    //         }
-    //
-    //
-    //     }
-    //     sendData()
-    //
-    // },[stravaData,stravaUserProfile])
+    const [yearScoresClimbing, setYearScoresClimbing] = useState("")
+    const [yearScoresSpeed, setYearScoresSpeed] = useState("")
+    const [yearScoresDistance, setYearScoresDistance] = useState("")
 
 
-    //Get current year and month
-    const currentYearNumber = createCurrentYearString()
-    // const currentMonth = createCurrentMonthString()
-    // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
+    useEffect(() => {
 
-    //Get all ride activities from strava
-    const activityRides = stravaData.filter((ride) => {
-        return ride.type === "Ride"
-    })
-    // console.log("activityRides", activityRides)
+        if (!stravaData) return
 
-    // Filter ride activities to current year
-    const currentYearRides = activityRides.filter((currentYearRide) => {
-        return currentYearRide.start_date.substring(0, 4) === currentYearNumber
-    })
+        async function sendData() {
+            try {
+                //Get all ride activities from the logged in user's strava
+                const activityRides = await stravaData.filter((ride) => {
+                    return ride.type === "Ride"
+                })
 
-    // console.log("currentYearRides", currentYearRides)
+                // Filter ride activities to current year
+                const currentYearRides = activityRides.filter((currentYearRide) => {
+                    return currentYearRide.start_date.substring(0, 4) === currentYearNumber
+                })
 
+                // calculate current year totals and put them on the page
+                const climbingMeters = Math.round(currentYearRides.reduce(function (accumulator, meter) {
+                    return accumulator + meter.total_elevation_gain;
+                }, 0))
+                // console.log("meters?", climbingMeters)
 
-    // @todo functies in useEffect in de state zetten [] if (stravaData) (){........}
-    // calculate current year totals and put them on the page
-    const climbingMeters = Math.round(currentYearRides.reduce(function (accumulator, meter) {
-        return accumulator + meter.total_elevation_gain;
-    }, 0))
-    // console.log("meters?", climbingMeters)
+                const distanceGained = Math.round(currentYearRides.reduce(function (accumulator, distance) {
+                    return accumulator + distance.distance;
+                }, 0))
+                // console.log("afstand?", distanceGained)
 
-    const distanceGained = Math.round(currentYearRides.reduce(function (accumulator, distance) {
-        return accumulator + distance.distance;
-    }, 0))
-    // console.log("afstand?", distanceGained)
+                const avgSpeed = Math.round(currentYearRides.reduce(function (accumulator, speed) {
+                    return accumulator + (speed.average_speed / currentYearRides.length);
+                }, 0))
 
-    const avgSpeed = Math.round(currentYearRides.reduce(function (accumulator, speed) {
-        return accumulator + (speed.average_speed / currentYearRides.length);
-    }, 0))
+                // console.log("speed?", avgSpeed)
 
-    // console.log("speed?", avgSpeed)
+                setYearScoresDistance(climbingMeters)
+                setYearScoresClimbing(distanceGained)
+                setYearScoresSpeed(avgSpeed)
+            } catch (e) {
+                console.error('Firebase fail: ', e)
+            }
+        }
+
+        sendData()
+
+    }, [stravaData, stravaUserProfile])
+
 
     return (
         <>
@@ -142,7 +141,7 @@ function YourScores() {
                     </div>
                     <div className="home-text">
                         {loading && (<p>Loading...</p>)}
-                        {!loading && (<h4>{(climbingMeters)} meter</h4>)}
+                        {!loading && (<h4>{(yearScoresClimbing)} meter</h4>)}
                     </div>
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
@@ -154,7 +153,7 @@ function YourScores() {
                     </div>
                     <div className="home-text">
                         {loading && (<p>Loading...</p>)}
-                        {!loading && (<h4>{metersToKM(distanceGained)}</h4>)}
+                        {!loading && (<h4>{metersToKM(yearScoresDistance)}</h4>)}
                     </div>
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
@@ -166,7 +165,7 @@ function YourScores() {
                     </div>
                     <div className="home-text">
                         {loading && (<p>Loading...</p>)}
-                        {!loading && (<h4>{secondsPerMeterToKMPH(avgSpeed.toFixed(1))}</h4>)}
+                        {!loading && (<h4>{secondsPerMeterToKMPH(yearScoresSpeed.toFixed(1))}</h4>)}
                     </div>
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>

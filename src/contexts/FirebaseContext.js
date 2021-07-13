@@ -1,13 +1,9 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
-// import app from './Firebase'
 import Tile from "../components/Tile/Tile";
 // import axios from "axios";
 import firebase from "../../src/contexts/Firebase";
-import app from '../../src/contexts/Firebase'
+// import app from '../../src/contexts/Firebase'
 import {useAuthContext} from "./AuthContext";
-import {createCurrentMonthString} from "../helpers/createDateStrings";
-import dataJasper from "../data/DataJasper.json";
-
 
 export const firebaseContext = createContext({});
 
@@ -35,7 +31,6 @@ function FirebaseContextProvider({children}) {
     // const [userThreeScores, setUserThreeScores] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
-    const currentMonth = createCurrentMonthString()
 
 
     const ref = firebase.firestore().collection("StravaData");

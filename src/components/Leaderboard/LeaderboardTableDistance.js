@@ -19,15 +19,12 @@ function LeaderboardTableClimbing() {
     const [userTwoDistanceScore, setUserTwoDistanceScore] = useState("")
     const [userThreeDistanceScore, setUserThreeDistanceScore] = useState("")
     const [loading, setLoading] = useState(true)
-
     const currentMonth = createCurrentMonthString()
-    console.log("leaderboard data", fbData, "current month => ", currentMonth )
+    // console.log("leaderboard data", fbData, "current month => ", currentMonth )
 
-
-    //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
         async function calculateDataRides() {
-            console.log("FETCH DATA IN Leaderboards");
+            // console.log("FETCH DATA IN Leaderboards");
             if (!fbData) return
             try {
                 //Get all ride activities from "FBDATABASE"
@@ -76,9 +73,9 @@ function LeaderboardTableClimbing() {
         calculateDataRides();
     }, [fbData, userOneStravaActivities, userTwoStravaActivities, userThreeStravaActivities]);
 
-    console.log('scores distance user two=>', userOneDistanceScore)
-    console.log('scores distance user two=>', userTwoDistanceScore)
-    console.log('scores distance user three=>', userThreeDistanceScore)
+    // console.log('scores distance user two=>', userOneDistanceScore)
+    // console.log('scores distance user two=>', userTwoDistanceScore)
+    // console.log('scores distance user three=>', userThreeDistanceScore)
 
     const data = React.useMemo(
         () => [
