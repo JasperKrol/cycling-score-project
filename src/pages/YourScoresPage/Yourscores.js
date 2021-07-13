@@ -71,6 +71,30 @@ function YourScores() {
     // },[stravaData,stravaUserProfile])
 
 
+    // useEffect(() => {
+    //
+    //     if(!user) return
+    //     //if user send new data to database
+    //
+    //     function sendData() {
+    //         try {
+    //             return db.collection('StravaData').doc(user.email).set({
+    //                 stravaData:stravaData,
+    //                 stravaUserProfile:stravaUserProfile
+    //             })
+    //
+    //
+    //         } catch (e){
+    //             console.error('Firebase fail: ', e)
+    //         }
+    //
+    //
+    //     }
+    //     sendData()
+    //
+    // },[stravaData,stravaUserProfile])
+
+
     //Get current year and month
     const currentYearNumber = createCurrentYearString()
     // const currentMonth = createCurrentMonthString()

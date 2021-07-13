@@ -22,7 +22,7 @@ function LeaderboardTableClimbing() {
     const [loading, setLoading] = useState(true)
 
     const currentMonth = createCurrentMonthString()
-    console.log("leaderboard data", fbData)
+    // console.log("leaderboard data", fbData)
 
 
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
@@ -82,9 +82,9 @@ function LeaderboardTableClimbing() {
         calculateDataRides();
     }, [fbData, userOneStravaActivities, userTwoStravaActivities, userThreeStravaActivities]);
 
-    console.log('scores user two=>', userOneClimbingScore)
-    console.log('scores user two=>', userTwoClimbingScore)
-    console.log('scores user three=>', userThreeClimbingScore)
+    // console.log('scores user two=>', userOneClimbingScore)
+    // console.log('scores user two=>', userTwoClimbingScore)
+    // console.log('scores user three=>', userThreeClimbingScore)
 
 
     const data = React.useMemo(
