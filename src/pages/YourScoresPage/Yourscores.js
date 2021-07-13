@@ -7,7 +7,7 @@ import metersToKM from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 import firebase from "../../contexts/Firebase";
 import {useAuthContext} from "../../contexts/AuthContext";
-import {createCurrentMonthString, createCurrentYearString} from "../../helpers/createDateStrings";
+import {createCurrentYearString} from "../../helpers/createDateStrings";
 
 
 function YourScores() {
@@ -134,7 +134,7 @@ function YourScores() {
     return (
         <>
             <div className="container">
-                <Tile className="tile">
+                <Tile className="tile-scores">
                     <h2>You have climbed:</h2>
                     <div className="score-logo">
                         <i className="fas fa-mountain fa-2x"/>

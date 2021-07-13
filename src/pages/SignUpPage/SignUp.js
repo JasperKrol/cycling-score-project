@@ -6,6 +6,7 @@ import {useState} from 'react'
 import app from '../../contexts/Firebase'
 import Tile from "../../components/Tile/Tile";
 import {useAuthContext} from "../../contexts/AuthContext";
+import styles from "../../components/Tile/Tile.module.css";
 
 function SignUp() {
     const history = useHistory();
@@ -41,7 +42,7 @@ function SignUp() {
     return (
         <>
             <div className="container">
-                <Tile className="tile">
+                <Tile className={styles['tile']}>
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <h3>Good to see you! Please sign up down below</h3>
                         {error && <h2>{error}</h2>}

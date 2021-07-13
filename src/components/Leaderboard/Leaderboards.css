@@ -31,7 +31,7 @@
     text-align: center;
     border-radius: 10px;
     /*width: 60%;*/
-    width: 60%;
+    width: 100%;
     min-height: 40vh;
     background-color: rgba(255, 255, 255, 0.5);
     flood-opacity: inherit;
@@ -39,7 +39,7 @@
 
 table {
     border: solid 1px black;
-    width: 60px;
+    width: 60%;
 }
 
 th {
