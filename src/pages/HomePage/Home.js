@@ -130,9 +130,6 @@ function Home() {
                             />
 
                         </label>
-                        <Link to="/forgot-password">
-                            <p className='login-text'>Forgot your password? Click here!</p>
-                        </Link>
 
                         <Button
                             text="Save"

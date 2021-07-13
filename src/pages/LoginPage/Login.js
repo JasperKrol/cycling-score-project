@@ -42,7 +42,7 @@ function Login() {
     return (
         <>
             <div className="container">
-                <Tile className="tile">
+                <Tile>
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <div className="welcome-text">
                             <h3>Welcome!</h3>

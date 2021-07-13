@@ -38,7 +38,7 @@ function ForgotPassword() {
     return (
         <>
             <div className="container">
-                <Tile className="tile">
+                <Tile>
                     {loading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <h3>Reset your password below!</h3>
                         {error && <h2>{error}</h2>}

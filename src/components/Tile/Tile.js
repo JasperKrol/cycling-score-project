@@ -1,12 +1,11 @@
-function Tile ({children}) {
-
+function Tile({children}) {
 
     return (
-       <>
-       <section className="tile">
-           {children}
-       </section>
-       </>
+        <>
+            <section className="tile">
+                {children}
+            </section>
+        </>
     )
 }
 

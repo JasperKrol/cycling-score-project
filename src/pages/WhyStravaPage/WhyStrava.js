@@ -6,7 +6,7 @@ export default function WhyStrava() {
     return (
         <>
             <div className="container">
-                <Tile className="tile">
+                <Tile>
                     <h2 className="text">Why we need your STRAVA Data:</h2>
                     <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto consectetur culpa, dolorem,
                         doloribus eaque enim eos et ex excepturi facere impedit ipsa ipsum nam nobis provident qui sed
