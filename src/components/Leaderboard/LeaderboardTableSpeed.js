@@ -41,24 +41,24 @@ function LeaderboardTableClimbing() {
                 })
 
                 // Filter ride activities to current month
-                const userOneMonthRides = await ridesOnlyUserOne.filter((currentMonthRide) => {
+                const userOneMonthRides =  ridesOnlyUserOne.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
-                const userTwoMonthRides = await ridesOnlyUserTwo.filter((currentMonthRide) => {
+                const userTwoMonthRides =  ridesOnlyUserTwo.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
-                const userThreeMonthRides = await ridesOnlyUserThree.filter((currentMonthRide) => {
+                const userThreeMonthRides =  ridesOnlyUserThree.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
 
                 // calculate current monthly climbing scores and put them on the page
-                const userOneMonthScore = await Math.round(userOneMonthRides.reduce(function (accumulator, speed) {
+                const userOneMonthScore =  Math.round(userOneMonthRides.reduce(function (accumulator, speed) {
                     return accumulator + (speed.average_speed / userThreeMonthRides.length);
                 }, 0))
-                const userTwoMonthScore = await Math.round(userTwoMonthRides.reduce(function (accumulator, speed) {
+                const userTwoMonthScore =  Math.round(userTwoMonthRides.reduce(function (accumulator, speed) {
                     return accumulator + (speed.average_speed / userThreeMonthRides.length);
                 }, 0))
-                const userThreeMonthScore = await Math.round(userThreeMonthRides.reduce(function (accumulator, speed) {
+                const userThreeMonthScore = Math.round(userThreeMonthRides.reduce(function (accumulator, speed) {
                     return accumulator + (speed.average_speed / userThreeMonthRides.length);
                 }, 0))
 

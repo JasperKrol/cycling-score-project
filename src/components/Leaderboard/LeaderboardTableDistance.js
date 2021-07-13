@@ -42,13 +42,13 @@ function LeaderboardTableClimbing() {
                 })
 
                 // Filter ride activities to current month
-                const userOneMonthRides = await ridesOnlyUserOne.filter((currentMonthRide) => {
+                const userOneMonthRides =  ridesOnlyUserOne.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
-                const userTwoMonthRides = await ridesOnlyUserTwo.filter((currentMonthRide) => {
+                const userTwoMonthRides =  ridesOnlyUserTwo.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
-                const userThreeMonthRides = await ridesOnlyUserThree.filter((currentMonthRide) => {
+                const userThreeMonthRides =  ridesOnlyUserThree.filter((currentMonthRide) => {
                     return currentMonthRide.start_date.substring(0, 7) === currentMonth
                 })
 
