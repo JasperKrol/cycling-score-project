@@ -40,7 +40,7 @@ function Leaderboards () {
 
                 <div className="container speed ">
                     <Tile>
-                        <h1>Leaderboard for AVG Speed</h1>
+                        <h1>Leaderboard for Average Speed</h1>
                         {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <div className="dashboard">
                             <LeaderboardTableSpeed/>
