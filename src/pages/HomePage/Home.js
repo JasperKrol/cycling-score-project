@@ -104,7 +104,7 @@ function Home() {
 
                     </div>
                     <div className="home-text">
-                        <p>View the leaderboards to plan you next trip or training!</p>
+                        <h4>View the leaderboards to plan you next trip or training!</h4>
                     </div>
 
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}

@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import styles from "./ContactForm.module.css"
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
@@ -30,10 +31,15 @@ export default function ContactForm() {
                 <h1>Contact us:</h1>
                 {error && <h2>{error}</h2>}
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form
+                className={styles['form']}
+                onSubmit={handleSubmit(onSubmit)}
+
+            >
                 <div className="details">
                     <label htmlFor="name">Naam:
                         <input
+                            className={styles['input']}
                             type="text"
                             id="name"
                             {...register("name", {

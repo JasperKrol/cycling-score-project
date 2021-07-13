@@ -21,8 +21,9 @@ function Contact() {
                     <p><i className="fas fa-phone-alt"/> 06-12 45 78 96</p>
                     <p><i className="far fa-comment"/> Leave a comment or a question in the form</p>
                 </div>
-                <a href="https://www.strava.com/"><p className='go-to-strava'>Go to strava <i
-                    className="fas fa-arrow-circle-right"/></p></a>
+                <a href="https://www.strava.com/">
+                    <p className='go-to-strava'>Go to strava<i className="fas fa-arrow-circle-right"/></p>
+                </a>
             </Tile>
 
             <Tile>
