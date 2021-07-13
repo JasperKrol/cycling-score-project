@@ -52,15 +52,20 @@ function Login() {
                         {error && <h2>{error}</h2>}
                         <form onSubmit={onSubmit}>
                             <label htmlFor="email">Email:
-                            <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com' type='email'
-                                   name='email' value={email}
-                            />
+                                <input
+                                    onChange={e => setEmail(e.target.value)}
+                                    placeholder='your@email.com'
+                                    type='email'
+                                    name='email'
+                                    value={email}
+                                />
                             </label>
                             <label htmlFor="password">Password:
-                            <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
-                                   type='password'
-                                   name='password'
-                                   value={password}/>
+                                <input onChange={e => setPassword(e.target.value)}
+                                       placeholder='Your password'
+                                       type='password'
+                                       name='password'
+                                       value={password}/>
                             </label>
                             <Link to="/forgot-password">
                                 <p className='login-text'>Forgot your password? Click here!</p>

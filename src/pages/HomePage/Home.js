@@ -99,7 +99,7 @@ function Home() {
                     <div className="photo-div">
                         {loading && (<span>Loading...</span>)}
 
-                        {/*@todo maak profielfoto waar*/}
+                        {/*@todo maak profielfoto zichtbaar*/}
                         {/*<img src={stravaProfilePicture} className="picture" alt="profile-picture"/>*/}
 
                     </div>
