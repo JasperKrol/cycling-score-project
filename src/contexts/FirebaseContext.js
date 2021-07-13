@@ -5,6 +5,9 @@ import Tile from "../components/Tile/Tile";
 import firebase from "../../src/contexts/Firebase";
 import app from '../../src/contexts/Firebase'
 import {useAuthContext} from "./AuthContext";
+import {createCurrentMonthString} from "../helpers/createDateStrings";
+import dataJasper from "../data/DataJasper.json";
+
 
 export const firebaseContext = createContext({});
 
@@ -19,6 +22,7 @@ function FirebaseContextProvider({children}) {
     const [userOne, setUserOne] = useState([])
     const [userTwo, setUserTwO] = useState([])
     const [userThree, setUserThree] = useState([])
+    const [allActivities, setAllActivities] = useState([])
     const [userOneStravaActivities, setUserOneStravaActivities] = useState([])
     const [userTwoStravaActivities, setUserTwoStravaActivities] = useState([])
     const [userThreeStravaActivities, setUserThreeStravaActivities] = useState([])
@@ -26,8 +30,12 @@ function FirebaseContextProvider({children}) {
     const [userOneName, setUserOneName] = useState([])
     const [userTwoName, setUserTwoName] = useState([])
     const [userThreeName, setUserThreeName] = useState([])
+    // const [userOneName, setUserOneName] = useState([])
+    // const [userTwoName, setUserTwoName] = useState([])
+    // const [userThreeScores, setUserThreeScores] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const currentMonth = createCurrentMonthString()
 
 
     const ref = firebase.firestore().collection("StravaData");
@@ -42,42 +50,73 @@ function FirebaseContextProvider({children}) {
                     })
                     setFbData(items);
                 })
-                } catch(e) {
-                    console.error('Firebase fail: ', e)
-                    setError(true);
-                    setLoading(true);
-                }
+            } catch (e) {
+                console.error('Firebase fail: ', e)
+                setError(true);
+                setLoading(true);
             }
-            sendData()
-        }, [])
+        }
 
+        sendData()
+    }, [])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const db = firebase.firestore();
+                const data = await db.collection("StravaData").get();
+                setFbData(data.docs.map(doc => ({...doc.data(), id: doc.id})));
+
+            } catch (e) {
+                console.error('Firebase fail: ', e)
+                setError(true);
+                setLoading(true);
+            }
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        function fetchUserNames() {
+
+            if (!fbData) return
+
+            const userdata = fbData.map((profiles) => {
+                return profiles.stravaUserProfile
+            })
+            const collectStravaNames = fbData.map((name) => {
+                return name.stravaUserProfile.username
+            })
+            setUserOne(userdata[0])
+            setUserTwO(userdata[1])
+            setUserThree(userdata[3])
+            setStravaUserNames(stravaUserNames)
+            setUserOneName(collectStravaNames[0])
+            setUserTwoName(collectStravaNames[1])
+            setUserThreeName(collectStravaNames[3])
+        }
+
+        fetchUserNames()
+    }, [fbData])
 
 
     useEffect(() => {
 
         if (!fbData) return
 
-        const userdata = fbData.map((profiles) => {
-            return profiles.stravaUserProfile
-        })
         const userStravaActivities = fbData.map((activity) => {
             return activity.stravaData
         })
-        const collectStravaNames = fbData.map((name) => {
-            return name.stravaUserProfile.username
-        })
-        // console.log("Every users profile userdata", userdata)
-        setUserOne(userdata[0])
-        setUserTwO(userdata[1])
-        setUserThree(userdata[3])
+        console.log("Every users userStravaActivities", userStravaActivities)
         setUserOneStravaActivities(userStravaActivities[0])
         setUserTwoStravaActivities(userStravaActivities[1])
         setUserThreeStravaActivities(userStravaActivities[3])
-        setStravaUserNames(stravaUserNames)
-        setUserOneName(collectStravaNames[0])
-        setUserTwoName(collectStravaNames[1])
-        setUserThreeName(collectStravaNames[3])
+
     }, [fbData])
+
+    // console.log("userThreeStravaActivities", userThreeStravaActivities)
+    // console.log("userTwoStravaActivities", userTwoStravaActivities)
+    // console.log("userOneStravaActivities", userOneStravaActivities)
 
 
     if (pageLoading) {
@@ -89,7 +128,7 @@ function FirebaseContextProvider({children}) {
     return (
         <firebaseContext.Provider value={{
             loading: loading,
-            setLoading:setLoading,
+            setLoading: setLoading,
             fbData: fbData,
             userOne: userOne,
             userTwo: userTwo,
@@ -97,11 +136,11 @@ function FirebaseContextProvider({children}) {
             userOneStravaActivities: userOneStravaActivities,
             userTwoStravaActivities: userTwoStravaActivities,
             userThreeStravaActivities: userThreeStravaActivities,
-            stravaUserNames:stravaUserNames,
+            stravaUserNames: stravaUserNames,
             userOneName: userOneName,
             userTwoName: userTwoName,
-            userThreeName: userThreeName
-
+            userThreeName: userThreeName,
+            // userThreeScores: userThreeScores
         }}>
             {!pageLoading && children}
         </firebaseContext.Provider>

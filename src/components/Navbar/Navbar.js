@@ -93,7 +93,6 @@ function Navbar() {
 
                                 <li className="nav-item">
                                     <Button
-                                        className="nav-button"
                                         text="Sign out"
                                         redirect="home"
                                     />

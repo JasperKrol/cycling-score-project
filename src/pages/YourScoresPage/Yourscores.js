@@ -36,22 +36,15 @@ function YourScores() {
     //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
     //             console.log("is dit result", resultProfile.data)
     //             setStravaUserProfile(resultProfile.data)
-    //
     //             setLoading(false)
-    //
-    //
-    //
     //         } catch (e) {
     //             console.error(e)
     //             setError(true);
     //             setLoading(true);
     //         }
     //     }
-    //
     //     fetchData()
-    //
     // }, [])
-    //
     //
     // useEffect(() => {
     //
