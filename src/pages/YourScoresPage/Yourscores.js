@@ -73,8 +73,8 @@ function YourScores() {
 
     //Get current year and month
     const currentYearNumber = createCurrentYearString()
-    const currentMonth = createCurrentMonthString()
-    console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
+    // const currentMonth = createCurrentMonthString()
+    // console.log("currentmonth", currentMonth, "currentYear", currentYearNumber)
 
     //Get all ride activities from strava
     const activityRides = stravaData.filter((ride) => {
@@ -87,26 +87,26 @@ function YourScores() {
         return currentYearRide.start_date.substring(0, 4) === currentYearNumber
     })
 
-    console.log("currentYearRides", currentYearRides)
+    // console.log("currentYearRides", currentYearRides)
 
 
-    // functies in useEffect in de state zetten [] if (stravaData) (){........}
+    // @todo functies in useEffect in de state zetten [] if (stravaData) (){........}
     // calculate current year totals and put them on the page
     const climbingMeters = Math.round(currentYearRides.reduce(function (accumulator, meter) {
         return accumulator + meter.total_elevation_gain;
     }, 0))
-    console.log("meters?", climbingMeters)
+    // console.log("meters?", climbingMeters)
 
     const distanceGained = Math.round(currentYearRides.reduce(function (accumulator, distance) {
         return accumulator + distance.distance;
     }, 0))
-    console.log("afstand?", distanceGained)
+    // console.log("afstand?", distanceGained)
 
     const avgSpeed = Math.round(currentYearRides.reduce(function (accumulator, speed) {
         return accumulator + (speed.average_speed / currentYearRides.length);
     }, 0))
 
-    console.log("speed?", avgSpeed)
+    // console.log("speed?", avgSpeed)
 
     return (
         <>

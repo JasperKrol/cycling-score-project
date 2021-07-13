@@ -2,14 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useTable, useSortBy} from 'react-table';
 
 // @todo verwijder data imports
-
-import dataJasper from "../../data/DataJasper.json"
-import dataPeter from "../../data/DataPeter.json"
-
-
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
 import {createCurrentMonthString} from "../../helpers/createDateStrings";
-import {number} from "react-table/src/sortTypes";
 
 function LeaderboardTableClimbing() {
 
@@ -22,9 +16,9 @@ function LeaderboardTableClimbing() {
         userTwoStravaActivities,
         userThreeStravaActivities
     } = useFirebaseContext()
-    const [userOneScore, setUserOneScores] = useState("")
-    const [userTwoScores, setUserTwoScores] = useState("")
-    const [userThreeScores, setUserThreeScores] = useState("")
+    const [userOneClimbingScore, setUserOneClimbingScore] = useState("")
+    const [userTwoClimbingScore, setUserTwoClimbingScore] = useState("")
+    const [userThreeClimbingScore, setUserThreeClimbingScores] = useState("")
     const [loading, setLoading] = useState(true)
 
     const currentMonth = createCurrentMonthString()
@@ -70,80 +64,45 @@ function LeaderboardTableClimbing() {
                     return accumulator + meter.total_elevation_gain;
                 }, 0))
 
-                setUserOneScores(userOneMonthScore)
-                setUserTwoScores(userTwoMonthScore)
-                setUserThreeScores(userThreeMonthScore)
+                setUserOneClimbingScore(userOneMonthScore)
+                setUserTwoClimbingScore(userTwoMonthScore)
+                setUserThreeClimbingScores(userThreeMonthScore)
                 setLoading(false)
 
 
                 // console.log("rideswille", userThreeStravaActivities)
                 // console.log("ridesOnlyUserThree:", ridesOnlyUserThree)
                 // console.log("WillieMonth:", userThreeMonthRides)
-                // console.log('rideswille', willekeClimbingScore, "=>", userThreeScores)
+                // console.log('rideswille', willekeClimbingScore, "=>", userThreeClimbingScore)
             } catch (error) {
                 console.error("OH NO, something went wrong");
                 setLoading(true);
             }
         }
         calculateDataRides();
-    }, []);
+    }, [fbData, userOneStravaActivities, userTwoStravaActivities, userThreeStravaActivities]);
 
-    console.log('scores user two=>', userOneScore)
-    console.log('scores user two=>', userTwoScores)
-    console.log('scores user three=>', userThreeScores)
+    console.log('scores user two=>', userOneClimbingScore)
+    console.log('scores user two=>', userTwoClimbingScore)
+    console.log('scores user three=>', userThreeClimbingScore)
 
-
-    // //Get all ride activities from "strava"
-    // const ridesOnlyWilleke = dataWilleke.filter((ride) => {
-    //     return ride.type === "Ride"
-    // })
-    const ridesOnlyJasper = dataJasper.filter((ride) => {
-        return ride.type === "Ride"
-    })
-
-    const ridesOnlyPeter = dataPeter.filter((ride) => {
-        return ride.type === "Ride"
-    })
-
-    const jasperMonthScore = ridesOnlyJasper.filter((currentMonthRide) => {
-        return currentMonthRide.start_date.substring(0, 7) === currentMonth
-    })
-    const peterMonthScore = ridesOnlyPeter.filter((currentMonthRide) => {
-        return currentMonthRide.start_date.substring(0, 7) === currentMonth
-    })
-    // console.log("willekesMonthScore", willekesMonthScore)
-
-    // calculate current monthly climbing scores and put them on the page
-    // const willekeClimbingScore = Math.round(willekeMonthScore.reduce(function (accumulator, meter) {
-    //     return accumulator + meter.total_elevation_gain;
-    // }, 0))
-    const jasperClimbingScore = Math.round(jasperMonthScore.reduce(function (accumulator, meter) {
-        return accumulator + meter.total_elevation_gain;
-    }, 0))
-    const peterClimbingScore = Math.round(peterMonthScore.reduce(function (accumulator, meter) {
-        return accumulator + meter.total_elevation_gain;
-    }, 0))
-    // console.log("metersw?", willekeClimbingScore, "metersP?",peterClimbingScore, "metersj?", jasperClimbingScore)
-
-
-//@todo dit werkt
 
     const data = React.useMemo(
         () => [
             {
                 col1: '1',
                 col2: `${userOneName}`,
-                col3: `${userOneScore} meters`,
+                col3: `${userOneClimbingScore} meters`,
             },
             {
                 col1: '2',
                 col2: `${userTwoName}`,
-                col3: `${userTwoScores} meters`,
+                col3: `${userTwoClimbingScore} meters`,
             },
             {
                 col1: '3',
                 col2: `${userThreeName}`,
-                col3: `${userThreeScores} meters`,
+                col3: `${userThreeClimbingScore} meters`,
             },
         ],
         []

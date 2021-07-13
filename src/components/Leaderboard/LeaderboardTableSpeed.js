@@ -1,43 +1,98 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTable, useSortBy} from 'react-table';
 import {useFirebaseContext} from "../../contexts/FirebaseContext";
+import {createCurrentMonthString} from "../../helpers/createDateStrings";
+import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH";
 
 function LeaderboardTableClimbing() {
 
     const {
-        // fbData,
-        // userOne,
-        // userTwo,
-        // userThree,
-        // userOneStravaActivities,
-        // userTwoStravaActivities,
-        // userThreeStravaActivities,
+        fbData,
         userOneName,
         userTwoName,
-        userThreeName
+        userThreeName,
+        userOneStravaActivities,
+        userTwoStravaActivities,
+        userThreeStravaActivities
     } = useFirebaseContext()
-    // const [loading, setLoading] = useState(true)
-    // const [error, setError] = useState(false)
-    // const [userOneName, setUserOneName] = useState([])
-    // const [userTwoName, setUserTwoName] = useState([])
-    // const [userThreeName, setUserThreeName] = useState([])
+    const [userOneSpeedScore, setUserOneSpeedScore] = useState("")
+    const [userTwoSpeedScore, setUserTwoSpeedScore] = useState("")
+    const [userThreeSpeedScore, setUserThreeSpeedScore] = useState("")
+
+    const currentMonth = createCurrentMonthString()
+    console.log("leaderboard data", fbData, "current month => ", currentMonth )
+
+
+    //@todo zet context in useEffect en daarna nieuwe state voor verversen?
+    useEffect(() => {
+        async function calculateDataRides() {
+            console.log("FETCH DATA IN Leaderboards");
+            if (!fbData) return
+            try {
+                //Get all ride activities from "FBDATABASE"
+                const ridesOnlyUserOne = await userOneStravaActivities.filter((ride) => {
+                    return ride.type === "Ride"
+                })
+                const ridesOnlyUserTwo = await userTwoStravaActivities.filter((ride) => {
+                    return ride.type === "Ride"
+                })
+                const ridesOnlyUserThree = await userThreeStravaActivities.filter((ride) => {
+                    return ride.type === "Ride"
+                })
+
+                // Filter ride activities to current month
+                const userOneMonthRides = await ridesOnlyUserOne.filter((currentMonthRide) => {
+                    return currentMonthRide.start_date.substring(0, 7) === currentMonth
+                })
+                const userTwoMonthRides = await ridesOnlyUserTwo.filter((currentMonthRide) => {
+                    return currentMonthRide.start_date.substring(0, 7) === currentMonth
+                })
+                const userThreeMonthRides = await ridesOnlyUserThree.filter((currentMonthRide) => {
+                    return currentMonthRide.start_date.substring(0, 7) === currentMonth
+                })
+
+                // calculate current monthly climbing scores and put them on the page
+                const userOneMonthScore = await Math.round(userOneMonthRides.reduce(function (accumulator, speed) {
+                    return accumulator + (speed.average_speed / userThreeMonthRides.length);
+                }, 0))
+                const userTwoMonthScore = await Math.round(userTwoMonthRides.reduce(function (accumulator, speed) {
+                    return accumulator + (speed.average_speed / userThreeMonthRides.length);
+                }, 0))
+                const userThreeMonthScore = await Math.round(userThreeMonthRides.reduce(function (accumulator, speed) {
+                    return accumulator + (speed.average_speed / userThreeMonthRides.length);
+                }, 0))
+
+                setUserOneSpeedScore(secondsPerMeterToKMPH(userOneMonthScore))
+                setUserTwoSpeedScore(secondsPerMeterToKMPH(userTwoMonthScore))
+                setUserThreeSpeedScore(secondsPerMeterToKMPH(userThreeMonthScore))
+
+            } catch (error) {
+                console.error("OH NO, something went wrong");
+            }
+        }
+        calculateDataRides();
+    }, [fbData, userOneStravaActivities, userTwoStravaActivities, userThreeStravaActivities]);
+
+    console.log('scores speed user one=>', userOneSpeedScore)
+    console.log('scores speed user two=>', userTwoSpeedScore)
+    console.log('scores speed user three=>', userThreeSpeedScore)
 
     const data = React.useMemo(
         () => [
             {
                 col1: '1',
                 col2: `${userOneName}`,
-                col3: `$ meters`,
+                col3: `${userOneSpeedScore}`,
             },
             {
                 col1: '2',
                 col2: `${userTwoName}`,
-                col3: `$ meters`,
+                col3: `${userTwoSpeedScore}`,
             },
             {
                 col1: '3',
                 col2: `${userThreeName}`,
-                col3: `$ meters`,
+                col3: `${userThreeSpeedScore}`,
             },
         ],
         []
