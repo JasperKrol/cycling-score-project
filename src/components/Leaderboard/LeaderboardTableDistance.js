@@ -8,7 +8,6 @@ function LeaderboardTableClimbing() {
     const [loading, setLoading] = useState(true);
     const [userScores, setUserScores] = useState([]);
     const currentMonth = createCurrentMonthString()
-    // console.log("leaderboard data", fbData)
 
 
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
@@ -19,12 +18,12 @@ function LeaderboardTableClimbing() {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();
                 // hier willen we de data gelijk al omzetten
-                const banaan = data.docs.map(doc => ({
+                const usersData = data.docs.map(doc => ({
                     ...doc.data(),
                     id: doc.id
                 }));
 
-                const filteredUsers = banaan.map((userStravaData) => {
+                const filteredUsers = usersData.map((userStravaData) => {
 
                     const filteredRides = userStravaData.stravaData.filter((ride) => {
                         return ride.type === "Ride" && ride.start_date.substring(0, 7) === currentMonth;
@@ -43,7 +42,7 @@ function LeaderboardTableClimbing() {
 
                 // console.log('HALLO', filteredUsers);
                 setUserScores(filteredUsers);
-                console.log('HALLO', userScores);
+                // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
                 console.error('Firebase fail: ', e)
@@ -66,7 +65,7 @@ function LeaderboardTableClimbing() {
                     </thead>
                     <tbody>
 
-                    {userScores.map((userScore, index) => {
+                    {userScores && userScores.map((userScore, index) => {
                         {
                             return <tr key={`key${index}`}>
                                 <td>{index + 1}</td>

@@ -6,7 +6,6 @@ import firebase from "../../contexts/Firebase";
 function LeaderboardTableClimbing() {
 
     const [userScores, setUserScores] = useState([]);
-    const currentMonth = createCurrentMonthString()
     const [loading, setLoading] = useState(true);
 
 
@@ -14,24 +13,28 @@ function LeaderboardTableClimbing() {
     useEffect(() => {
 
         const fetchData = async () => {
+            const currentMonth = createCurrentMonthString()
             try {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();
                 // hier willen we de data gelijk al omzetten
-                const banaan = data.docs.map(doc => ({
+                const usersData = data.docs.map(doc => ({
                     ...doc.data(),
                     id: doc.id
                 }));
 
-                const filteredUsers = banaan.map((userStravaData) => {
+                const filteredUsers = usersData.map((userStravaData) => {
 
                     const filteredRides = userStravaData.stravaData.filter((ride) => {
                         return ride.type === "Ride" && ride.start_date.substring(0, 7) === currentMonth;
                     })
 
-                    const totalScore = Math.round(filteredRides.reduce(function (accumulator, speed) {
-                        return accumulator + (speed.average_speed / filteredRides.length);
-                    }, 0))
+                    const speedScore = filteredRides.reduce(function (accumulator, speed) {
+                        // console.log(filteredRides.length)
+                        return accumulator + speed.average_speed
+                    }, 0)
+
+                    const totalScore = speedScore / filteredRides.length
 
                     return {
                         ...userStravaData.stravaUserProfile,
@@ -42,7 +45,7 @@ function LeaderboardTableClimbing() {
 
                 // console.log('HALLO', filteredUsers);
                 setUserScores(filteredUsers);
-                console.log('HALLO', userScores);
+                // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
                 console.error('Firebase fail: ', e)
@@ -51,6 +54,9 @@ function LeaderboardTableClimbing() {
         };
         fetchData();
     }, []);
+
+    console.log('HALLO', userScores);
+
 
     return (
         <>{loading && (<p>Loading...</p>)}
@@ -65,12 +71,12 @@ function LeaderboardTableClimbing() {
                     </thead>
                     <tbody>
 
-                    {userScores.map((userScore, index) => {
+                    {userScores && userScores.map((userScore, index) => {
                         {
                             return <tr key={`key${index}`}>
                                 <td>{index + 1}</td>
                                 <td>{userScore.username}</td>
-                                <td>{secondsPerMeterToKMPH(userScore.totalScore)}</td>
+                                <td>{secondsPerMeterToKMPH(userScore.totalScore.toFixed(2))}</td>
                             </tr>
                         }
                     })}

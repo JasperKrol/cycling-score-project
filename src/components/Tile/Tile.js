@@ -2,7 +2,7 @@ function Tile({children}) {
 
     return (
         <>
-            <section className="tile">
+            <section>
                 {children}
             </section>
         </>
