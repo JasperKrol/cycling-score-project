@@ -7,7 +7,6 @@ function LeaderboardTableClimbing() {
 
     const [loading, setLoading] = useState(true);
     const [userScores, setUserScores] = useState([]);
-
     const currentMonth = createCurrentMonthString()
     // console.log("leaderboard data", fbData)
 
