@@ -1,4 +1,4 @@
-export default function secondsPerMeterToKMPH (meters) {
-    return `${Math.round(meters / 1000)} KM`
+export default function metersToKilometers (meter) {
+    return `${Math.round(meter / 1000)} KM`
 }
 

@@ -117,7 +117,7 @@ function Home() {
                                 type='text'
                                 name='clientId'
                                 value={clientId}
-                                onChange={e => setClientID(e.target.value)}
+                                onChange={(e) => setClientID(e.target.value)}
                             />
                         </label>
                         <label htmlFor="clientSecret">clientSecret:
@@ -126,7 +126,7 @@ function Home() {
                                 type='text'
                                 name='clientSecret'
                                 value={clientSecret}
-                                onChange={e => setClientSecret(e.target.value)}
+                                onChange={(e) => setClientSecret(e.target.value)}
                             />
 
                         </label>

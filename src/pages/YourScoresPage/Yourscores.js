@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Tile from "../../components/Tile/Tile";
 import axios from "axios";
 import {useStravaActivityContext} from "../../contexts/StravaContext";
-import metersToKM from "../../helpers/metersToKM"
+import metersToKilometers from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 import firebase from "../../contexts/Firebase";
 import {useAuthContext} from "../../contexts/AuthContext";
@@ -153,7 +153,7 @@ function YourScores() {
                     </div>
                     <div className="home-text">
                         {loading && (<p>Loading...</p>)}
-                        {!loading && (<h4>{metersToKM(yearScoresDistance)}</h4>)}
+                        {!loading && (<h4>{metersToKilometers(yearScoresDistance)}</h4>)}
                     </div>
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>

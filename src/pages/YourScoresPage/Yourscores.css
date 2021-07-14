@@ -25,24 +25,3 @@
     border-radius: 50%;
 }
 
-
-
-@media screen and (max-width: 480px) {
-    .container {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-image: url("../../assets/fiets13.jpeg");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    .tile {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        align-content: center;
-
-    }
-}
