@@ -16,9 +16,9 @@ function Navbar() {
         <>
             <nav className='navbar'>
                 <div className='navbar-container'>
-                    <NavLink exact
-                             to='/'
-                             className='navbar-logo' onClick={closeMobileMenu}>
+                    <NavLink
+                        to='/'
+                        className='navbar-logo' onClick={closeMobileMenu}>
                         CyclingScore
                         <i className="fas fa-biking"/>
                     </NavLink>
@@ -55,8 +55,10 @@ function Navbar() {
 
                             <>
                                 <li className='nav-item'>
-                                    <NavLink exact
-                                             to='/' className='nav-links' onClick={closeMobileMenu}>
+                                    <NavLink
+                                        to='/'
+                                        className='nav-links'
+                                        onClick={closeMobileMenu}>
                                         Home
                                     </NavLink>
                                 </li>
