@@ -23,6 +23,9 @@ function YourScores() {
     } = useStravaActivityContext()
     const [loading, setLoading] = useState(true)
 
+    //@todo voeg hier de zelfde methode toe als de leaderboards met ophalen van firebase data
+    // zodat je de scores van de huidige maand en user kan weergeven.
+
     const currentYearNumber = createCurrentYearString()
     // const db = firebase.firestore()
     // const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`
@@ -134,7 +137,7 @@ function YourScores() {
     return (
         <>
             <div className="container">
-                <Tile className="tile-scores">
+                <Tile className="tile-score">
                     <h2>You have climbed:</h2>
                     <div className="score-logo">
                         <i className="fas fa-mountain fa-2x"/>
@@ -146,7 +149,7 @@ function YourScores() {
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
 
-                <Tile className="tile">
+                <Tile className="tile-score">
                     <h2>Distance gained:</h2>
                     <div className="score-logo">
                         <i className="fas fa-route fa-2x"/>
@@ -158,7 +161,7 @@ function YourScores() {
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
                 </Tile>
 
-                <Tile className="tile">
+                <Tile className="tile-score">
                     <h2>Your average speed:</h2>
                     <div className="score-logo">
                         <i className="fas fa-tachometer-alt fa-2x"/>

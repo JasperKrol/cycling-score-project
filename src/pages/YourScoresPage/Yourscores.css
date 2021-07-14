@@ -1,17 +1,17 @@
-.tile {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
-    justify-content: space-evenly;
+.tile-score {
+    display: flex !important;
+    align-items: center !important;
+    flex-direction: column!important;
+    align-content: center!important;
+    justify-content: space-evenly!important;
     border: rgba(255,255,255, 0.5);
-    text-align: center;
-    border-radius: 10px;
-    width: 40vh;
-    min-height: 40vh;
-    background-color: rgba(255,255,255, 0.5);
-    flood-opacity: inherit;
-    margin: 15px;
+    text-align: center!important;
+    border-radius: 10px!important;
+    width: 40vh!important;
+    min-height: 40vh!important;
+    background-color: rgba(255,255,255, 0.5)!important;
+    flood-opacity: inherit!important;
+    margin: 15px!important;
 }
 
 .score-logo {
@@ -25,3 +25,6 @@
     border-radius: 50%;
 }
 
+@media screen and (max-width: 756px){
+
+}

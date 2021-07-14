@@ -4,50 +4,48 @@ import LeaderboardTableDistance from "../../components/Leaderboard/LeaderboardTa
 import LeaderboardTableSpeed from "../../components/Leaderboard/LeaderboardTableSpeed";
 import Tile from "../../components/Tile/Tile";
 import React, {useState} from "react";
-import {useFirebaseContext} from "../../contexts/FirebaseContext";
+import {useAuthContext} from "../../contexts/AuthContext";
 
+function Leaderboards() {
 
-function Leaderboards () {
-
-// useEffect met Loading/error maken
-    const {pageLoading} = useFirebaseContext()
+    const {pageLoading} = useAuthContext()
 
     return (
         <>
-                <div className="container climbing ">
-                    <Tile >
-                        <h1>Leaderboard for Climbing</h1>
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                            <div className="dashboard">
-                                <LeaderboardTableClimbing/>
-                            </div>
-                        </>)}
+            <div className="container climbing ">
+                <Tile>
+                    <h1>Leaderboard for Climbing</h1>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                        <div className="dashboard">
+                            <LeaderboardTableClimbing/>
+                        </div>
+                    </>)}
 
-                    </Tile>
-                </div>
+                </Tile>
+            </div>
 
 
-                <div className="container distance">
-                    <Tile>
-                        <h1>Leaderboard for Distance</h1>
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+            <div className="container distance">
+                <Tile>
+                    <h1>Leaderboard for Distance</h1>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <div className="dashboard">
                             <LeaderboardTableDistance/>
                         </div>
-                        </>)}
-                    </Tile>
-                </div>
+                    </>)}
+                </Tile>
+            </div>
 
-                <div className="container speed ">
-                    <Tile>
-                        <h1>Leaderboard for Average Speed</h1>
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+            <div className="container speed ">
+                <Tile>
+                    <h1>Leaderboard for Average Speed</h1>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <div className="dashboard">
                             <LeaderboardTableSpeed/>
                         </div>
-                        </>)}
-                    </Tile>
-                </div>
+                    </>)}
+                </Tile>
+            </div>
 
 
         </>

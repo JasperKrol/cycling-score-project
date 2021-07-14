@@ -1,7 +1,7 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
 import axios from "axios";
 import firebase from "./Firebase";
-import {useAuthContext} from "./AuthContext";
+// import {useAuthContext} from "./AuthContext";
 
 export const stravaActivityContext = createContext({});
 
@@ -20,7 +20,6 @@ function StravaActivityContextProvider({children}) {
     const [clientSecret, setClientSecret] = useState("")
     const [clientId, setClientID] = useState();
     const [accessToken, setAccessToken] = useState('');
-    const {user} = useAuthContext()
 
     // // @todo opruimen niet gebruikte setters/getters
     // const db = firebase.firestore();
