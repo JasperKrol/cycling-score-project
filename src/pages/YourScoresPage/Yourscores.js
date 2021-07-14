@@ -118,8 +118,8 @@ function YourScores() {
 
                 // console.log("speed?", avgSpeed)
 
-                setYearScoresDistance(climbingMeters)
-                setYearScoresClimbing(distanceGained)
+                setYearScoresDistance(distanceGained)
+                setYearScoresClimbing(climbingMeters)
                 setYearScoresSpeed(avgSpeed)
             } catch (e) {
                 console.error('Firebase fail: ', e)
