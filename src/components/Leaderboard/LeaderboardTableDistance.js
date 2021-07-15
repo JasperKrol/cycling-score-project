@@ -41,9 +41,9 @@ function LeaderboardTableClimbing() {
                 });
 
                 // console.log('HALLO', filteredUsers);
-                setUserScores(filteredUsers.sort((a,b) => {
+                setUserScores(filteredUsers.sort((a, b) => {
                     return b.totalScore - a.totalScore
-                } ));                // console.log('HALLO', userScores);
+                }));                // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
                 console.error('Firebase fail: ', e)
@@ -54,7 +54,7 @@ function LeaderboardTableClimbing() {
     }, []);
 
     return (
-        <>{loading && (<p>Loading...</p>)}
+        <>{loading ? (<p>Loading...</p>) : <>
             <div>
                 <table>
                     <thead>
@@ -79,9 +79,10 @@ function LeaderboardTableClimbing() {
                 </table>
             </div>
         </>
+        }
+        </>
     );
 }
-
 
 
 export default LeaderboardTableClimbing;

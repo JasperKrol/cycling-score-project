@@ -3,7 +3,7 @@ import {createCurrentMonthString} from "../../helpers/createDateStrings";
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH";
 import firebase from "../../contexts/Firebase";
 
-function LeaderboardTableClimbing() {
+function LeaderboardTableSpeed() {
 
     const [userScores, setUserScores] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -44,9 +44,9 @@ function LeaderboardTableClimbing() {
                 });
 
                 // console.log('HALLO', filteredUsers);
-                setUserScores(filteredUsers.sort((a,b) => {
+                setUserScores(filteredUsers.sort((a, b) => {
                     return b.totalScore - a.totalScore
-                } ));
+                }));
                 // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
@@ -60,7 +60,7 @@ function LeaderboardTableClimbing() {
     // console.log('HALLO', userScores);
 
     return (
-        <>{loading && (<p>Loading...</p>)}
+        <>{loading ? (<p>Loading...</p>) : <>
             <div>
                 <table>
                     <thead>
@@ -81,12 +81,12 @@ function LeaderboardTableClimbing() {
                             </tr>
                         }
                     })}
-
                     </tbody>
                 </table>
             </div>
+        </>}
         </>
     );
 }
 
-export default LeaderboardTableClimbing;
+export default LeaderboardTableSpeed;
