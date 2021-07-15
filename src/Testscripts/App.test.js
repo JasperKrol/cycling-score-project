@@ -1,6 +1,6 @@
-import {createCurrentMonthString, createCurrentYearString} from "./helpers/createDateStrings";
-import metersToKilometers from "./helpers/metersToKM";
-import secondsPerMeterToKMPH from "./helpers/secondsPerMeterToKMPH";
+import {createCurrentMonthString, createCurrentYearString} from "../helpers/createDateStrings";
+import metersToKilometers from "../helpers/metersToKM";
+import secondsPerMeterToKMPH from "../helpers/secondsPerMeterToKMPH";
 
 test('Dit is de test', () => {
     console.log("hij doet het")

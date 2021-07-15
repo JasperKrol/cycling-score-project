@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// @todo verwijder data imports
 import {createCurrentMonthString} from "../../helpers/createDateStrings";
 import firebase from "../../contexts/Firebase";
 import {createMeterString} from "../../helpers/createMeterString";
