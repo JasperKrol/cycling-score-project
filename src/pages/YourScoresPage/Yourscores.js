@@ -137,7 +137,7 @@ function YourScores() {
     return (
         <>
             <div className="container">
-                <Tile className="tile-score">
+                <Tile>
                     <h2>You have climbed:</h2>
                     <div className="score-logo">
                         <i className="fas fa-mountain fa-2x"/>

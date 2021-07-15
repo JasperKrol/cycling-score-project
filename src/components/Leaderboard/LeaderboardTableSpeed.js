@@ -7,12 +7,13 @@ function LeaderboardTableClimbing() {
 
     const [userScores, setUserScores] = useState([]);
     const [loading, setLoading] = useState(true);
+    const currentMonth = createCurrentMonthString()
 
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
 
         const fetchData = async () => {
-            const currentMonth = createCurrentMonthString()
+
             try {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();
@@ -33,7 +34,7 @@ function LeaderboardTableClimbing() {
                         return accumulator + speed.average_speed
                     }, 0)
 
-                    const totalScore = (speedScore / filteredRides.length).toFixed(2)
+                    const totalScore = (speedScore / filteredRides.length)
 
                     return {
                         ...userStravaData.stravaUserProfile,
@@ -56,7 +57,7 @@ function LeaderboardTableClimbing() {
         fetchData();
     }, []);
 
-    console.log('HALLO', userScores);
+    // console.log('HALLO', userScores);
 
     return (
         <>{loading && (<p>Loading...</p>)}

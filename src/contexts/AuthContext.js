@@ -2,10 +2,10 @@ import React, {useState, createContext, useContext, useEffect} from "react";
 import app from './Firebase'
 import Tile from "../components/Tile/Tile";
 
-export const authContext = createContext({});
+export const AuthContext = createContext({});
 
 export function useAuthContext() {
-    return useContext(authContext)
+    return useContext(AuthContext)
 }
 
 function AuthContextProvider({children}) {
@@ -30,7 +30,7 @@ function AuthContextProvider({children}) {
     }
 
     return (
-        <authContext.Provider value={{
+        <AuthContext.Provider value={{
             email: email,
             setEmail: setEmail,
             password: password,
@@ -39,7 +39,7 @@ function AuthContextProvider({children}) {
             setUser: setUser,
         }}>
             {!pageLoading && children}
-        </authContext.Provider>
+        </AuthContext.Provider>
     )
 }
 

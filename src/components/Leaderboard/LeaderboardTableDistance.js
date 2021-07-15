@@ -75,7 +75,6 @@ function LeaderboardTableClimbing() {
                             </tr>
                         }
                     })}
-
                     </tbody>
                 </table>
             </div>

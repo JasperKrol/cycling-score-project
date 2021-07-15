@@ -49,14 +49,18 @@ function SignUp() {
                         <div className="form-container">
                             <form onSubmit={onSubmit}>
                                 <label htmlFor="email">Email:
-                                <input onChange={e => setEmail(e.target.value)} placeholder='your@email.com'
+                                <input onChange={e => setEmail(e.target.value)}
+                                       placeholder='your@email.com'
                                        type='email'
-                                       name='email' value={email}/>
+                                       name='email'
+                                       value={email}/>
                                 </label>
                                 <label htmlFor="password">Password:
-                                <input onChange={e => setPassword(e.target.value)} placeholder='Your password'
+                                <input onChange={e => setPassword(e.target.value)}
+                                       placeholder='Your password'
                                        type='password'
-                                       name='password' value={password}/>
+                                       name='password'
+                                       value={password}/>
                                 </label>
                                 <Button
                                     text="Register"

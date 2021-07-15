@@ -3,10 +3,10 @@ import axios from "axios";
 import firebase from "./Firebase";
 // import {useAuthContext} from "./AuthContext";
 
-export const stravaActivityContext = createContext({});
+export const StravaActivityContext = createContext({});
 
 export function useStravaActivityContext() {
-    return useContext(stravaActivityContext)
+    return useContext(StravaActivityContext)
 }
 
 function StravaActivityContextProvider({children}) {
@@ -89,7 +89,7 @@ function StravaActivityContextProvider({children}) {
 
 
     return (
-        <stravaActivityContext.Provider value={{
+        <StravaActivityContext.Provider value={{
             stravaData: stravaData,
             setStravaData: setStravaData,
             loading: loading,
@@ -106,7 +106,7 @@ function StravaActivityContextProvider({children}) {
         }}
         >
             {children}
-        </stravaActivityContext.Provider>
+        </StravaActivityContext.Provider>
     )
 }
 

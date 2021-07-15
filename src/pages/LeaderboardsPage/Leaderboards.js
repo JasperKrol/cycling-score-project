@@ -13,46 +13,37 @@ function Leaderboards() {
     return (
         <>
             <div className="container climbing ">
-                <div className="leaderboard-tile">
-                <Tile>
-                    <h1>Climbing leaderboard</h1>
-                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <div className="dashboard">
-                            <LeaderboardTableClimbing />
-                        </div>
-                    </>)}
-                </Tile>
-                </div>
+                    <Tile>
+                        <h1>Climbing leaderboard</h1>
+                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                            <div className="table">
+                                <LeaderboardTableClimbing/>
+                            </div>
+                        </>)}
+                    </Tile>
             </div>
 
-
             <div className="container distance">
-                <div className="leaderboard-tile">
-                <Tile>
-                    <h1>Leaderboard for Distance</h1>
-                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <div className="dashboard">
-                            <LeaderboardTableDistance/>
-                        </div>
-                    </>)}
-                </Tile>
-                </div>
+                    <Tile>
+                        <h1>Distance leaderboard</h1>
+                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                            <div className="table">
+                                <LeaderboardTableDistance/>
+                            </div>
+                        </>)}
+                    </Tile>
             </div>
 
             <div className="container speed ">
-                <div className="leaderboard-tile">
-                <Tile>
-                    <h1>Leaderboard for Average Speed</h1>
-                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                        <div className="dashboard">
-                            <LeaderboardTableSpeed/>
-                        </div>
-                    </>)}
-                </Tile>
-                </div>
+                    <Tile>
+                        <h1>Average Speed leaderboard</h1>
+                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                            <div className="table">
+                                <LeaderboardTableSpeed/>
+                            </div>
+                        </>)}
+                    </Tile>
             </div>
-
-
         </>
     )
 }
