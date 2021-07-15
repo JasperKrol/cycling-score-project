@@ -6,66 +6,95 @@ import Tile from "../../components/Tile/Tile";
 import React, {useRef} from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 import Button from "../../components/Button/Button";
+import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
+
 
 function Leaderboards() {
 
     const {pageLoading} = useAuthContext()
     const leaderboardRef = useRef()
 
-    function handleBackClick(){
-        leaderboardRef.current({ behavior: 'smooth' })
+    function scrollTo() {
+        scroller.scrollTo('scroll-to-element', {
+            duration: 800,
+            delay: 0,
+            smooth: 'easeInOutQuart'
+        })
     }
 
     return (
         <>
-            <div className="container climbing ">
-                    <Tile>
-                        <h1 ref={leaderboardRef}>Climbing leaderboard</h1>
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                            <div className="table">
-                                <LeaderboardTableClimbing/>
-                            </div>
-                        </>)}
-                        <input
-                            type="button"
-                            onClick={handleBackClick}/>
-                        <Button
-                        text="Next"
-                        />
-                    </Tile>
-            </div>
-
-            <div className="container distance">
-                    <Tile>
-                        <h1 ref={leaderboardRef}>Distance leaderboard</h1>
-                        <Button
-                            text="Previous"
-                        />
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                            <div className="table">
-                                <LeaderboardTableDistance/>
-                            </div>
-                        </>)}
+            <div
+                className="container climbing"
+                id="climbing">
+                <Tile>
+                    <h1>Climbing leaderboard</h1>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                        <div className="table">
+                            <LeaderboardTableClimbing/>
+                        </div>
+                    </>)}
+                    <Link
+                        to="distance"
+                        spy={true}
+                        smooth={true}>
                         <Button
                             text="Next"
                         />
-                    </Tile>
-
+                    </Link>
+                </Tile>
             </div>
 
-            <div className="container speed ">
-                    <Tile>
-
-                        <h1 ref={leaderboardRef}>Average Speed leaderboard</h1>
-                        {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
-                            <div className="table">
-                                <LeaderboardTableSpeed/>
-                            </div>
-                        </>)}
+            <div
+                className="container distance"
+                id="distance"
+            >
+                <Tile>
+                    <h1>Distance leaderboard</h1>
+                    <Link
+                        to="climbing"
+                        spy={true}
+                        smooth={true}>
                         <Button
                             text="Previous"
                         />
-                    </Tile>
+                    </Link>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                        <div className="table">
+                            <LeaderboardTableDistance/>
+                        </div>
+                    </>)}
+                    <Link
+                        to="speed"
+                        spy={true}
+                        smooth={true}>
+                        <Button
+                            text="Next"
+                        />
+                    </Link>
+                </Tile>
+
+            </div>
+
+            <div
+                className="container speed"
+                id="speed">
+                <Tile>
+                    <h1>Average Speed leaderboard</h1>
+                    {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
+                        <div className="table">
+                            <LeaderboardTableSpeed/>
+                        </div>
+                    </>)}
+                    <Link
+                        to="distance"
+                        spy={true}
+                        smooth={true}>
+                        <Button
+                            text="Previous"
+                        />
+                    </Link>
+                </Tile>
             </div>
         </>
     )
