@@ -9,6 +9,7 @@
 .container.distance {
     background-image: url("../../assets/trainingpeak foto.jpg");
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     text-align: center;

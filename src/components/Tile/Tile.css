@@ -8,14 +8,15 @@
     text-align: center;
     border-radius: 10px;
     width: 70%;
-    min-height: 60vh;
+    min-height: 50vh;
     background-color: rgba(255,255,255, 0.5);
     flood-opacity: inherit;
     margin: 20px;
 }
 
 
-@media screen and (max-width: 756px) {
+@media screen and (min-width: 756px) {
+
     .tile {
         display: flex;
         align-items: center;
@@ -25,11 +26,12 @@
         border: rgba(255,255,255, 0.5);
         text-align: center;
         border-radius: 10px;
-        width: 80%;
-        min-height: 50vh;
+        width: 30%;
+        height: 40%;
         background-color: rgba(255,255,255, 0.5);
         flood-opacity: inherit;
         margin: 20px;
     }
+
 }
 
