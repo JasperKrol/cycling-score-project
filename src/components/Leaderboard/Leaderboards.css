@@ -1,16 +1,29 @@
 
-
 .container.climbing {
     background-image: url("../../assets/fiets13.jpeg");
-
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
 
 .container.distance {
-    background-image: url("../../assets/trainingpeak foto.jpg");}
+    background-image: url("../../assets/trainingpeak foto.jpg");
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
 
 .container.speed {
     background-image: url("../../assets/cyclists-601591_1920.jpg");
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
 }
+
 
 .leaderboard-tile {
     display: flex;
@@ -20,13 +33,22 @@
     justify-content: space-evenly;
     border: rgba(255, 255, 255, 0.5);
     text-align: center;
+    width: 45vw;
     border-radius: 10px;
     min-height: 50vh;
     background-color: rgba(255, 255, 255, 0.5);
     flood-opacity: inherit;
 }
 
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
 table {
+    align-content: center;
     border: solid 1px black;
     width: 60%;
 }
@@ -40,5 +62,6 @@ td {
     padding: 10px;
     border: solid 1px gray;
 }
+
 
 

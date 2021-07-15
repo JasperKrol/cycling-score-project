@@ -8,7 +8,6 @@ function LeaderboardTableClimbing() {
     const [userScores, setUserScores] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
 
@@ -34,7 +33,7 @@ function LeaderboardTableClimbing() {
                         return accumulator + speed.average_speed
                     }, 0)
 
-                    const totalScore = speedScore / filteredRides.length
+                    const totalScore = (speedScore / filteredRides.length).toFixed(2)
 
                     return {
                         ...userStravaData.stravaUserProfile,
@@ -44,7 +43,9 @@ function LeaderboardTableClimbing() {
                 });
 
                 // console.log('HALLO', filteredUsers);
-                setUserScores(filteredUsers);
+                setUserScores(filteredUsers.sort((a,b) => {
+                    return b.totalScore - a.totalScore
+                } ));
                 // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
@@ -56,7 +57,6 @@ function LeaderboardTableClimbing() {
     }, []);
 
     console.log('HALLO', userScores);
-
 
     return (
         <>{loading && (<p>Loading...</p>)}
@@ -76,7 +76,7 @@ function LeaderboardTableClimbing() {
                             return <tr key={`key${index}`}>
                                 <td>{index + 1}</td>
                                 <td>{userScore.username}</td>
-                                <td>{secondsPerMeterToKMPH(userScore.totalScore.toFixed(2))}</td>
+                                <td>{secondsPerMeterToKMPH(userScore.totalScore)}</td>
                             </tr>
                         }
                     })}

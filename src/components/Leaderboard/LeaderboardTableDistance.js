@@ -41,8 +41,9 @@ function LeaderboardTableClimbing() {
                 });
 
                 // console.log('HALLO', filteredUsers);
-                setUserScores(filteredUsers);
-                // console.log('HALLO', userScores);
+                setUserScores(filteredUsers.sort((a,b) => {
+                    return b.totalScore - a.totalScore
+                } ));                // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
                 console.error('Firebase fail: ', e)

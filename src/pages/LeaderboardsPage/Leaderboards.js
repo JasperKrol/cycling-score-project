@@ -3,7 +3,7 @@ import LeaderboardTableClimbing from "../../components/Leaderboard/LeaderboardTa
 import LeaderboardTableDistance from "../../components/Leaderboard/LeaderboardTableDistance";
 import LeaderboardTableSpeed from "../../components/Leaderboard/LeaderboardTableSpeed";
 import Tile from "../../components/Tile/Tile";
-import React, {useState} from "react";
+import React from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 
 function Leaderboards() {
@@ -13,19 +13,21 @@ function Leaderboards() {
     return (
         <>
             <div className="container climbing ">
+                <div className="leaderboard-tile">
                 <Tile>
-                    <h1>Leaderboard for Climbing</h1>
+                    <h1>Climbing leaderboard</h1>
                     {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
                         <div className="dashboard">
-                            <LeaderboardTableClimbing/>
+                            <LeaderboardTableClimbing />
                         </div>
                     </>)}
-
                 </Tile>
+                </div>
             </div>
 
 
             <div className="container distance">
+                <div className="leaderboard-tile">
                 <Tile>
                     <h1>Leaderboard for Distance</h1>
                     {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
@@ -34,9 +36,11 @@ function Leaderboards() {
                         </div>
                     </>)}
                 </Tile>
+                </div>
             </div>
 
             <div className="container speed ">
+                <div className="leaderboard-tile">
                 <Tile>
                     <h1>Leaderboard for Average Speed</h1>
                     {pageLoading ? (<><h2>Loading, please wait</h2></>) : (<>
@@ -45,6 +49,7 @@ function Leaderboards() {
                         </div>
                     </>)}
                 </Tile>
+                </div>
             </div>
 
 
