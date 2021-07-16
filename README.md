@@ -68,16 +68,22 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 ### Belangrijke screenshots:
 
-Login:!
-[Login](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/Login.PNG)
-Format:![Registreer](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/registreer.PNG)
-Your scores: !
-[Your scores](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/yourscores.PNG)
-Leaderboard voorbeeld: !
-[Leaderboard voorbeeld](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/speed%20leaderboard.PNG)
+##### login
+![Login](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/Login.PNG)
+
+##### registreer
+![Registreer](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/registreer.PNG)
+
+
+##### Your scores
+![Your scores](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/yourscores.PNG)
+
+##### Leaderboard voorbeeld
+![Leaderboard voorbeeld](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/speed%20leaderboard.PNG)
 
 
 
-### Heb je nog vragen, wil je in contact of heb je tips voor het project?:incoming_envelope:
+### Heb je nog vragen, wil je in contact of heb je tips voor het project? incoming_envelope:
 [LinkedIn](www.linkedin.com/in/jasper-paul-krol)
+Of contacteer mij via GitHub :computer:
 
