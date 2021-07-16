@@ -1,61 +1,77 @@
-# Welcome to the StravaScore App :bicyclist::dash:
+# The StravaScore App :bicyclist::dash:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Inleiding
 
-## Available Scripts
+Wil jij weten wat je dit jaar al gepresteerd hebt en ook maandelijks de strijd aangaan met je vrienden? CyclingScore
+houd alles bij :bicyclist::dash:!
 
-In the project directory, you can run:
+Wat kun je van de app verwachten?:
 
-### `npm start`
+- **Scores en klassementen:** De APP kijkt naar de gemiddelde snelheid, de afgelegde kilometers en hoeveel meter je
+  geklommen hebt.
+- **Jaaroverzicht:** Deze pagina weergeeft jouw scores van het huidige jaar.
+- **Leaderboard Climbing** Wie heeft de beste klimbenen? Bekijk hier jouw positie en die van je vrienden.
+- **Leaderboard Distance** Wie heeft de meeste kilometers gegeten? Bekijk hier jouw positie en die van je vrienden.
+- **Leaderboard Speed** Wie heeft het snelste gereden deze maand? Bekijk hier jouw positie en die van je vrienden.
+- **Eenvoudige registratie met email:** wachtwoord vergeten? Geen probleem, vraag hem opnieuw aan.
+- **Strava authentication met oAuth2.0** Veilig je gegevens delen.
+- **Tips, Tops of vragen?** Stel ze via de contactpagina.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installatie handleiding:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+##### Deze applicatie heeft gebruik gemaakt van de volgende dependencies:
 
-### `npm test`
+- **Axios**
+- **React Hook From**
+- **React Router DOM**
+- **Firebase**
+- **Fontawesome**
+- **React Scroll**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**1.** Clone het project.
 
-### `npm run build`
+**2.** Installeer de node_modules door **npm install** te draaien in de terminal.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**3.** Deze app maakt gebruikt van Firebase en Firestore, hierdoor zijn er bestanden met privégegevens die ik hier niet
+kan delen. Het ENV-bestand dient dan ook nog handmatig toegevoegd te worden. Deze informatie is te vinden in het
+aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
+    REACT_APP_API_KEY=
+    REACT_APP_FIREBASE_API_KEY=
+    REACT_APP_AUTH_DOMAIN=
+    REACT_APP_PROJECT_ID=
+    REACT_APP_STORAGE_BUCKET=
+    REACT_APP_MESSAGING_SENDER_ID=
+    REACT_APP_APP_ID=
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**4.** Het project kan gestart worden door **npm start** in de terminal te draaien.
+
+**5.** Login en registratie:
+* Registratie kan eenvoudig door een email/wachtwoord combinatie. Na een succesvolle registratie kom je gelijk op de Strava Authorization pagina.
+* Ben je uitgelogd en wil je weer gebruik maken van de APP? Gebruik dan je opgegeven email en wachtwoord op de Login pagina.
+
+**6.** Strava Authenticatie
+* Na het inloggen heeft *CycleScore* toestemming van jouw Strava account nodig om de ritten en profielgegevens op te halen.
+* Binnen het kader van beoordelen of de app werkt heb ik een Strava account gemaakt met wat ritten. Deze kan gebruikt worden voor de beoordelaar en is te vinden in het verslag.
+* Heb je al een account dan kun je autorisatie knop volgen en de voorwaarden accepteren.
 
 
-## Learn More
+**7.** Mocht je het wachtwoord vergeten zijn, kan je deze makkelijk opvragen door middel van de Forgot Your Password link. Dan wordt er een e-mail verstuurd met een activatie-link.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**8.** Ook zijn er testscenario's geschreven, deze zijn terug te vinden in de map: *testscripts*. Deze testen kunnen gedraaid worden volgens de volgende stappen in de terminal:
+*  npm test
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+**9.** Succes en vergeet niet een stukje te fietsen!️
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Belangrijke screenshots:
 
-### Analyzing the Bundle Size
+![Login](Login.PNG)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Heb je nog vragen, wil je in contact of heb je tips voor het project?:incoming_envelope:
+[LinkedIn](www.linkedin.com/in/jasper-paul-krol)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
