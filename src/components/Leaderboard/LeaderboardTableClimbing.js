@@ -54,6 +54,8 @@ function LeaderboardTableClimbing() {
     }, []);
 
 
+
+
     return (
         <>
             {loading ? (<p>Loading...</p>) : <>
@@ -72,7 +74,7 @@ function LeaderboardTableClimbing() {
                             {
                                 return <tr key={`key${index}`}>
                                     <td>{index + 1}</td>
-                                    <td>{userScore.username}</td>
+                                    <td>{userScore.firstname}</td>
                                     <td>{createMeterString(userScore.totalScore)}</td>
                                 </tr>
                             }

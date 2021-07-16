@@ -1,21 +1,12 @@
 import Tile from "../../components/Tile/Tile";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 import Button from "../../components/Button/Button";
 import {Link} from "react-router-dom";
-// import {
-//     cleanUpAuthToken,
-//     fetchUserActivities,
-//     fetchUserProfile,
-//     testAuthGetter
-// } from "../../helpers/stravaAuthFunctions";
-import axios from "axios";
 
-
-// import firebase from "../../contexts/Firebase";
 
 function StravaAuthentication() {
-    const {user} = useAuthContext()
+
 
     return (
         <>

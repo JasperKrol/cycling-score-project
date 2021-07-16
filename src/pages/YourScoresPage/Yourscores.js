@@ -7,6 +7,7 @@ import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
 import firebase from "../../contexts/Firebase";
 import {useAuthContext} from "../../contexts/AuthContext";
 import {createCurrentYearString} from "../../helpers/createDateStrings";
+import {useLocation} from "react-router-dom";
 
 
 function YourScores() {
@@ -17,70 +18,150 @@ function YourScores() {
         setStravaData,
         stravaUserProfile,
         error,
-        setError,
-        accessToken
+        setError
     } = useStravaActivityContext()
     const [loading, setLoading] = useState(true)
-
-    //@todo voeg hier de zelfde methode toe als de leaderboards met ophalen van firebase data
-    // zodat je de scores van de huidige maand en user kan weergeven.
+    const location = useLocation()
 
     const currentYearNumber = createCurrentYearString()
-    // const db = firebase.firestore()
-    // const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`
+    const db = firebase.firestore()
 
-    // const clientID = '64170'
-    // const clientSecret = '3ff187481c800d50cab4c77eaf228aeffa0d7d10'
-    // const refreshToken = '436733875c77e77d8f547b2e2cf7e6d028e93f4c'
-    // const token = "bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244"
+    function cleanUpAuthToken(str) {
+        return str.split("&")[1].slice(5);
+    }
 
-//     laat initial state nu staan als map() geen function krijg, zet hem op []
+    async function testAuthGetter(authTok) {
+        try {
+            const response = await axios.post(
+                `https://www.strava.com/api/v3/oauth/token?client_id=64170&client_secret=3ff187481c800d50cab4c77eaf228aeffa0d7d10&code=${authTok}&grant_type=authorization_code`
+            );
+            console.log("response", response)
+            return response.data;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // get mogen samen
+    useEffect(() => {
+        async function fetchAllStravaData(accestoken) {
+            try {
+                const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${accestoken}`)
+                console.log("is dit resultProfile", resultProfile.data)
+                setStravaUserProfile(resultProfile.data)
+
+                const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${accestoken}&per_page=200`)
+                console.log("is dit resultActivities", resultActivities.data)
+                setStravaData(resultActivities.data)
+                setLoading(false)
+
+
+                //return data
+                return resultProfile, resultActivities
+                // variable const
+
+            } catch (e) {
+                console.error(e)
+                setLoading(false)
+                setError(true);
+                setLoading(true);
+            }
+            fetchAllStravaData()
+        }
+
+        async function fetchData() {
+
+            try {
+                // Haal eerst de accesstoken op
+                // eslint-disable-next-line no-restricted-globals
+                console.log("location???", location)
+                const stravaAuthToken = cleanUpAuthToken(location.search)
+                console.log("stravaAuthToken", stravaAuthToken)
+                // setAutToken
+                const responseTokens = await testAuthGetter(stravaAuthToken);
+                console.log("responseTokens", responseTokens)
+
+                //@todo hier gaat het fout met opslaan
+                const accesToken = responseTokens.access_token;
+                console.log("accesToken", accesToken)
+                await fetchAllStravaData(accesToken)
+
+
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        fetchData()
+    }, [user])
+
+    useEffect(() => {
+
+        if (!user) return
+
+        //if user send new data to database
+
+        function sendData() {
+            try {
+                return db.collection('StravaData').doc(user.email).set({
+                    stravaData: stravaData,
+                    stravaUserProfile: stravaUserProfile
+                })
+
+
+            } catch (e) {
+                console.error('Firebase fail: ', e)
+            }
+
+            console.log("what is the data now", stravaData,)
+            console.log("what is the profile now", stravaUserProfile,)
+        }
+
+        sendData()
+
+    }, [stravaData, stravaUserProfile])
+    // [stravaData, stravaUserProfile])
+
+    // console.log("stravaData,stravaUserProfile", stravaData, stravaUserProfile)
 //
-// zet die codes en in ENV//
+//
+//
+    useEffect(() => {
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         try {
-    //             const result = await axios.get(`${activityLink}`)
-    //             console.log("Strava results", result.data)
-    //             setStravaData(result.data)
-    //
-    //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${token}`)
-    //             console.log("is dit result", resultProfile.data)
-    //             setStravaUserProfile(resultProfile.data)
-    //             setLoading(false)
-    //         } catch (e) {
-    //             console.error(e)
-    //             setError(true);
-    //             setLoading(true);
-    //         }
-    //     }
-    //     fetchData()
-    // }, [])
-    //
-    // useEffect(() => {
-    //
-    //     if(!user) return
-    //     //if user send new data to database
-    //
-    //     function sendData() {
-    //         try {
-    //             return db.collection('StravaData').doc(user.email).set({
-    //                 stravaData:stravaData,
-    //                 stravaUserProfile:stravaUserProfile
-    //             })
-    //
-    //
-    //         } catch (e){
-    //             console.error('Firebase fail: ', e)
-    //         }
-    //
-    //         console.log("what is the data now", stravaData,)
-    //         console.log("what is the profile now", stravaUserProfile,)
-    //     }
-    //     sendData()
-    //
-    // },[stravaData,stravaUserProfile])
+        const fetchData = async () => {
+            try {
+                const db = firebase.firestore();
+                // const data = await db.collection("StravaData").get();
+                const userData = await db.collection("StravaData").doc(user.email).onSnapshot(doc => {
+                    console.log("doc.data", doc.data())
+                })
+
+                const filteredUsers = userData.map((userStravaData) => {
+
+                    const filteredRides = userStravaData.stravaData.filter((ride) => {
+                        return ride.type === "Ride" && ride.start_date.substring(0, 7) === currentYearNumber;
+                    })
+
+                    const totalScore = Math.round(filteredRides.reduce(function (accumulator, meter) {
+                        return accumulator + meter.total_elevation_gain;
+                    }, 0));
+
+                    return {
+                        ...userStravaData.stravaUserProfile,
+                        rides: filteredRides,
+                        totalScore: totalScore,
+                    }
+                });
+                console.log('HALLO', filteredUsers);
+                // console.log('HALLO', userScores);
+                setLoading(false);
+            } catch (e) {
+                console.error('Firebase fail: ', e)
+                setLoading(true);
+            }
+        };
+        fetchData();
+    }, []);
 
     const [yearScoresClimbing, setYearScoresClimbing] = useState("")
     const [yearScoresSpeed, setYearScoresSpeed] = useState("")
@@ -138,7 +219,7 @@ function YourScores() {
                 <Tile>
                     <h2>You have climbed:</h2>
                     {/*<div className="score-logo">*/}
-                        <i className="fas fa-mountain fa-4x"/>
+                    <i className="fas fa-mountain fa-4x"/>
                     {/*</div>*/}
                     <div className="home-text">
                         {loading && (<p>Loading...</p>)}

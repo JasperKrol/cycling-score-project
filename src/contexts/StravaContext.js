@@ -1,9 +1,11 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
-import axios from "axios";
 import firebase from "./Firebase";
-// import {useAuthContext} from "./AuthContext";
+import {useLocation} from "react-router-dom";
+import axios from "axios";
+import {useAuthContext} from "./AuthContext";
 
 export const StravaActivityContext = createContext({});
+
 
 export function useStravaActivityContext() {
     return useContext(StravaActivityContext)
@@ -11,7 +13,7 @@ export function useStravaActivityContext() {
 
 function StravaActivityContextProvider({children}) {
 
-    // @todo: zet hier ok de strava tokenbij zodat we die overal kunnen gebruiken
+
 
     const [stravaData, setStravaData] = useState([])
     const [stravaUserProfile, setStravaUserProfile] = useState([])
@@ -20,72 +22,70 @@ function StravaActivityContextProvider({children}) {
     const [clientSecret, setClientSecret] = useState("")
     const [clientId, setClientID] = useState();
     const [accessToken, setAccessToken] = useState('');
+    const [ banaan, setLoading] = useState(true)
 
-    // // @todo opruimen niet gebruikte setters/getters
-    // const db = firebase.firestore();
-    //
+
+
+
+
+    // get mogen samen
     // useEffect(() => {
-    //     // @todo: eerst even checken of we wel gebruikersdata hebben en of we nog geen token hebben
-    //     // als wel data maar geen token, dan deze functie aanroepen:
     //
-    //     async function fetchToken() {
-    //         // @todo: de hardcoded data vervangen met data uit de context-state
+    //    if (!user) return
+    //
+    //     async function fetchAllStravaData(accestoken) {
     //         try {
-    //             const response = await axios.post('https://www.strava.com/oauth/token', {
-    //                 client_id: '68178',
-    //                 client_secret: '25b0dcca0b71b0e6430d2c91a91f9c604644e3f7',
-    //                 refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
-    //                 grant_type: 'refresh_token'
-    //             });
-    //             setAccessToken(response.data.access_token);
-    //             console.log('TOKEN', response.data, "data", response);
+    //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${accestoken}`)
+    //             console.log("is dit resultProfile", resultProfile.data)
+    //             setStravaUserProfile(resultProfile.data)
+    //
+    //             const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${accestoken}&per_page=200`)
+    //             console.log("is dit resultActivities", resultActivities.data)
+    //             setStravaData(resultActivities.data)
+    //             setLoading(false)
+    //
+    //
+    //             //return data
+    //             return resultProfile, resultActivities
+    //             // variable const
+    //
+    //         } catch (e) {
+    //             console.error(e)
+    //             setLoading(false)
+    //             setError(true);
+    //             setLoading(true);
+    //         }
+    //         fetchAllStravaData()
+    //     }
+    //
+    //     async function fetchData() {
+    //         if (!user) return
+    //
+    //         try {
+    //             // Haal eerst de accesstoken op
+    //             // eslint-disable-next-line no-restricted-globals
+    //             console.log("location???", location)
+    //             const stravaAuthToken = cleanUpAuthToken(location.search)
+    //             console.log("stravaAuthToken", stravaAuthToken)
+    //             // setAutToken
+    //             const responseTokens = await testAuthGetter(stravaAuthToken);
+    //             console.log("responseTokens", responseTokens)
+    //
+    //             //@todo hier gaat het fout met opslaan
+    //             const accesToken = responseTokens.access_token;
+    //             console.log("accesToken", accesToken)
+    //             await fetchAllStravaData(accesToken)
+    //
+    //
     //         } catch (e) {
     //             console.error(e);
     //         }
     //     }
-    //     fetchToken();
-    // }, []);
     //
-    // useEffect(() => {
-    //     console.log('DE TOKEN IS', accessToken);
-    //
-    //     const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken}&per_page=200`
-    //
-    //     async function fetchStravaData() {
-    //         toggleLoading(true);
-    //         try {
-    //             const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244&per_page=200`)
-    //             console.log("Strava results", resultActivities.data)
-    //             setStravaData(resultActivities.data);
+    //     fetchData()
     //
     //
-    //             // push de userInfo naar stravaUserProfile -> peet willeke en ik
-    //
-    //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=bf9c0141655bfb5c9712c57b9ca7d2bfc9f67244`)
-    //             console.log("is dit result", resultProfile.data)
-    //             setStravaUserProfile(resultProfile.data)
-    //
-    //             await db.collection('StravaData').doc(user.email).set({
-    //                 stravaData: stravaData,
-    //                 stravaUserProfile: stravaUserProfile
-    //             })
-    //
-    //
-    //         } catch (e) {
-    //             console.error(e)
-    //             setError(true);
-    //
-    //         }
-    //         toggleLoading(false);
-    //     }
-    //
-    //     if (accessToken) {
-    //         fetchStravaData();
-    //     }
-    //
-    // }, [accessToken])
-
-
+    // }, [user])
 
 
     return (

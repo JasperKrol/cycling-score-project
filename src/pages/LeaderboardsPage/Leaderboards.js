@@ -3,7 +3,7 @@ import LeaderboardTableClimbing from "../../components/Leaderboard/LeaderboardTa
 import LeaderboardTableDistance from "../../components/Leaderboard/LeaderboardTableDistance";
 import LeaderboardTableSpeed from "../../components/Leaderboard/LeaderboardTableSpeed";
 import Tile from "../../components/Tile/Tile";
-import React, {useRef} from "react";
+import React from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 import Button from "../../components/Button/Button";
 import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
@@ -12,7 +12,6 @@ import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, s
 function Leaderboards() {
 
     const {pageLoading} = useAuthContext()
-    const leaderboardRef = useRef()
 
     function scrollTo() {
         scroller.scrollTo('scroll-to-element', {

@@ -76,7 +76,7 @@ function LeaderboardTableSpeed() {
                         {
                             return <tr key={`key${index}`}>
                                 <td>{index + 1}</td>
-                                <td>{userScore.username}</td>
+                                <td>{userScore.firstname}</td>
                                 <td>{secondsPerMeterToKMPH(userScore.totalScore)}</td>
                             </tr>
                         }
