@@ -1,19 +1,28 @@
 import Tile from "../../components/Tile/Tile";
-import React from "react";
+import React, {useEffect} from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 import Button from "../../components/Button/Button";
 import {Link} from "react-router-dom";
+// import {
+//     cleanUpAuthToken,
+//     fetchUserActivities,
+//     fetchUserProfile,
+//     testAuthGetter
+// } from "../../helpers/stravaAuthFunctions";
+import axios from "axios";
+
+
 // import firebase from "../../contexts/Firebase";
 
 function StravaAuthentication() {
     const {user} = useAuthContext()
-    // const db = firebase.firestore()
 
     return (
         <>
             <div className="container">
                 <Tile>
-                    <h1>Home</h1>
+                    <h1>Lets fetch your data first!</h1>
+                    <h3>so we can calculate your scores and put you in the leaderboards</h3>
                     <Button
                         redirect="authorizeStrava"
                         text="Connect with Strava"

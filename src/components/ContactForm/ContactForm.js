@@ -32,9 +32,8 @@ export default function ContactForm() {
                 {error && <h2>{error}</h2>}
             </div>
             <form
-                className={styles['form']}
+                className='form'
                 onSubmit={handleSubmit(onSubmit)}
-
             >
                 <div className="details">
                     <label htmlFor="name">Naam:

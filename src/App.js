@@ -22,7 +22,8 @@ function App() {
             <Navbar/>
             <Switch>
                 <PrivateRoute
-                    path="/home"
+                    exact
+                    path="/"
                     component={<Home/>}>
                 </PrivateRoute>
 
