@@ -17,7 +17,7 @@ function Navbar() {
             <nav className='navbar'>
                 <div className='navbar-container'>
                     <NavLink
-                        to='/'
+                        to='/home'
                         className='navbar-logo' onClick={closeMobileMenu}>
                         CyclingScore
                         <i className="fas fa-biking"/>
@@ -56,7 +56,7 @@ function Navbar() {
                             <>
                                 <li className='nav-item'>
                                     <NavLink
-                                        to='/'
+                                        to='/home'
                                         className='nav-links'
                                         onClick={closeMobileMenu}>
                                         Home

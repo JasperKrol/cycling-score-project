@@ -30,7 +30,7 @@ function SignUp() {
             const userCredential = await app.auth().createUserWithEmailAndPassword(email, password)
             console.log('Registered', userCredential)
             setUser(userCredential.user)
-            setTimeout(() => history.push("/"), 2000);
+            setTimeout(() => history.push("/strava-authentication"), 1000);
         } catch (e) {
             console.error('Firebase fail: ', e)
             setError("Failed to sign up")

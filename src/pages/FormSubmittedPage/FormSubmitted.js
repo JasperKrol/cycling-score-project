@@ -8,7 +8,7 @@ export default function FormSubmitted() {
     const history = useHistory();
 
     function handleClick() {
-        history.push("/");
+        history.push("/home");
     }
 
     return (

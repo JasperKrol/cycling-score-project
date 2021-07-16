@@ -1,4 +1,4 @@
-# StravaScore App :bicyclist::dash:
+# Welcome to the StravaScore App :bicyclist::dash:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

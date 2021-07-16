@@ -65,10 +65,10 @@ function Home() {
     //  code opschonen met private gegevens
     // const userID = "64170"
 
-    // const token = "1ca7e824526c0a610e5307e82ae0b7795840f26a"
-    // const activityLink = `https://www.strava.com/api/v3/athlete`
-
-
+    // const token = "3ff187481c800d50cab4c77eaf228aeffa0d7d10"
+    // // const activityLink = `https://www.strava.com/api/v3/athlete`
+    //
+    //
     // useEffect(() => {
     //     async function fetchUserProfile() {
     //         try {
@@ -88,8 +88,73 @@ function Home() {
     //
     // }, [])
 
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Haal eerst de accesstoken op
+                const result = await axios.post("https://www.strava.com/oauth/token", {
+                    client_id: '64170',
+                    client_secret: '3ff187481c800d50cab4c77eaf228aeffa0d7d10',
+                    refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
+                    grant_type: 'refresh_token',
+                }, {
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                console.log("dit is de token respons", result.data);
+                // result.data bevat nu als het goed is dit:
+                // { token_type: "Bearer", access_token: "sjdfksjflkdsjfldksfj", expires_at: "123464212"}
+                const token = result.data.access_token;
+                const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
+                // Haal daarmee de strava data op:
+                const response = await axios.get(`${activityLink}?acces_token=${token}`,
+                    { headers: { Authorization: `Bearer ${token}` } })
+                console.log("Strava results", response.data);
+
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        fetchData()
+    }, []);
+
     // @todo hier de informatie uit de context halen via use effect
     // const stravaProfilePicture = stravaUserProfile.profile
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Haal eerst de accesstoken op
+                const result = await axios.post("https://www.strava.com/oauth/token", {
+                    client_id: '64170',
+                    client_secret: '3ff187481c800d50cab4c77eaf228aeffa0d7d10',
+                    activity: "read",
+                    grant_type: 'refresh_token',
+                    refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
+                }, {
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                console.log("dit is de token respons", result.data);
+                // result.data bevat nu als het goed is dit:
+                // { token_type: "Bearer", access_token: "34d9eddb2881279e56faa3704f9e16a831232dbf", expires_at: "123464212"}
+                const token = result.data.access_token;
+                console.log("token", token)
+                const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
+                // Haal daarmee de strava data op:
+                const response = await axios.get(`${activityLink}?acces_token=${token}`,)
+                console.log("Strava results", response.data);
+
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        fetchData()
+    }, [])
 
     return (
         <>

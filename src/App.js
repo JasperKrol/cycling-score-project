@@ -12,6 +12,7 @@ import FormSubmitted from "./pages/FormSubmittedPage/FormSubmitted";
 import SignUp from "./pages/SignUpPage/SignUp";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import ForgotPassword from "./pages/ForgotPasswordPage/ForgotPassword";
+import StravaAuthentication from "./pages/StravaAuthentication/StravaAuthentication";
 
 
 function App() {
@@ -21,13 +22,16 @@ function App() {
             <Navbar/>
             <Switch>
                 <PrivateRoute
-                    exact
-                    path="/"
+                    path="/home"
                     component={<Home/>}>
                 </PrivateRoute>
 
                 <Route path="/login">
                     <Login/>
+                </Route>
+
+                <Route path="/strava-authentication">
+                    <StravaAuthentication/>
                 </Route>
 
                 <Route path="/sign-up">

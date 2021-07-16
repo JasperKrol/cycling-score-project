@@ -30,7 +30,7 @@ function Login() {
             const userCredential = await app.auth().signInWithEmailAndPassword(email, password)
             // console.log('Logged in: ', userCredential)
             setUser(userCredential.user)
-            setTimeout(() => history.push("/"), 100);
+            setTimeout(() => history.push("/strava-authentication"), 100);
         } catch (e) {
             console.error('Firebase fail: ', e)
             setError("Failed to sign in")
