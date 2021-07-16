@@ -1,21 +1,28 @@
 import Tile from "../../components/Tile/Tile";
+import React from "react";
+import {useAuthContext} from "../../contexts/AuthContext";
+import Button from "../../components/Button/Button";
+import {Link} from "react-router-dom";
+// import firebase from "../../contexts/Firebase";
 
 function StravaAuthentication() {
-
-    const redirectUrl = "http://localhost:3000/"
-
-    // Helaas was het niet mogelijk om de link te pushen via history push en ook niet met een Link component. Docent en ik hebben er naar gekeken en gezien de tijd kregen we het niet voor elkaar.
-    const handleLogin = () => {
-        window.location = `https://www.strava.com/oauth/authorize?client_id=64170&response_type=code&redirect_uri=${redirectUrl}/exchange_token&approval_prompt=force&scope=read_all,activity:read_all`;
-    };
+    const {user} = useAuthContext()
+    // const db = firebase.firestore()
 
     return (
         <>
             <div className="container">
                 <Tile>
                     <h1>Home</h1>
-                    <button onClick={handleLogin}>Connect with Strava</button>
+                    <Button
+                        redirect="authorizeStrava"
+                        text="Connect with Strava"
+                    />
+                    <Link to="/why-strava">
+                        <p className='login-text'>*Why we need your STRAVA details*</p>
+                    </Link>
                 </Tile>
+
             </div>
         </>
     )

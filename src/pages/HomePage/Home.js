@@ -6,12 +6,15 @@ import firebase from "../../contexts/Firebase"
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import axios from "axios";
 import {useForm} from "react-hook-form";
-
 import {useAuthContext} from "../../contexts/AuthContext";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Button from "../../components/Button/Button";
-
-const db = firebase.firestore()
+import {
+    cleanUpAuthToken,
+    fetchUserActivities,
+    fetchUserProfile,
+    testAuthGetter
+} from "../../helpers/stravaAuthFunctions";
 
 function Home() {
 
@@ -20,52 +23,30 @@ function Home() {
         loading, toggleLoading, stravaUserProfile, setStravaUserProfile, error,
         setError, clientSecret, setClientSecret, clientId, setClientID
     } = useStravaActivityContext()
-
+    const db = firebase.firestore()
     const {user} = useAuthContext()
-    const {handleSubmit, register} = useForm();
+    const location = useLocation()
 
     // const {formState: {errors}, register} = useForm({mode: "onBlur"});
 
     // Getting the data from Strava
-    useEffect(() => {
+    // useEffect(() => {
+    //
+    //     // No user? Exit
+    //     if (!user) return
+    //
+    //     // User logged in? Get data
+    //     return db.collection('StravaUserTokens').doc(user.email).onSnapshot(doc => {
+    //
+    //         const data = doc.data()
+    //         if (!data) return
+    //         setClientID(data.clientId)
+    //         setClientSecret(data.clientSecret)
+    //     })
+    //
+    // }, [user])
 
-        // No user? Exit
-        if (!user) return
-
-        // User logged in? Get data
-        return db.collection('StravaUserTokens').doc(user.email).onSnapshot(doc => {
-
-            const data = doc.data()
-            if (!data) return
-            setClientID(data.clientId)
-            setClientSecret(data.clientSecret)
-        })
-
-    }, [user])
-
-    // handle submit
-
-    async function onSubmit(e) {
-        // Prevent page reload
-        e.preventDefault()
-        console.log(`client id pushed: ${clientId} and client secret pushed:${clientSecret}`)
-
-        // Do the actual registration
-        try {
-            await db.collection('StravaUserTokens').doc(user.email).set({
-                clientSecret: clientSecret,
-                clientId: clientId
-            })
-
-        } catch (e) {
-            console.error('Firebase fail: ', e)
-        }
-    }
-
-    //  code opschonen met private gegevens
-    // const userID = "64170"
-
-    // const token = "3ff187481c800d50cab4c77eaf228aeffa0d7d10"
+        // const token = "3ff187481c800d50cab4c77eaf228aeffa0d7d10"
     // // const activityLink = `https://www.strava.com/api/v3/athlete`
     //
     //
@@ -87,31 +68,79 @@ function Home() {
     //     fetchUserProfile()
     //
     // }, [])
+    // @todo hier de informatie uit de context halen via use effect
+    // const stravaProfilePicture = stravaUserProfile.profile
+
+
+
+//     function cleanUpAuthToken (str)  {
+//         return str.split("&")[1].slice(5);
+//     }
+//
+//
+//
+//
+//     async function testAuthGetter (authTok) {
+//         try {
+//             const response = await axios.post(
+//                 `https://www.strava.com/api/v3/oauth/token?client_id=64170&client_secret=3ff187481c800d50cab4c77eaf228aeffa0d7d10&code=${authTok}&grant_type=authorization_code`
+//             );
+//             console.log("response", response)
+//             return response.data;
+//         } catch (error) {
+//             console.log(error);
+//         }
+//     };
+//
+// // get mogen samen
+//
+//     async function fetchUserProfile(accestoken) {
+//         try {
+//             const result = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${accestoken}`)
+//             console.log("is dit result", result.data)
+//
+//             //return data
+//             // variable const
+//
+//         } catch (e) {
+//             console.error(e)
+//
+//         }
+//     }
+//
+//     async function fetchUserActivities(accestoken) {
+//         try {
+//             const result = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${accestoken}&per_page=200`)
+//             console.log("is dit result", result.data)
+//
+//         } catch (e) {
+//             console.error(e)
+//
+//         }
+//     }
 
     useEffect(() => {
+
         async function fetchData() {
+
             try {
                 // Haal eerst de accesstoken op
-                const result = await axios.post("https://www.strava.com/oauth/token", {
-                    client_id: '64170',
-                    client_secret: '3ff187481c800d50cab4c77eaf228aeffa0d7d10',
-                    refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
-                    grant_type: 'refresh_token',
-                }, {
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                console.log("dit is de token respons", result.data);
-                // result.data bevat nu als het goed is dit:
-                // { token_type: "Bearer", access_token: "sjdfksjflkdsjfldksfj", expires_at: "123464212"}
-                const token = result.data.access_token;
-                const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
-                // Haal daarmee de strava data op:
-                const response = await axios.get(`${activityLink}?acces_token=${token}`,
-                    { headers: { Authorization: `Bearer ${token}` } })
-                console.log("Strava results", response.data);
+                // eslint-disable-next-line no-restricted-globals
+                console.log("location???", location)
+                const stravaAuthToken = cleanUpAuthToken(location.search)
+                console.log("stravaAuthToken", stravaAuthToken)
+                // setAutToken
+                const responseTokens = await testAuthGetter(stravaAuthToken);
+                console.log("responseTokens", responseTokens)
+
+                //@todo hier gaat het fout met opslaan
+                const accesToken = responseTokens.access_token;
+                console.log("accesToken", accesToken)
+                const profile = fetchUserProfile(accesToken)
+                //set state met activities en profile data
+                console.log("profile", profile)
+                const activities = fetchUserActivities(accesToken)
+                console.log("activities", activities)
 
             } catch (e) {
                 console.error(e);
@@ -120,41 +149,6 @@ function Home() {
         fetchData()
     }, []);
 
-    // @todo hier de informatie uit de context halen via use effect
-    // const stravaProfilePicture = stravaUserProfile.profile
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                // Haal eerst de accesstoken op
-                const result = await axios.post("https://www.strava.com/oauth/token", {
-                    client_id: '64170',
-                    client_secret: '3ff187481c800d50cab4c77eaf228aeffa0d7d10',
-                    activity: "read",
-                    grant_type: 'refresh_token',
-                    refresh_token: '436733875c77e77d8f547b2e2cf7e6d028e93f4c',
-                }, {
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                console.log("dit is de token respons", result.data);
-                // result.data bevat nu als het goed is dit:
-                // { token_type: "Bearer", access_token: "34d9eddb2881279e56faa3704f9e16a831232dbf", expires_at: "123464212"}
-                const token = result.data.access_token;
-                console.log("token", token)
-                const activityLink = `https://www.strava.com/api/v3/athlete/activities?access_token=${token}&per_page=200`
-                // Haal daarmee de strava data op:
-                const response = await axios.get(`${activityLink}?acces_token=${token}`,)
-                console.log("Strava results", response.data);
-
-            } catch (e) {
-                console.error(e);
-            }
-        }
-        fetchData()
-    }, [])
 
     return (
         <>
@@ -173,37 +167,6 @@ function Home() {
                     </div>
 
                     {error && <p>Er is iets misgegaan met het ophalen van de data.</p>}
-
-                    {/*@todo client id evt op password zetten*/}
-                    <form onSubmit={onSubmit}>
-                        <label htmlFor="clientId">client ID:
-                            <input
-                                placeholder='Client ID'
-                                type='text'
-                                name='clientId'
-                                value={clientId}
-                                onChange={(e) => setClientID(e.target.value)}
-                            />
-                        </label>
-                        <label htmlFor="clientSecret">clientSecret:
-                            <input
-                                placeholder='client secret'
-                                type='text'
-                                name='clientSecret'
-                                value={clientSecret}
-                                onChange={(e) => setClientSecret(e.target.value)}
-                            />
-
-                        </label>
-
-                        <Button
-                            text="Save"
-                            // disabled={errors.clientSecret || errors.clientId}
-                        />
-                    </form>
-                    <Link to="/why-strava">
-                        <p className='login-text'>*Why we need your STRAVA details*</p>
-                    </Link>
                 </Tile>
             </div>
         </>
