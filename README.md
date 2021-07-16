@@ -84,6 +84,6 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 
 ### Heb je nog vragen, wil je in contact of heb je tips voor het project? incoming_envelope:
-[LinkedIn](www.linkedin.com/in/jasper-paul-krol)
-Of contacteer mij via GitHub :computer:
+- [LinkedIn](www.linkedin.com/in/jasper-paul-krol)
+- Of neem contact via mijn GitHub pagina :computer:
 
