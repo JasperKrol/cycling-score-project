@@ -9,7 +9,6 @@ import {useAuthContext} from "../../contexts/AuthContext";
 import {createCurrentYearString} from "../../helpers/createDateStrings";
 import {useLocation} from "react-router-dom";
 
-
 function YourScores() {
     const {user} = useAuthContext()
     const {
@@ -21,6 +20,9 @@ function YourScores() {
         setError
     } = useStravaActivityContext()
     const [loading, setLoading] = useState(true)
+    const [yearScoresClimbing, setYearScoresClimbing] = useState("")
+    const [yearScoresSpeed, setYearScoresSpeed] = useState("")
+    const [yearScoresDistance, setYearScoresDistance] = useState("")
     const location = useLocation()
 
     const currentYearNumber = createCurrentYearString()
@@ -120,52 +122,6 @@ function YourScores() {
         sendData()
 
     }, [stravaData, stravaUserProfile])
-    // [stravaData, stravaUserProfile])
-
-    // console.log("stravaData,stravaUserProfile", stravaData, stravaUserProfile)
-//
-//
-//
-    useEffect(() => {
-
-        const fetchData = async () => {
-            try {
-                const db = firebase.firestore();
-                // const data = await db.collection("StravaData").get();
-                const userData = await db.collection("StravaData").doc(user.email).onSnapshot(doc => {
-                    console.log("doc.data", doc.data())
-                })
-
-                const filteredUsers = userData.map((userStravaData) => {
-
-                    const filteredRides = userStravaData.stravaData.filter((ride) => {
-                        return ride.type === "Ride" && ride.start_date.substring(0, 7) === currentYearNumber;
-                    })
-
-                    const totalScore = Math.round(filteredRides.reduce(function (accumulator, meter) {
-                        return accumulator + meter.total_elevation_gain;
-                    }, 0));
-
-                    return {
-                        ...userStravaData.stravaUserProfile,
-                        rides: filteredRides,
-                        totalScore: totalScore,
-                    }
-                });
-                console.log('HALLO', filteredUsers);
-                // console.log('HALLO', userScores);
-                setLoading(false);
-            } catch (e) {
-                console.error('Firebase fail: ', e)
-                setLoading(true);
-            }
-        };
-        fetchData();
-    }, []);
-
-    const [yearScoresClimbing, setYearScoresClimbing] = useState("")
-    const [yearScoresSpeed, setYearScoresSpeed] = useState("")
-    const [yearScoresDistance, setYearScoresDistance] = useState("")
 
 
     useEffect(() => {
@@ -208,6 +164,7 @@ function YourScores() {
                 console.error('Firebase fail: ', e)
             }
         }
+
         sendData()
 
     }, [stravaData, stravaUserProfile])
