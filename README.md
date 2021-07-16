@@ -68,10 +68,13 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 ### Belangrijke screenshots:
 
-Format: ![Login](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/Login.PNG)
-Format: ![Registreer](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/registreer.PNG)
-Format: ![Your scores](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/yourscores.PNG)
-Format: ![Leaderboard voorbeeld](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/speed%20leaderboard.PNG)
+Login:!
+[Login](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/Login.PNG)
+Format:![Registreer](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/registreer.PNG)
+Your scores: !
+[Your scores](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/yourscores.PNG)
+Leaderboard voorbeeld: !
+[Leaderboard voorbeeld](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/speed%20leaderboard.PNG)
 
 
 
