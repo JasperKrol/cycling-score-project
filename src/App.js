@@ -30,9 +30,10 @@ function App() {
                     <Login/>
                 </Route>
 
-                <Route path="/strava-authentication">
-                    <StravaAuthentication/>
-                </Route>
+                <PrivateRoute
+                    path="/strava-authentication">
+                    component={<StravaAuthentication/>}
+                </PrivateRoute>
 
                 <Route path="/sign-up">
                     <SignUp/>

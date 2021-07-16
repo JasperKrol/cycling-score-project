@@ -5,7 +5,7 @@ a:link {
 .close-button {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
     align-content: flex-end;
     margin-top: 20px;

@@ -11,10 +11,12 @@ function StravaAuthentication() {
 
     return (
         <>
-            <Tile>
-                <h1>Home</h1>
-                <button onClick={handleLogin}>Connect with Strava</button>
-            </Tile>
+            <div className="container">
+                <Tile>
+                    <h1>Home</h1>
+                    <button onClick={handleLogin}>Connect with Strava</button>
+                </Tile>
+            </div>
         </>
     )
 }
