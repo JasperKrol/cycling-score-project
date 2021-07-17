@@ -54,10 +54,12 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 **6.** Strava Authenticatie
 * Na het inloggen heeft *CycleScore* toestemming van jouw Strava account nodig om de ritten en profielgegevens op te halen.
-* Binnen het kader van beoordelen of de app werkt heb ik een Strava account gemaakt met wat ritten. Deze kan gebruikt worden voor de beoordelaar en is te vinden in het verslag.
 * Heb je al een account dan kun je autorisatie knop volgen en de voorwaarden accepteren.
 
-
+* In functie van het beoordelen of de app werkt heb ik een Strava account gemaakt met wat ritten:
+  - Applicatie gegevens: test@test.com / 123123
+  - Strava gegevens: jasper.krol@novi-education / test123123
+  
 **7.** Mocht je het wachtwoord vergeten zijn, kan je deze makkelijk opvragen door middel van de Forgot Your Password link. Dan wordt er een e-mail verstuurd met een activatie-link.
 
 **8.** Ook zijn er testscenario's geschreven, deze zijn terug te vinden in de map: *testscripts*. Deze testen kunnen gedraaid worden volgens de volgende stappen in de terminal:
@@ -68,22 +70,21 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 ### Belangrijke screenshots:
 
-##### login
+#### Login
 ![Login](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/Login.PNG)
 
-##### registreer
+##### Registreer
 ![Registreer](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/registreer.PNG)
 
 
-##### Your scores
+#### Your scores
 ![Your scores](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/yourscores.PNG)
 
-##### Leaderboard voorbeeld
+#### Leaderboard voorbeeld
 ![Leaderboard voorbeeld](https://github.com/JasperKrol/cycling-score-project/blob/main/src/assets/speed%20leaderboard.PNG)
 
 
-
-### Heb je nog vragen, wil je in contact of heb je tips voor het project? incoming_envelope:
+#### Heb je nog vragen, wil je in contact of heb je tips voor het project? :incoming_envelope:
 - [LinkedIn](www.linkedin.com/in/jasper-paul-krol)
 - Of neem contact via mijn GitHub pagina :computer:
 
