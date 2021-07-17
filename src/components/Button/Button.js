@@ -1,6 +1,6 @@
 import styles from "./Button.module.css"
 import {useHistory} from "react-router-dom";
-import app from '../../contexts/Firebase'
+import app from '../../firebase/Firebase'
 import React, {useState} from "react";
 
 export default function Button({text, redirect}) {

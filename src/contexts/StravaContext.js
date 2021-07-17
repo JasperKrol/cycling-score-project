@@ -1,5 +1,5 @@
 import React, {useState, createContext, useContext, useEffect} from "react";
-import firebase from "./Firebase";
+import firebase from "../firebase/Firebase";
 import {useLocation} from "react-router-dom";
 import axios from "axios";
 import {useAuthContext} from "./AuthContext";
@@ -36,16 +36,16 @@ function StravaActivityContextProvider({children}) {
     //     async function fetchAllStravaData(accestoken) {
     //         try {
     //             const resultProfile = await axios.get(`https://www.strava.com/api/v3/athlete?access_token=${accestoken}`)
-    //             console.log("is dit resultProfile", resultProfile.data)
-    //             setStravaUserProfile(resultProfile.data)
+    //             console.log("is dit resultProfile", resultProfile.firebase)
+    //             setStravaUserProfile(resultProfile.firebase)
     //
     //             const resultActivities = await axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${accestoken}&per_page=200`)
-    //             console.log("is dit resultActivities", resultActivities.data)
-    //             setStravaData(resultActivities.data)
+    //             console.log("is dit resultActivities", resultActivities.firebase)
+    //             setStravaData(resultActivities.firebase)
     //             setLoading(false)
     //
     //
-    //             //return data
+    //             //return firebase
     //             return resultProfile, resultActivities
     //             // variable const
     //

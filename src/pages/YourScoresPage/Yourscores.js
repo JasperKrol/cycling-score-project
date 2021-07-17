@@ -4,7 +4,7 @@ import axios from "axios";
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import metersToKilometers from "../../helpers/metersToKM"
 import secondsPerMeterToKMPH from "../../helpers/secondsPerMeterToKMPH"
-import firebase from "../../contexts/Firebase";
+import firebase from "../../firebase/Firebase";
 import {useAuthContext} from "../../contexts/AuthContext";
 import {createCurrentYearString} from "../../helpers/createDateStrings";
 import {useLocation} from "react-router-dom";
@@ -58,7 +58,7 @@ function YourScores() {
                 setLoading(false)
 
 
-                //return data
+                //return firebase
                 return resultProfile, resultActivities
                 // variable const
 
@@ -101,7 +101,7 @@ function YourScores() {
 
         if (!user) return
 
-        //if user send new data to database
+        //if user send new firebase to database
 
         function sendData() {
             try {
@@ -115,7 +115,7 @@ function YourScores() {
                 console.error('Firebase fail: ', e)
             }
 
-            console.log("what is the data now", stravaData,)
+            console.log("what is the firebase now", stravaData,)
             console.log("what is the profile now", stravaUserProfile,)
         }
 

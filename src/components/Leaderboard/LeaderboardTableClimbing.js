@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createCurrentMonthString} from "../../helpers/createDateStrings";
-import firebase from "../../contexts/Firebase";
+import firebase from "../../firebase/Firebase";
 import {createMeterString} from "../../helpers/createMeterString";
 
 function LeaderboardTableClimbing() {
@@ -8,7 +8,7 @@ function LeaderboardTableClimbing() {
     const [userScores, setUserScores] = useState([]);
 
     const currentMonth = createCurrentMonthString()
-    // console.log("leaderboard data", fbData)
+    // console.log("leaderboard firebase", fbData)
 
 
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
@@ -18,7 +18,7 @@ function LeaderboardTableClimbing() {
             try {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();
-                // hier willen we de data gelijk al omzetten
+                // hier willen we de firebase gelijk al omzetten
                 const usersData = data.docs.map(doc => ({
                     ...doc.data(),
                     id: doc.id

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createCurrentMonthString} from "../../helpers/createDateStrings";
 import metersToKM from "../../helpers/metersToKM";
-import firebase from "../../contexts/Firebase";
+import firebase from "../../firebase/Firebase";
 
 function LeaderboardTableClimbing() {
 
@@ -17,7 +17,7 @@ function LeaderboardTableClimbing() {
             try {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();
-                // hier willen we de data gelijk al omzetten
+                // hier willen we de firebase gelijk al omzetten
                 const usersData = data.docs.map(doc => ({
                     ...doc.data(),
                     id: doc.id

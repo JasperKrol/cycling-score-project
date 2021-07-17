@@ -1,7 +1,7 @@
 import "./Home.css"
 import Tile from "../../components/Tile/Tile";
 import React from "react";
-import firebase from "../../contexts/Firebase"
+import firebase from "../../firebase/Firebase"
 import {useStravaActivityContext} from "../../contexts/StravaContext";
 import {useAuthContext} from "../../contexts/AuthContext";
 

@@ -3,7 +3,7 @@ import {Link, useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
 import React from "react";
 import {useState} from 'react'
-import app from '../../contexts/Firebase'
+import app from '../../firebase/Firebase'
 import Tile from "../../components/Tile/Tile";
 import {useAuthContext} from "../../contexts/AuthContext";
 
