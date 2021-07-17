@@ -23,6 +23,8 @@ function LeaderboardTableClimbing() {
                     id: doc.id
                 }));
 
+                // Haal de gegevens op uit firebase en map over de activiteiten. Filter op de type rit
+                // Bereken de scores via reduce en maar een key met value aan van de score
                 const filteredUsers = usersData.map((userStravaData) => {
 
                     const filteredRides = userStravaData.stravaData.filter((ride) => {

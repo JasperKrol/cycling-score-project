@@ -6,10 +6,8 @@ import {createMeterString} from "../../helpers/createMeterString";
 function LeaderboardTableClimbing() {
     const [loading, setLoading] = useState(true);
     const [userScores, setUserScores] = useState([]);
-
     const currentMonth = createCurrentMonthString()
     // console.log("leaderboard firebase", fbData)
-
 
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
@@ -23,6 +21,9 @@ function LeaderboardTableClimbing() {
                     ...doc.data(),
                     id: doc.id
                 }));
+
+                // Haal de gegevens op uit firebase en map over de activiteiten. Filter op de type rit
+                // Bereken de scores via reduce en maar een key met value aan van de score
 
                 const filteredUsers = usersData.map((userStravaData) => {
 
@@ -43,7 +44,8 @@ function LeaderboardTableClimbing() {
                 // console.log('HALLO', filteredUsers);
                 setUserScores(filteredUsers.sort((a, b) => {
                     return b.totalScore - a.totalScore
-                }));                // console.log('HALLO', userScores);
+                }));
+                // console.log('HALLO', userScores);
                 setLoading(false);
             } catch (e) {
                 console.error('Firebase fail: ', e)
@@ -52,8 +54,6 @@ function LeaderboardTableClimbing() {
         };
         fetchData();
     }, []);
-
-
 
 
     return (

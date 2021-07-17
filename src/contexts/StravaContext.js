@@ -1,8 +1,4 @@
-import React, {useState, createContext, useContext, useEffect} from "react";
-import firebase from "../firebase/Firebase";
-import {useLocation} from "react-router-dom";
-import axios from "axios";
-import {useAuthContext} from "./AuthContext";
+import React, {useState, createContext, useContext} from "react";
 
 export const StravaActivityContext = createContext({});
 
@@ -23,9 +19,6 @@ function StravaActivityContextProvider({children}) {
     const [clientId, setClientID] = useState();
     const [accessToken, setAccessToken] = useState('');
     const [ banaan, setLoading] = useState(true)
-
-
-
 
 
     // get mogen samen

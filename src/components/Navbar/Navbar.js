@@ -4,13 +4,11 @@ import './Navbar.css';
 import Button from "../Button/Button";
 import {useAuthContext} from "../../contexts/AuthContext";
 
-
 function Navbar() {
     const [click, setClick] = useState(false);
     const {user} = useAuthContext()
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
-
 
     return (
         <>

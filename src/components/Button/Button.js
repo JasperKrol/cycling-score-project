@@ -15,8 +15,7 @@ export default function Button({text, redirect}) {
                 console.error('Firebase fail: ', e)
                 setError("Failed to logout")
             });
-
-            console.log("klikt dit")
+            // console.log("klikt dit")
         }
         if (redirect === "message") {
             history.push("/form-submitted");

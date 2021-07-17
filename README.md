@@ -10,12 +10,12 @@ Wat kun je van de app verwachten?:
 - **Scores en klassementen:** De APP kijkt naar de gemiddelde snelheid, de afgelegde kilometers en hoeveel meter je
   geklommen hebt.
 - **Jaaroverzicht:** Deze pagina weergeeft jouw scores van het huidige jaar.
-- **Leaderboard Climbing** Wie heeft de beste klimbenen? Bekijk hier jouw positie en die van je vrienden.
-- **Leaderboard Distance** Wie heeft de meeste kilometers gegeten? Bekijk hier jouw positie en die van je vrienden.
-- **Leaderboard Speed** Wie heeft het snelste gereden deze maand? Bekijk hier jouw positie en die van je vrienden.
-- **Eenvoudige registratie met email:** wachtwoord vergeten? Geen probleem, vraag hem opnieuw aan.
-- **Strava authentication met oAuth2.0** Veilig je gegevens delen.
-- **Tips, Tops of vragen?** Stel ze via de contactpagina.
+- **Leaderboard Climbing:** Wie heeft de beste klimbenen? Bekijk hier jouw positie en die van je vrienden.
+- **Leaderboard Distance:** Wie heeft de meeste kilometers gegeten? Bekijk hier jouw positie en die van je vrienden.
+- **Leaderboard Speed:** Wie heeft het snelste gereden deze maand? Bekijk hier jouw positie en die van je vrienden.
+- **Eenvoudige registratie met email:** Wachtwoord vergeten? Geen probleem, vraag hem opnieuw aan.
+- **Strava authentication met oAuth2.0:** Veilig je gegevens delen.
+- **Tips, Tops of vragen?:** Stel ze via de contactpagina.
 
 ### Installatie handleiding:
 
@@ -56,7 +56,7 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 * Na het inloggen heeft *CycleScore* toestemming van jouw Strava account nodig om de ritten en profielgegevens op te halen.
 * Heb je al een account dan kun je autorisatie knop volgen en de voorwaarden accepteren.
 
-* In functie van het beoordelen of de app werkt heb ik een Strava account gemaakt met wat ritten:
+* In de functie van het beoordelen of de app werkt heb ik een Strava account gemaakt met wat ritten:
   - Applicatie gegevens: test@test.com / 123123
   - Strava gegevens: jasper.krol@novi-education / test123123
   

@@ -29,6 +29,9 @@ function LeaderboardTableSpeed() {
                         return ride.type === "Ride" && ride.start_date.substring(0, 7) === currentMonth;
                     })
 
+                    // Haal de gegevens op uit firebase en map over de activiteiten. Filter op de type rit
+                    // Bereken de scores via reduce en maar een key met value aan van de score
+
                     const speedScore = filteredRides.reduce(function (accumulator, speed) {
                         // console.log(filteredRides.length)
                         return accumulator + speed.average_speed
