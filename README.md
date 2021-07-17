@@ -48,11 +48,11 @@ aangeleverde ZIP-bestand en zijn ook toegevoegd in het verslag.
 
 **4.** Het project kan gestart worden door **npm start** in de terminal te draaien.
 
-**5.** Login en registratie:
+**5.** Login en registratie.
 * Registratie kan eenvoudig door een email/wachtwoord combinatie. Na een succesvolle registratie kom je gelijk op de Strava Authorization pagina.
 * Ben je uitgelogd en wil je weer gebruik maken van de APP? Gebruik dan je opgegeven email en wachtwoord op de Login pagina.
 
-**6.** Strava Authenticatie
+**6.** Strava Authenticatie.
 * Na het inloggen heeft *CycleScore* toestemming van jouw Strava account nodig om de ritten en profielgegevens op te halen.
 * Heb je al een account dan kun je autorisatie knop volgen en de voorwaarden accepteren.
 
