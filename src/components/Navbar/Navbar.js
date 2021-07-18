@@ -54,7 +54,7 @@ function Navbar() {
                             <>
                                 <li className='nav-item'>
                                     <NavLink
-                                        to='/'
+                                        to='/home'
                                         className='nav-links'
                                         onClick={closeMobileMenu}>
                                         Home

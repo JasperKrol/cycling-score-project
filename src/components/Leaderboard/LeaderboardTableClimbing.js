@@ -12,7 +12,7 @@ function LeaderboardTableClimbing() {
     //@todo zet context in useEffect en daarna nieuwe state voor verversen?
     useEffect(() => {
 
-        const fetchData = async () => {
+        async function fetchData() {
             try {
                 const db = firebase.firestore();
                 const data = await db.collection("StravaData").get();

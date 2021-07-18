@@ -1,9 +1,7 @@
 import Tile from "../../components/Tile/Tile";
-import React, {useEffect, useState} from "react";
-import {useAuthContext} from "../../contexts/AuthContext";
+import React, { useState} from "react";
 import Button from "../../components/Button/Button";
-import {Link} from "react-router-dom";
-
+import {Link,} from "react-router-dom";
 
 function StravaAuthentication() {
 

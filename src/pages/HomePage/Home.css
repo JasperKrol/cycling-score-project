@@ -1,23 +1,10 @@
-input #client-secret,
-input #clientId {
-    width: auto;
-}
-
-
-.photo-div {
-    display: flex;
+.picture {
     position: relative;
     width: 5rem;
     height: 5rem;
-    justify-content: center;
     align-items: center;
     border-radius: 50%;
+    border: 2px solid #fff;
 }
 
-.picture {
-    height: 100%;
-    width: 100%;
-    border: 2px solid #fff;
-    border-radius: 50%;
-}
 

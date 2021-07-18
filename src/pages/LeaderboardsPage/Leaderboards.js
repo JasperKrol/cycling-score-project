@@ -6,20 +6,13 @@ import Tile from "../../components/Tile/Tile";
 import React from "react";
 import {useAuthContext} from "../../contexts/AuthContext";
 import Button from "../../components/Button/Button";
-import {Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll'
+import {Link } from 'react-scroll'
 
 
 function Leaderboards() {
 
     const {pageLoading} = useAuthContext()
 
-    function scrollTo() {
-        scroller.scrollTo('scroll-to-element', {
-            duration: 800,
-            delay: 0,
-            smooth: 'easeInOutQuart'
-        })
-    }
 
     return (
         <>
