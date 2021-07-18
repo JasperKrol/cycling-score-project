@@ -7,8 +7,7 @@ houd alles bij :bicyclist::dash:!
 
 Wat kun je van de app verwachten?:
 
-- **Scores en klassementen:** De APP kijkt naar de gemiddelde snelheid, de afgelegde kilometers en hoeveel meter je
-  geklommen hebt.
+- **Scores en klassementen:** De APP kijkt naar de gemiddelde snelheid, de afgelegde kilometers en hoogtemeters.
 - **Jaaroverzicht:** Deze pagina weergeeft jouw scores van het huidige jaar.
 - **Leaderboard Climbing:** Wie heeft de beste klimbenen? Bekijk hier jouw positie en die van je vrienden.
 - **Leaderboard Distance:** Wie heeft de meeste kilometers gegeten? Bekijk hier jouw positie en die van je vrienden.

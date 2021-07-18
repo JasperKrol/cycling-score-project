@@ -95,11 +95,11 @@ function YourScores() {
         }
 
         fetchData()
-    }, [user])
+    }, [])
 
     useEffect(() => {
 
-        if (!user) return
+        if (!stravaData && stravaUserProfile) return
 
         //if user send new firebase to database
 
