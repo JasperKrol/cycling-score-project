@@ -13,6 +13,7 @@ import SignUp from "./pages/SignUpPage/SignUp";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import ForgotPassword from "./pages/ForgotPasswordPage/ForgotPassword";
 import StravaAuthentication from "./pages/StravaAuthentication/StravaAuthentication";
+import PageNotFound from "./pages/PageNotFound/PageNotFound";
 
 
 function App() {
@@ -22,8 +23,7 @@ function App() {
             <Navbar/>
             <Switch>
                 <PrivateRoute
-                    exact
-                    path="/"
+                    path="/home"
                     component={<Home/>}>
                 </PrivateRoute>
 
@@ -33,7 +33,7 @@ function App() {
 
                 <Route
                     path="/strava-authentication">
-                   <StravaAuthentication/>
+                    <StravaAuthentication/>
                 </Route>
 
                 <Route path="/sign-up">
@@ -71,7 +71,9 @@ function App() {
                     <ForgotPassword/>
                 </Route>
 
-                <Route path="*" component={() => "404 not found"}/>
+                <Route path="*">
+                    <PageNotFound/>
+                </Route>
             </Switch>
         </>
     );
