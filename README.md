@@ -29,7 +29,7 @@ Wat kun je van de app verwachten?:
 
 **1.** Clone het project.
 
-**2.** Installeer de node_modules door **npm install** te draaien in de terminal.
+**2.** Installeer de node_modules door **npm install** te draaien in de terminal. Klaar? Je kunt nu **npm start** gebruiken in de terminal om de applicatie te starten.
 
 **3.** Deze app maakt gebruikt van Firebase en Firestore, hierdoor zijn er bestanden met privégegevens die ik hier niet
 kan delen. Het ENV-bestand dient dan ook nog handmatig toegevoegd te worden. Deze informatie is te vinden in het
